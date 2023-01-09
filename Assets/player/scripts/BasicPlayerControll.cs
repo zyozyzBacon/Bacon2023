@@ -32,8 +32,6 @@ public class BasicPlayerControll : MonoBehaviour
     [Tooltip("電視模式物件")][SerializeField]public GameObject tvModePart;
     [Tooltip("電視模式物件")][SerializeField] private GameObject DashCollider;
 
-
-    int stepsJumped = 0;
     Vector2 moveInput;
 
     Rigidbody2D rb;
@@ -68,7 +66,7 @@ public class BasicPlayerControll : MonoBehaviour
     }
 
 
-
+    //移動相關/////////////////////////////////////////////////////////
     public void derictionInput(InputAction.CallbackContext context) //方向輸入
     {
         moveInput = context.ReadValue<Vector2>();
@@ -91,7 +89,7 @@ public class BasicPlayerControll : MonoBehaviour
     }
 
 
-
+    //移動相關/////////////////////////////////////////////////////////
     //跳躍相關/////////////////////////////////////////////////////////
 
     public void jumpInput(InputAction.CallbackContext context) //輸入跳躍事件
@@ -154,6 +152,7 @@ public class BasicPlayerControll : MonoBehaviour
     }
 
     //跳躍相關/////////////////////////////////////////////////////////
+    //衝刺相關/////////////////////////////////////////////////////////
 
 
     public void dashInput(InputAction.CallbackContext context)
@@ -190,6 +189,9 @@ public class BasicPlayerControll : MonoBehaviour
         yield return new WaitForSeconds(seconds);
         pState.dashCoolDowning = false;
     }
+
+    //衝刺相關/////////////////////////////////////////////////////////
+    //電視玩法相關/////////////////////////////////////////////////////
 
     public void frozenForTV() 
     {
@@ -243,6 +245,9 @@ public class BasicPlayerControll : MonoBehaviour
         rb.velocity = moveInput * tvMoveSpeed;
     }
 
+    //電視玩法相關/////////////////////////////////////////////////////
+    //受傷相關/////////////////////////////////////////////////////////
+
     public void damaged(Vector2 others)
     {
         pState.damaged = true;
@@ -278,7 +283,7 @@ public class BasicPlayerControll : MonoBehaviour
 
         pState.recoverying = false;
     }
-    
 
+    //受傷相關/////////////////////////////////////////////////////////
 
 }

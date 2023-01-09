@@ -40,8 +40,6 @@ public class tvPartGameplay : MonoBehaviour
 
     private Vector2[] v2;
 
-
-
     public void Awake()
     {
         tvGameplayManager = this;
@@ -52,7 +50,7 @@ public class tvPartGameplay : MonoBehaviour
         Debug.Log("轉場階段");
         TvState = tvState.tran;
         tvGameplayCamere.Priority = 11;
-        playerList = MainGameManager.mainGameManager.playerList;
+        playerList = MainGameManager.instance.playerList;
         v2 = new Vector2[4];
         inTvBefore();
         StartCoroutine(ready(transTime));
@@ -172,19 +170,24 @@ public class tvPartGameplay : MonoBehaviour
 
     public void conclusion() 
     {
+        GameObject[] target = new GameObject[4];
+        
         for (int i = 0; i < playerList.Count; i++)
         {
             answer ans = playerList[i].GetComponent<PlayerStateList>().currentAnswer;
 
-            if (ans == correctAnswer)
+            if (ans != correctAnswer)
             {
-                Debug.Log("一名玩家合格");
-            }
-            else 
-            {
-                Debug.Log("一名玩家不合格");
+                target[i] = playerList[i];
             }
         }
+
+        this.gameObject.AddComponent<p01>();
+        punishmentInterface pi = this.gameObject.GetComponent<p01>();
+
+        pi.active(target);
+
+        this.gameObject.GetComponent<ItemManager>().remoteTaken();
     }
 
     public enum tvState 

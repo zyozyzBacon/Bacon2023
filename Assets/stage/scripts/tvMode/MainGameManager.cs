@@ -3,18 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static tvPartGameplay;
 
 public class MainGameManager : MonoBehaviour
 {
 
-    public static MainGameManager mainGameManager;
+    public static MainGameManager instance;
 
     public Dictionary<int, GameObject> playerList;
 
-    private int playerNum;
+    [SerializeField]private int playerNum;
+    [SerializeField] private Transform[] playerSpawn;
 
-    CinemachineTargetGroup cameraTarget;
-
+    CinemachineTargetGroup.Target[] cameraTarget;
 
     public enum playerTeam 
     {
@@ -25,18 +26,27 @@ public class MainGameManager : MonoBehaviour
 
     private void Awake()
     {
-        mainGameManager = this;
+        instance = this;
         playerList = new Dictionary<int, GameObject>();
         playerNum = 0;
 
-        cameraTarget = mainGameManager.gameObject.GetComponent<CinemachineTargetGroup>();
+        cameraTarget = instance.gameObject.GetComponent<CinemachineTargetGroup>().m_Targets;
+
+        ItemManager.instance.remoteTaken();
     }
 
     public void AddPlayerToList(GameObject playerPrefab) 
     {
         playerList.Add(playerNum, playerPrefab);
-        cameraTarget.m_Targets[playerNum].target = playerPrefab.transform;
-        playerNum++; 
+        cameraTarget[playerNum].target = playerPrefab.transform;
+        playerPrefab.transform.position = playerSpawn[playerNum].position;
+        //playerPrefab.GetComponent<PlayerStateList>().pause = true;
+        if (playerNum == 0 || playerNum == 2) 
+        {
+            playerPrefab.GetComponent<SpriteRenderer>().flipX= true;
+        }
+       
+        playerNum++;
     }
 
 
