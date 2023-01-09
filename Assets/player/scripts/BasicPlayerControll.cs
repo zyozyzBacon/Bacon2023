@@ -11,9 +11,8 @@ public class BasicPlayerControll : MonoBehaviour
     [Tooltip("電視模式速度")][SerializeField]public float tvMoveSpeed;
 
     [Header("跳躍相關")]
-    [Tooltip("跳躍速度極限")][SerializeField] float jumpSpeed;
+    [Tooltip("跳躍力道")][SerializeField] float jumpForce;
     [Tooltip("墜落速度極限")][SerializeField] float fallSpeed;
-    [Tooltip("跳躍速度時間長度(幀數)")][SerializeField] int jumpSteps;
 
     [Header("受傷相關")]
     [Tooltip("受傷後無敵時間")][SerializeField] float recoveryTime;
@@ -31,6 +30,7 @@ public class BasicPlayerControll : MonoBehaviour
 
     [Header("[勿動]抓取子物件相關")]
     [Tooltip("電視模式物件")][SerializeField]public GameObject tvModePart;
+    [Tooltip("電視模式物件")][SerializeField] private GameObject DashCollider;
 
 
     int stepsJumped = 0;
@@ -55,13 +55,8 @@ public class BasicPlayerControll : MonoBehaviour
         {
             if (!pState.tvModeOn)
             {
-                if (!pState.damaged) 
-                {
-                    jump();
-                    walk();
-                    dash();
-                }
-
+                walk();
+                dash();
             }
             else 
             {
@@ -69,6 +64,7 @@ public class BasicPlayerControll : MonoBehaviour
             }
         }
         pauseState();
+        jumpDetect();
     }
 
 
@@ -80,7 +76,7 @@ public class BasicPlayerControll : MonoBehaviour
 
     void walk()
     {
-        if (!pState.dashing) 
+        if (!pState.dashing && !pState.damaged) 
         {
             rb.velocity = new Vector2(moveInput.x * walkSpeed, rb.velocity.y);
 
@@ -96,59 +92,73 @@ public class BasicPlayerControll : MonoBehaviour
 
 
 
-    //跳躍輸入
-    public void jumpInput(InputAction.CallbackContext context)
-    {
-        if (Grounded()) //地面偵測 是否有站在地面上
-        {
-            pState.jumping = true; //啟動跳躍
-        }
-    }
+    //跳躍相關/////////////////////////////////////////////////////////
 
-    void jump() //觸發跳躍
+    public void jumpInput(InputAction.CallbackContext context) //輸入跳躍事件
     {
-        if (pState.jumping)
+        float j = context.ReadValue<float>();
+
+        if (j != 0 && IsGrounded() && !pState.damaged)
         {
-            if (stepsJumped < jumpSteps)
-            {
-                rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
-                stepsJumped++;
-            }
-            else
-            {
-                StopJumpSlow();
-            }
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            //anim.SetTrigger("jumpTrigger");
         }
 
-        //讓墜落速度有最大值極限而不是無限加速墜落
-        if (rb.velocity.y < -Mathf.Abs(fallSpeed))
+        if (j == 0 && rb.velocity.y > 0)
         {
-            rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -Mathf.Abs(fallSpeed), Mathf.Infinity));
+            rb.velocity = new Vector2(rb.velocity.x, 0);
         }
-    }
 
-    void StopJumpSlow() //跳躍結束 跳到指定高度後 會開始墜落
-    {
-        stepsJumped = 0;
-        pState.jumping = false;
     }
-
-    public bool Grounded() //地面偵測 是否有站在地面上
+    private void jumpDetect() //跳躍相關的狀態偵測用(Update())
     {
-        if (Physics2D.Raycast(transform.position, Vector2.down, groundCheckY, groundLayer))
+        if (IsGrounded())
         {
-            return true;
+            if (pState.jumping)
+                StartCoroutine(jumpCoolDown(0.05f));
+
+            pState.jumping = false;
         }
         else
         {
-            return false;
+            if (!pState.jumping)
+            {
+                //anim.SetTrigger("jumpTrigger");
+            }
+
+            pState.jumping = true;
         }
+
+        //pState.grounded = IsGrounded();
+        //anim.SetBool("jump", pState.jumping);
+
+        //讓墜落速度有最大值極限而不是無限加速墜落
+        if (rb.velocity.y < -Mathf.Abs(fallSpeed))
+            rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -Mathf.Abs(fallSpeed), Mathf.Infinity));
     }
+
+
+    private IEnumerator jumpCoolDown(float seconds) //跳躍冷卻(0.03秒)
+    {
+        pState.jumped = true;
+        yield return new WaitForSeconds(seconds);
+        pState.jumped = false;
+    }
+
+    private bool IsGrounded() //地面偵測 是否有站在地面上
+    {
+        if (Physics2D.Raycast(transform.position, Vector2.down, groundCheckY, groundLayer))
+            return true;
+        else
+            return false;
+    }
+
+    //跳躍相關/////////////////////////////////////////////////////////
 
 
     public void dashInput(InputAction.CallbackContext context)
     {
-        if (!pState.dashCoolDowning) 
+        if (!pState.dashCoolDowning && !pState.damaged) 
         {
             pState.dashing = true;
             pState.dashCoolDowning = true;
@@ -211,6 +221,7 @@ public class BasicPlayerControll : MonoBehaviour
     public void inTvMode() 
     {
         tvModePart.SetActive(true);
+        DashCollider.SetActive(false);
         spriteRenderer.enabled = false;
         boxCollider.enabled = false;
         rb.gravityScale = 0f;
@@ -220,6 +231,7 @@ public class BasicPlayerControll : MonoBehaviour
     public void outTvMode()
     {
         tvModePart.SetActive(false);
+        DashCollider.SetActive(true);
         spriteRenderer.enabled = true;
         boxCollider.enabled = true;
         rb.gravityScale = 1f;

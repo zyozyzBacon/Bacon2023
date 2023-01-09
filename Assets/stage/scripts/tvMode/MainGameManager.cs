@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,8 @@ public class MainGameManager : MonoBehaviour
 
     private int playerNum;
 
+    CinemachineTargetGroup cameraTarget;
+
 
     public enum playerTeam 
     {
@@ -25,12 +28,15 @@ public class MainGameManager : MonoBehaviour
         mainGameManager = this;
         playerList = new Dictionary<int, GameObject>();
         playerNum = 0;
+
+        cameraTarget = mainGameManager.gameObject.GetComponent<CinemachineTargetGroup>();
     }
 
     public void AddPlayerToList(GameObject playerPrefab) 
     {
         playerList.Add(playerNum, playerPrefab);
-        playerNum++;
+        cameraTarget.m_Targets[playerNum].target = playerPrefab.transform;
+        playerNum++; 
     }
 
 

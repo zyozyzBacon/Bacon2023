@@ -54,14 +54,15 @@ public class tvPartGameplay : MonoBehaviour
         tvGameplayCamere.Priority = 11;
         playerList = MainGameManager.mainGameManager.playerList;
         v2 = new Vector2[4];
-        inTV();
+        inTvBefore();
         StartCoroutine(ready(transTime));
     }
 
     public IEnumerator ready(float seconds) 
     {
         yield return new WaitForSeconds(seconds);
-        Debug.Log("啟動電視階段");    
+        Debug.Log("啟動電視階段");
+        inTvAfter();
         TvState = tvState.ready;
         StartCoroutine(readyCountDown(readyTime));
     }
@@ -133,21 +134,30 @@ public class tvPartGameplay : MonoBehaviour
     }
 
 
-    private void inTV() 
+    private void inTvBefore() 
     {
         for (int i = 0;i < playerList.Count; i++) 
         {
-            v2[i] = new Vector2(playerList[i].transform.position.x, playerList[i].transform.position.y + 0.5f);
-
-            playerList[i].transform.position =
-                new Vector2(tvSpawnPoint.position.x, tvSpawnPoint.position.y);
-
             playerList[i].GetComponent<BasicPlayerControll>().inTvMode();
             playerList[i].GetComponent<BasicPlayerControll>().frozenForTV();
 
             playerList[i].GetComponent<PlayerStateList>().currentAnswer = answer.none;
         }
     }
+
+    private void inTvAfter() 
+    {
+
+        for (int i = 0; i < playerList.Count; i++)
+        {
+            v2[i] = new Vector2(playerList[i].transform.position.x, playerList[i].transform.position.y + 0.5f);
+
+            playerList[i].transform.position =
+                new Vector2(tvSpawnPoint.position.x, tvSpawnPoint.position.y);
+        }
+
+    }
+
     private void outTV()
     {
         for (int i = 0; i < playerList.Count; i++)

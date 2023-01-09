@@ -339,6 +339,7 @@ MonoBehaviour:
   pause: 0
   walking: 0
   jumping: 0
+  jumped: 0
   facingRight: 0
   dashing: 0
   dashCoolDowning: 0
@@ -359,7 +360,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkSpeed: 7
   tvMoveSpeed: 2.5
-  jumpSpeed: 10
+  jumpForce: 15
   fallSpeed: 20
   jumpSteps: 5
   recoveryTime: 2
@@ -373,6 +374,7 @@ MonoBehaviour:
   dashTime: 0.25
   dashCD: 0.25
   tvModePart: {fileID: 761496276369795586}
+  DashCollider: {fileID: 1709779374316642737}
 --- !u!114 &7126360053929608705
 MonoBehaviour:
   m_ObjectHideFlags: 0

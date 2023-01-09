@@ -8,5 +8,6 @@ public class PlayerJoinMananger : MonoBehaviour
     private void OnPlayerJoined(PlayerInput playerInput)
     {
         MainGameManager.mainGameManager.AddPlayerToList(playerInput.gameObject);
+        
     }
 }
