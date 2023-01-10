@@ -10,19 +10,17 @@ public class MainGameManager : MonoBehaviour
 
     public static MainGameManager instance;
 
+    public bool gaming;
+    
     public Dictionary<int, GameObject> playerList;
 
-    [SerializeField]private int playerNum;
+    [SerializeField] private int playerNum;
     [SerializeField] private Transform[] playerSpawn;
+    [SerializeField] public int[] ammo = new int[4];
+    [SerializeField] public GameObject TimerText;
+    
 
     CinemachineTargetGroup.Target[] cameraTarget;
-
-    public enum playerTeam 
-    {
-        none,
-        A,
-        B
-    }
 
     private void Awake()
     {
@@ -31,7 +29,10 @@ public class MainGameManager : MonoBehaviour
         playerNum = 0;
 
         cameraTarget = instance.gameObject.GetComponent<CinemachineTargetGroup>().m_Targets;
+    }
 
+    private void Start()
+    {
         ItemManager.instance.remoteTaken();
     }
 
@@ -45,7 +46,7 @@ public class MainGameManager : MonoBehaviour
         {
             playerPrefab.GetComponent<SpriteRenderer>().flipX= true;
         }
-       
+        playerPrefab.AddComponent<foodBattlePlayer>().init();
         playerNum++;
     }
 

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerStateList : MonoBehaviour
 {
-    public MainGameManager.playerTeam playerTeam;
     public tvPartGameplay.answer currentAnswer;
     public bool pause;
     public bool walking;

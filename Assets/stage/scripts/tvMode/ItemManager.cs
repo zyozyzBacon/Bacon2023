@@ -7,6 +7,8 @@ public class ItemManager : MonoBehaviour
 {
     public static ItemManager instance;
 
+    [Header("道具開關")]
+    [SerializeField][Tooltip("遙控器")] private bool remoteON;
 
     [Header("道具生成時間相關")]
     [SerializeField][Tooltip("遙控器時間")] private float remoteTime;
@@ -30,7 +32,8 @@ public class ItemManager : MonoBehaviour
 
     public void remoteTaken() 
     {
-        StartCoroutine(remoteCount(remoteTime));
+        if(remoteON)
+            StartCoroutine(remoteCount(remoteTime));
     }
 
     private IEnumerator remoteCount(float seconds) 

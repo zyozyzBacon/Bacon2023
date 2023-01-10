@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface punishmentInterface
+public class bubblePoint : MonoBehaviour
 {
-    void active(GameObject[] targetPlayer);
+    public bool bubble;
 }

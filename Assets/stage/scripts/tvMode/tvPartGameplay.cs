@@ -182,10 +182,8 @@ public class tvPartGameplay : MonoBehaviour
             }
         }
 
-        this.gameObject.AddComponent<p01>();
-        punishmentInterface pi = this.gameObject.GetComponent<p01>();
 
-        pi.active(target);
+        //�ݸɥR
 
         this.gameObject.GetComponent<ItemManager>().remoteTaken();
     }

@@ -22,6 +22,7 @@ public class ColliderPlayerTrigger : MonoBehaviour
                 itemInterface.ItemTrigger(this.gameObject);
             else
                 Debug.LogError("出錯 道具不正常");
+
         }
 
         if (collision.tag == "DashAttack")
@@ -36,6 +37,21 @@ public class ColliderPlayerTrigger : MonoBehaviour
                 }          
                 else
                     Debug.LogError("出錯 玩家不正常");
+
+            }
+        }
+
+        if (collision.tag == "Bubble")
+        {
+            if (this.gameObject.GetComponent<BasicPlayerControll>() != null) 
+            {
+                if (this.gameObject.GetComponent<foodBattlePlayer>() != null && foodBattleManager.instance != null)
+                {
+                    this.gameObject.GetComponent<foodBattlePlayer>().eating(collision.gameObject);
+                }
+
+                this.gameObject.GetComponent<BasicPlayerControll>().bubbles++;
+                Destroy(collision.gameObject);
             }
         }
     }
