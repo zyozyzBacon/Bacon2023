@@ -8,6 +8,8 @@ TagManager:
   - AnswerBox
   - DashAttack
   - Bubble
+  - GhostPlayer
+  - ItemLocation
   layers:
   - Default
   - TransparentFX
@@ -20,9 +22,9 @@ TagManager:
   - PlayerLayer
   - TVLayer
   - TVPlayerLayer
-  - 
-  - 
-  - 
+  - DeadPlayerLayer
+  - ItemLayer
+  - DashPlayer
   - 
   - 
   - 

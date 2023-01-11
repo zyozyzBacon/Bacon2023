@@ -52,7 +52,19 @@ public class tvPartGameplay : MonoBehaviour
         tvGameplayCamere.Priority = 11;
         playerList = MainGameManager.instance.playerList;
         v2 = new Vector2[4];
-        inTvBefore();
+
+        for (int i = 0; i < playerList.Count; i++)
+        {
+            playerList[i].GetComponent<BasicPlayerControll>().frozenForTV();
+
+            if (!playerList[i].GetComponent<PlayerStateList>().dead)
+            {
+                playerList[i].GetComponent<BasicPlayerControll>().inTvMode();
+            }
+
+            playerList[i].GetComponent<PlayerStateList>().currentAnswer = answer.none;
+        }
+
         StartCoroutine(ready(transTime));
     }
 
@@ -60,7 +72,16 @@ public class tvPartGameplay : MonoBehaviour
     {
         yield return new WaitForSeconds(seconds);
         Debug.Log("啟動電視階段");
-        inTvAfter();
+
+        for (int i = 0; i < playerList.Count; i++)
+        {
+            v2[i] = new Vector2(playerList[i].transform.position.x, playerList[i].transform.position.y + 0.5f);
+
+            if (!playerList[i].GetComponent<PlayerStateList>().dead)
+                playerList[i].transform.position =
+                new Vector2(tvSpawnPoint.position.x, tvSpawnPoint.position.y);
+        }
+
         TvState = tvState.ready;
         StartCoroutine(readyCountDown(readyTime));
     }
@@ -72,7 +93,8 @@ public class tvPartGameplay : MonoBehaviour
 
         for (int i = 0; i < playerList.Count; i++)
         {
-            playerList[i].GetComponent<BasicPlayerControll>().unfrozen();
+            if (!playerList[i].GetComponent<PlayerStateList>().dead)
+                playerList[i].GetComponent<BasicPlayerControll>().unfrozen();
         }
         bossPlayer.GetComponent<BasicPlayerControll>().frozenForTV();
         bossPlayer.GetComponent<BasicPlayerControll>().tvMoveSpeed *= 3;
@@ -84,10 +106,10 @@ public class tvPartGameplay : MonoBehaviour
     {
         for (int i = 0; i < playerList.Count; i++)
         {
-            playerList[i].GetComponent<BasicPlayerControll>().frozenForTV();
+            if (!playerList[i].GetComponent<PlayerStateList>().dead)
+                playerList[i].GetComponent<BasicPlayerControll>().frozenForTV();
         }
         bossPlayer.GetComponent<BasicPlayerControll>().unfrozen();
-
         bossPlayer.GetComponent<BasicPlayerControll>().tvModePart.GetComponent<SpriteRenderer>().enabled = true;
     }
 
@@ -116,7 +138,18 @@ public class tvPartGameplay : MonoBehaviour
         tvGameplayCamere.Priority = 9;
         bossPlayer.GetComponent<BasicPlayerControll>().tvMoveSpeed /= 3;
         correctAnswer = bossPlayer.GetComponent<PlayerStateList>().currentAnswer;
-        outTV();
+
+        for (int i = 0; i < playerList.Count; i++)
+        {
+            if (!playerList[i].GetComponent<PlayerStateList>().dead)
+            {
+                playerList[i].transform.position = new Vector2(v2[i].x, v2[i].y);
+
+                playerList[i].GetComponent<BasicPlayerControll>().outTvMode();
+                playerList[i].GetComponent<BasicPlayerControll>().frozenForTV();
+            }
+        }
+
         conclusion();
         StartCoroutine(endTrans(transTime));
     }
@@ -128,43 +161,6 @@ public class tvPartGameplay : MonoBehaviour
         for (int i = 0; i < playerList.Count; i++)
         {
             playerList[i].GetComponent<BasicPlayerControll>().unfrozen();
-        }
-    }
-
-
-    private void inTvBefore() 
-    {
-        for (int i = 0;i < playerList.Count; i++) 
-        {
-            playerList[i].GetComponent<BasicPlayerControll>().inTvMode();
-            playerList[i].GetComponent<BasicPlayerControll>().frozenForTV();
-
-            playerList[i].GetComponent<PlayerStateList>().currentAnswer = answer.none;
-        }
-    }
-
-    private void inTvAfter() 
-    {
-
-        for (int i = 0; i < playerList.Count; i++)
-        {
-            v2[i] = new Vector2(playerList[i].transform.position.x, playerList[i].transform.position.y + 0.5f);
-
-            playerList[i].transform.position =
-                new Vector2(tvSpawnPoint.position.x, tvSpawnPoint.position.y);
-        }
-
-    }
-
-    private void outTV()
-    {
-        for (int i = 0; i < playerList.Count; i++)
-        { 
-            playerList[i].transform.position =
-                new Vector2(v2[i].x, v2[i].y);
-
-            playerList[i].GetComponent<BasicPlayerControll>().outTvMode();
-            playerList[i].GetComponent<BasicPlayerControll>().frozenForTV();
         }
     }
 

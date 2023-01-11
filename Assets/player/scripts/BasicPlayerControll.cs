@@ -31,9 +31,11 @@ public class BasicPlayerControll : MonoBehaviour
     [Header("玩法相關")]
     [Tooltip("珍珠數量")][SerializeField]public int bubbles;
 
-    [Header("[勿動]抓取子物件相關")]
-    [Tooltip("電視模式物件")][SerializeField]public GameObject tvModePart;
-    [Tooltip("電視模式物件")][SerializeField] private GameObject DashCollider;
+
+   [Header("[勿動]抓取子物件相關")]
+    [Tooltip("電視模式物件")][SerializeField] public GameObject tvModePart;
+    [Tooltip("衝刺撞人物件")][SerializeField] private GameObject DashCollider;
+    [Tooltip("幽靈模式物件")][SerializeField] private GameObject GhostPlayer;
 
     Vector2 moveInput;
 
@@ -81,12 +83,16 @@ public class BasicPlayerControll : MonoBehaviour
         {
             rb.velocity = new Vector2(moveInput.x * walkSpeed, rb.velocity.y);
 
-            if (moveInput.x > 0.1)
-                spriteRenderer.flipX = true;
-            else if (moveInput.x < -0.1)
-                spriteRenderer.flipX = false;
-
-            pState.facingRight = spriteRenderer.flipX;
+            if (moveInput.x > 0.7)
+            {
+                transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+                pState.facingRight = true;
+            }
+            else if (moveInput.x < -0.7)
+            {
+                transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+                pState.facingRight = false;
+            }
         }
 
     }
@@ -196,7 +202,7 @@ public class BasicPlayerControll : MonoBehaviour
     //衝刺相關/////////////////////////////////////////////////////////
     //電視玩法相關/////////////////////////////////////////////////////
 
-    public void frozenForTV() 
+    public void frozenForTV() //會執行數次
     {
         StopAllCoroutines();
         StopAllCoroutines();
@@ -207,23 +213,12 @@ public class BasicPlayerControll : MonoBehaviour
         pState.dashCoolDowning = false;
     }
 
-    public void unfrozen() 
+    public void unfrozen() //會執行數次
     {
         pState.pause = false;
     }
 
-    public void pauseState() 
-    {
-        if (pState.pause)
-            rb.constraints = RigidbodyConstraints2D.FreezePosition;
-        else
-        {
-            rb.constraints = RigidbodyConstraints2D.None;
-            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-        }
-    }
-
-    public void inTvMode() 
+    public void inTvMode() //會執行一次
     {
         tvModePart.SetActive(true);
         DashCollider.SetActive(false);
@@ -231,9 +226,14 @@ public class BasicPlayerControll : MonoBehaviour
         boxCollider.enabled = false;
         rb.gravityScale = 0f;
         pState.tvModeOn = true;
+
+        transform.localEulerAngles= Vector3.zero;
+
+        if (this.gameObject.GetComponent<foodBattlePlayer>() != null)
+            this.gameObject.GetComponent<foodBattlePlayer>().holdOn();
     }
 
-    public void outTvMode()
+    public void outTvMode() //會執行一次
     {
         tvModePart.SetActive(false);
         DashCollider.SetActive(true);
@@ -241,11 +241,43 @@ public class BasicPlayerControll : MonoBehaviour
         boxCollider.enabled = true;
         rb.gravityScale = 1f;
         pState.tvModeOn = false;
+
+        transform.localEulerAngles = Vector3.zero;
+
+        if (this.gameObject.GetComponent<foodBattlePlayer>() != null)
+            this.gameObject.GetComponent<foodBattlePlayer>().keepGo();
     }
 
-    private void tvMove() 
+    /// <summary>
+    /// 
+    ///  對於沒搶到遙控器的普通玩家 => 
+    ///  
+    ///  frozenForTV() => inTvMode() => unfrozen() => frozenForTV() => outTvMode() => frozenForTV() => unfrozen()
+    ///  
+    ///  對於搶到遙控器的普通玩家 => 
+    ///  
+    /// frozenForTV() => inTvMode() => (unfrozen() => frozenForTV()) => unfrozen() => outTvMode() => frozenForTV() => unfrozen()
+    /// 
+    /// 對於搶到遙控器之前就已經出局的玩家 => 
+    /// 
+    /// frozenForTV() =>  =>  =>  =>  =>  => unfrozen()
+    /// 
+    /// </summary>
+
+    private void tvMove() //update()
     {
         rb.velocity = moveInput * tvMoveSpeed;
+
+        if (moveInput.x > 0.7)
+        {
+            transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+            pState.facingRight = true;
+        }
+        else if (moveInput.x < -0.7)
+        {
+            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+            pState.facingRight = false;
+        }
     }
 
     //電視玩法相關/////////////////////////////////////////////////////
@@ -288,5 +320,33 @@ public class BasicPlayerControll : MonoBehaviour
     }
 
     //受傷相關/////////////////////////////////////////////////////////
+    //退場相關/////////////////////////////////////////////////////////
+
+    public void retired() 
+    {
+        tvModePart.SetActive(false);
+        DashCollider.SetActive(false);
+        GhostPlayer.SetActive(true);
+        spriteRenderer.enabled = false;
+        boxCollider.enabled = false;
+        rb.gravityScale = 0f;
+        pState.tvModeOn = true;
+        tvMoveSpeed = 50f;
+        pState.dead = true;
+    }
+
+    //退場相關/////////////////////////////////////////////////////////
+    //暫停相關/////////////////////////////////////////////////////////
+
+    public void pauseState()
+    {
+        if (pState.pause)
+            rb.constraints = RigidbodyConstraints2D.FreezePosition;
+        else
+        {
+            rb.constraints = RigidbodyConstraints2D.None;
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        }
+    }
 
 }

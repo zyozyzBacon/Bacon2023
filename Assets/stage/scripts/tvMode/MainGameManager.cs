@@ -44,11 +44,9 @@ public class MainGameManager : MonoBehaviour
         //playerPrefab.GetComponent<PlayerStateList>().pause = true;
         if (playerNum == 0 || playerNum == 2) 
         {
-            playerPrefab.GetComponent<SpriteRenderer>().flipX= true;
+            transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
         }
         playerPrefab.AddComponent<foodBattlePlayer>().init();
         playerNum++;
     }
-
-
 }

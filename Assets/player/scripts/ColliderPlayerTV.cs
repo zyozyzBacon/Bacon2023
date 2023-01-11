@@ -18,7 +18,7 @@ public class ColliderPlayerTV : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "AnswerBox" && pState.tvModeOn)
+        if (collision.gameObject.tag == "AnswerBox" && pState.tvModeOn && !pState.dead)
         {
             pState.currentAnswer = collision.gameObject.GetComponent<tvAnswerBox>().Answer;
         }

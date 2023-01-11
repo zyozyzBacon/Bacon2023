@@ -6,6 +6,7 @@ public class PlayerStateList : MonoBehaviour
 {
     public tvPartGameplay.answer currentAnswer;
     public bool pause;
+    public bool dead;
     public bool walking;
     public bool jumping;
     public bool jumped;

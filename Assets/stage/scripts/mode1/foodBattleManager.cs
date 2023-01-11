@@ -13,7 +13,6 @@ public class foodBattleManager : MonoBehaviour
 
     [Tooltip("珍珠生成時間")][SerializeField] private float bubbleTime;
     [Tooltip("一波珍珠生成的量")][SerializeField] private int bubbleWaveNum;
-    public int bubbleNum;
 
     public GameObject bubblePrefab;
 
@@ -35,14 +34,26 @@ public class foodBattleManager : MonoBehaviour
             bubblePositon[i] = GameObject.Find("###珍珠生成位置###").transform.GetChild(i);
         }
 
-        bubbleNum = 0;
         StartCoroutine(bubbleWave(bubbleTime));
 
     }
 
     public void bubbleDetect() 
     {
-        if (bubbleNum == 0) 
+        int Last = 0;
+
+        Debug.Log("偵測依次");
+
+        for (int i = 0; i < bubblePositon.Length; i++) 
+        {
+            if (bubblePositon[i].childCount == 0) 
+            {
+                Last++;
+                
+            }
+        }
+
+        if (Last == bubblePositon.Length-1 ) 
         {
             Debug.Log("下一波珍珠預備");
             StartCoroutine(bubbleWave(bubbleTime));
@@ -58,7 +69,7 @@ public class foodBattleManager : MonoBehaviour
         {
             int r = Random.Range(0, bubblePositon.Length);
 
-            if (bubblePositon[r].GetComponent<bubblePoint>().bubble)
+            if (bubblePositon[r].childCount != 0)
             {
                 i--;
                 Debug.Log("撞上珍珠");
@@ -68,8 +79,6 @@ public class foodBattleManager : MonoBehaviour
                 Debug.Log("生成一顆珍珠");
                 GameObject bub = Instantiate(bubblePrefab, bubblePositon[r].position, bubblePositon[r].rotation);
                 bub.transform.parent = bubblePositon[r].transform;
-                bubblePositon[r].GetComponent<bubblePoint>().bubble = true;
-                bubbleNum++;
             }
         }
     }

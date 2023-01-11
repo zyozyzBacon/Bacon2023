@@ -14,7 +14,7 @@ public class ColliderPlayerTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Item")
+        if (collision.tag == "Item" && !this.gameObject.GetComponent<PlayerStateList>().dead)
         {
             IitemInterface itemInterface = collision.gameObject.GetComponent<IitemInterface>();
 
@@ -25,7 +25,7 @@ public class ColliderPlayerTrigger : MonoBehaviour
 
         }
 
-        if (collision.tag == "DashAttack")
+        if (collision.tag == "DashAttack" && !this.gameObject.GetComponent<PlayerStateList>().dead)
         {
             if (collision.transform.parent.GetComponent<PlayerStateList>().dashing)
             {
@@ -45,13 +45,30 @@ public class ColliderPlayerTrigger : MonoBehaviour
         {
             if (this.gameObject.GetComponent<BasicPlayerControll>() != null) 
             {
-                if (this.gameObject.GetComponent<foodBattlePlayer>() != null && foodBattleManager.instance != null)
+                if (collision.transform.parent.transform.tag == "ItemLocation")
                 {
-                    this.gameObject.GetComponent<foodBattlePlayer>().eating(collision.gameObject);
+                    foodBattleManager.instance.bubbleDetect();
                 }
 
-                this.gameObject.GetComponent<BasicPlayerControll>().bubbles++;
-                Destroy(collision.gameObject);
+                if (this.gameObject.GetComponent<foodBattlePlayer>() != null && foodBattleManager.instance != null)
+                {
+                    if (!this.gameObject.GetComponent<PlayerStateList>().dead)
+                    {
+                        this.gameObject.GetComponent<foodBattlePlayer>().eating(collision.gameObject);
+                        Destroy(collision.gameObject);
+                    }
+                    else
+                    {
+                        if (collision.transform.parent != this.gameObject.transform && !this.gameObject.GetComponent<foodBattlePlayer>().bubble) 
+                        {
+                            collision.transform.position = this.gameObject.transform.position;
+                            collision.transform.parent = this.gameObject.transform;
+                            this.gameObject.GetComponent<foodBattlePlayer>().bubble = collision.gameObject;
+                        }
+                    }
+
+
+                }
             }
         }
     }
