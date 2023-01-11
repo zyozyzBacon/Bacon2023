@@ -331,7 +331,7 @@ public class BasicPlayerControll : MonoBehaviour
         boxCollider.enabled = false;
         rb.gravityScale = 0f;
         pState.tvModeOn = true;
-        tvMoveSpeed = 50f;
+        tvMoveSpeed = tvMoveSpeed * 10;
         pState.dead = true;
     }
 

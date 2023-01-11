@@ -42,8 +42,6 @@ public class foodBattleManager : MonoBehaviour
     {
         int Last = 0;
 
-        Debug.Log("偵測依次");
-
         for (int i = 0; i < bubblePositon.Length; i++) 
         {
             if (bubblePositon[i].childCount == 0) 
@@ -55,7 +53,6 @@ public class foodBattleManager : MonoBehaviour
 
         if (Last == bubblePositon.Length-1 ) 
         {
-            Debug.Log("下一波珍珠預備");
             StartCoroutine(bubbleWave(bubbleTime));
         }
     }
@@ -72,11 +69,9 @@ public class foodBattleManager : MonoBehaviour
             if (bubblePositon[r].childCount != 0)
             {
                 i--;
-                Debug.Log("撞上珍珠");
             }
             else 
             {
-                Debug.Log("生成一顆珍珠");
                 GameObject bub = Instantiate(bubblePrefab, bubblePositon[r].position, bubblePositon[r].rotation);
                 bub.transform.parent = bubblePositon[r].transform;
             }
