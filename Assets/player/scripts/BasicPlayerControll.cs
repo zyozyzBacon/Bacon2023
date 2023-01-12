@@ -6,6 +6,10 @@ using UnityEngine.InputSystem;
 
 public class BasicPlayerControll : MonoBehaviour
 {
+    [Header("辨識相關")]
+    [Tooltip("玩家")][SerializeField] public int ID;
+    [Tooltip("顏色")][SerializeField] public int Color;
+
     [Header("移動相關")]
     [Tooltip("移動速度")][SerializeField] float walkSpeed;
     [Tooltip("電視模式速度")][SerializeField]public float tvMoveSpeed;
@@ -32,7 +36,7 @@ public class BasicPlayerControll : MonoBehaviour
     [Tooltip("珍珠數量")][SerializeField]public int bubbles;
 
 
-   [Header("[勿動]抓取子物件相關")]
+    [Header("[勿動]抓取子物件相關")]
     [Tooltip("電視模式物件")][SerializeField] public GameObject tvModePart;
     [Tooltip("衝刺撞人物件")][SerializeField] private GameObject DashCollider;
     [Tooltip("幽靈模式物件")][SerializeField] private GameObject GhostPlayer;

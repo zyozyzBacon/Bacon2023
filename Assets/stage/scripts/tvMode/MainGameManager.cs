@@ -21,14 +21,12 @@ public class MainGameManager : MonoBehaviour
     
 
     CinemachineTargetGroup.Target[] cameraTarget;
+    private playerData pData;
 
     private void Awake()
     {
         instance = this;
-        playerList = new Dictionary<int, GameObject>();
-        playerNum = 0;
-
-        cameraTarget = instance.gameObject.GetComponent<CinemachineTargetGroup>().m_Targets;
+        init();
     }
 
     private void Start()
@@ -36,17 +34,36 @@ public class MainGameManager : MonoBehaviour
         ItemManager.instance.remoteTaken();
     }
 
-    public void AddPlayerToList(GameObject playerPrefab) 
+
+    private void init()
     {
-        playerList.Add(playerNum, playerPrefab);
-        cameraTarget[playerNum].target = playerPrefab.transform;
-        playerPrefab.transform.position = playerSpawn[playerNum].position;
-        //playerPrefab.GetComponent<PlayerStateList>().pause = true;
-        if (playerNum == 0 || playerNum == 2) 
+        pData = GameObject.Find("###PlayerData###").GetComponent<playerData>();
+
+        playerList = new Dictionary<int, GameObject>();
+        playerNum = pData.playerNum;
+
+        cameraTarget = instance.gameObject.GetComponent<CinemachineTargetGroup>().m_Targets;
+
+        for (int i = 0; i < playerNum;i++) 
         {
-            transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+            GameObject p = this.gameObject.GetComponent<PlayerInputManager>().JoinPlayer().gameObject;
+
+            playerList.Add(i, p);
+            cameraTarget[i].target = p.transform;
+            p.transform.position = playerSpawn[i].position;
+
+            //playerPrefab.GetComponent<PlayerStateList>().pause = true;
+
+            if (i % 2 == 0)
+            {
+                p.transform.localScale = new Vector3(-Mathf.Abs(p.transform.localScale.x), p.transform.localScale.y, p.transform.localScale.z);
+            }
+
+            p.GetComponent<BasicPlayerControll>().ID = i;
+            p.GetComponent<BasicPlayerControll>().Color = pData.colorList[i];
+
+            p.AddComponent<foodBattlePlayer>().init();
         }
-        playerPrefab.AddComponent<foodBattlePlayer>().init();
-        playerNum++;
+      
     }
 }
