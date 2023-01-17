@@ -21,10 +21,9 @@ public class foodBattleManager : MonoBehaviour
     public void Start()
     {
         instance = this;
-        init();
     }
 
-    void init()
+    public void init()
     {
         _time = Time.time + time;
         bubblePositon = new Transform[GameObject.Find("###¬Ã¯]¥Í¦¨¦ì¸m###").transform.childCount];
@@ -47,7 +46,6 @@ public class foodBattleManager : MonoBehaviour
             if (bubblePositon[i].childCount == 0) 
             {
                 Last++;
-                
             }
         }
 
@@ -61,12 +59,13 @@ public class foodBattleManager : MonoBehaviour
     {
         yield return new WaitForSeconds(seconds);
 
-
+        int c = 0;
         for (int i = 0; i < bubbleWaveNum; i++) 
         {
             int r = Random.Range(0, bubblePositon.Length);
+            c++;
 
-            if (bubblePositon[r].childCount != 0)
+            if (bubblePositon[r].childCount != 0 || bubblePositon[r].GetComponent<foodPos>().playerAround)
             {
                 i--;
             }
@@ -74,6 +73,12 @@ public class foodBattleManager : MonoBehaviour
             {
                 GameObject bub = Instantiate(bubblePrefab, bubblePositon[r].position, bubblePositon[r].rotation);
                 bub.transform.parent = bubblePositon[r].transform;
+
+                if (c % 2 == 0)
+                    bub.GetComponent<foodpart>().FoodColor = ItemManager.foodColor.red;
+                else
+                    bub.GetComponent<foodpart>().FoodColor = ItemManager.foodColor.blu;
+
             }
         }
     }

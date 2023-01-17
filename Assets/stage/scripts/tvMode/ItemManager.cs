@@ -42,5 +42,12 @@ public class ItemManager : MonoBehaviour
         Instantiate(remoteObject,remotePostion);
         cameraTarget[4].target = remoteObject.transform;
     }
+
+    public enum foodColor 
+    {
+        none,
+        red,
+        blu,
+    }
     
 }

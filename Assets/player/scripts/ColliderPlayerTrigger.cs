@@ -14,7 +14,11 @@ public class ColliderPlayerTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Item" && !this.gameObject.GetComponent<PlayerStateList>().dead)
+
+        PlayerStateList playerStateList = this.gameObject.GetComponent<PlayerStateList>();
+        BasicPlayerControll playerControll = this.gameObject.GetComponent<BasicPlayerControll>();
+
+        if (collision.tag == "Item" && !playerStateList.dead)
         {
             IitemInterface itemInterface = collision.gameObject.GetComponent<IitemInterface>();
 
@@ -25,14 +29,14 @@ public class ColliderPlayerTrigger : MonoBehaviour
 
         }
 
-        if (collision.tag == "DashAttack" && !this.gameObject.GetComponent<PlayerStateList>().dead)
+        if (collision.tag == "DashAttack" && !playerStateList.dead)
         {
             if (collision.transform.parent.GetComponent<PlayerStateList>().dashing)
             {
-                if (this.gameObject.GetComponent<BasicPlayerControll>() != null) 
+                if (playerControll != null) 
                 {
-                   if (!this.gameObject.GetComponent<PlayerStateList>().recoverying)
-                        this.gameObject.GetComponent<BasicPlayerControll>().damaged(collision.transform.parent.position);
+                   if (!playerStateList.recoverying)
+                        playerControll.damaged(collision.transform.parent.position);
 
                 }          
                 else
@@ -43,31 +47,29 @@ public class ColliderPlayerTrigger : MonoBehaviour
 
         if (collision.tag == "Bubble")
         {
-            if (this.gameObject.GetComponent<BasicPlayerControll>() != null) 
+            if (playerControll != null) 
             {
                 if (collision.transform.parent.transform.tag == "ItemLocation")
                 {
+                    //從原始出發點吃到的 (跟玩家吃食物無關 玩家一拿走食物就會觸發)
                     foodBattleManager.instance.bubbleDetect();
                 }
 
-                if (this.gameObject.GetComponent<foodBattlePlayer>() != null && foodBattleManager.instance != null)
+                if (!playerStateList.dead)
                 {
-                    if (!this.gameObject.GetComponent<PlayerStateList>().dead)
+                    //吃到食物的玩家的反應 (前提是還活著的玩家)
+                    this.gameObject.GetComponent<foodBattlePlayer>().eating(collision.gameObject);
+                    Destroy(collision.gameObject);
+                }
+                else
+                {
+                    //死亡玩家吃到時的反應
+                    if (collision.transform.parent != this.gameObject.transform && !this.gameObject.GetComponent<foodBattlePlayer>().bubble)
                     {
-                        this.gameObject.GetComponent<foodBattlePlayer>().eating(collision.gameObject);
-                        Destroy(collision.gameObject);
+                        collision.transform.position = this.gameObject.transform.position;
+                        collision.transform.parent = this.gameObject.transform;
+                        this.gameObject.GetComponent<foodBattlePlayer>().bubble = collision.gameObject;
                     }
-                    else
-                    {
-                        if (collision.transform.parent != this.gameObject.transform && !this.gameObject.GetComponent<foodBattlePlayer>().bubble) 
-                        {
-                            collision.transform.position = this.gameObject.transform.position;
-                            collision.transform.parent = this.gameObject.transform;
-                            this.gameObject.GetComponent<foodBattlePlayer>().bubble = collision.gameObject;
-                        }
-                    }
-
-
                 }
             }
         }

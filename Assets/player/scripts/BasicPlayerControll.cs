@@ -33,8 +33,8 @@ public class BasicPlayerControll : MonoBehaviour
     [Tooltip("衝刺冷卻所需時間")][SerializeField] float dashCD;
 
     [Header("玩法相關")]
-    [Tooltip("珍珠數量")][SerializeField]public int bubbles;
-
+    [Tooltip("珍珠數量")][SerializeField] public int bubbles;
+    [Tooltip("珍珠顏色")][SerializeField] public ItemManager.foodColor FoodColor;
 
     [Header("[勿動]抓取子物件相關")]
     [Tooltip("電視模式物件")][SerializeField] public GameObject tvModePart;
@@ -337,6 +337,10 @@ public class BasicPlayerControll : MonoBehaviour
         pState.tvModeOn = true;
         tvMoveSpeed = tvMoveSpeed * 10;
         pState.dead = true;
+
+        if (MainGameManager.instance != null)
+            MainGameManager.instance.gameOver();
+
     }
 
     //退場相關/////////////////////////////////////////////////////////

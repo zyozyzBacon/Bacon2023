@@ -38,7 +38,7 @@ public class foodBattlePlayer : MonoBehaviour
 
     private BasicPlayerControll pControll;
     private PlayerStateList pState;
-    private bool eatfood;
+    [SerializeField] private bool eatfood;
 
     public void init()
     {
@@ -58,6 +58,14 @@ public class foodBattlePlayer : MonoBehaviour
 
     public void eating(GameObject foodObject)
     {
+
+        //如果吃到顏色不對
+        if (pControll.FoodColor != foodObject.GetComponent<foodpart>().FoodColor)
+        {
+            pControll.FoodColor = foodObject.GetComponent<foodpart>().FoodColor;
+            pControll.bubbles = 0;
+        }
+
         if (!eatfood)
         {
             eatfood = true;
@@ -66,8 +74,8 @@ public class foodBattlePlayer : MonoBehaviour
             StartCoroutine(fooding(0.02f));
         }
 
-        StopAllCoroutines();
-        StopAllCoroutines();
+        StopCoroutine("hungry");
+        StopCoroutine("hungry");
         StartCoroutine(hurgry(hurgryAttackTime));
     }
 
