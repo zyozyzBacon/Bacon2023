@@ -11,6 +11,8 @@ public class platformGene : MonoBehaviour
 
     public bool active;
 
+    public GameObject movePoint;
+
     public GameObject[] platforms = new GameObject[2];
 
     public GameObject[] sidePoint = new GameObject[2];
@@ -21,7 +23,7 @@ public class platformGene : MonoBehaviour
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        rb = movePoint.GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -35,14 +37,14 @@ public class platformGene : MonoBehaviour
 
     void move()
     {
-        if (Vector2.Distance(transform.position, sidePoint[i].transform.position) < 0.01f)
+        if (Vector2.Distance(movePoint.transform.position, sidePoint[i].transform.position) < 0.01f)
         {
             i++;
             if (i == sidePoint.Length)
                 i = 0;
         }
 
-        transform.position = Vector2.MoveTowards(this.transform.position, sidePoint[i].transform.position, moveSpeed * Time.deltaTime);
+        movePoint.transform.position = Vector2.MoveTowards(movePoint.transform.position, sidePoint[i].transform.position, moveSpeed * Time.deltaTime);
     }
 
 

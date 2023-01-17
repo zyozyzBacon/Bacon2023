@@ -43,7 +43,8 @@ public class MainGameManager : MonoBehaviour
 
     private void init()
     {
-        pData = GameObject.Find("###PlayerData###").GetComponent<playerData>();
+        if(GameObject.Find("###PlayerData###").GetComponent<playerData>() != null)
+            pData = GameObject.Find("###PlayerData###").GetComponent<playerData>();
 
         playerList = new Dictionary<int, GameObject>();
         playerNum = pData.playerNum;
