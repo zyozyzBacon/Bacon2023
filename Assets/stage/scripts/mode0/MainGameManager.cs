@@ -1,8 +1,10 @@
 using Cinemachine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using static tvPartGameplay;
 
 public class MainGameManager : MonoBehaviour
@@ -12,10 +14,13 @@ public class MainGameManager : MonoBehaviour
 
     public Dictionary<int, GameObject> playerList;
 
+    [SerializeField] private gameMode GameMode;
+
     [SerializeField] private int playerNum;
     [SerializeField] private Transform[] playerSpawn;
     [SerializeField] public int[] ammo = new int[4];
     [SerializeField] public GameObject TimerText;
+    [SerializeField] private bool cameraLocked;
 
 
     CinemachineTargetGroup.Target[] cameraTarget;
@@ -36,7 +41,6 @@ public class MainGameManager : MonoBehaviour
         init();
         yield return new WaitForSeconds(3f);
         ItemManager.instance.remoteTaken();
-        foodBattleManager.instance.init();
         startGame();
     }
 
@@ -56,7 +60,6 @@ public class MainGameManager : MonoBehaviour
             GameObject p = this.gameObject.GetComponent<PlayerInputManager>().JoinPlayer().gameObject;
 
             playerList.Add(i, p);
-            cameraTarget[i].target = p.transform;
             p.transform.position = playerSpawn[i].position;
 
             p.GetComponent<PlayerStateList>().pause = true;
@@ -66,10 +69,25 @@ public class MainGameManager : MonoBehaviour
                 p.transform.localScale = new Vector3(-Mathf.Abs(p.transform.localScale.x), p.transform.localScale.y, p.transform.localScale.z);
             }
 
+            if (!cameraLocked)
+                cameraTarget[i].target = p.transform;
+
             p.GetComponent<BasicPlayerControll>().ID = i;
             p.GetComponent<BasicPlayerControll>().Color = pData.colorList[i];
 
-            p.AddComponent<foodBattlePlayer>().init();
+            switch (GameMode)
+            {
+                case MainGameManager.gameMode.foodBattle:
+                    p.AddComponent<foodBattlePlayer>().init();
+                    break;
+                case MainGameManager.gameMode.fallingBattle:
+                    break;
+                case MainGameManager.gameMode.deathBattle:
+                    break;
+                default:
+                    Console.WriteLine("未鎖定");
+                    break;
+            }
         }
     }
 
@@ -77,6 +95,23 @@ public class MainGameManager : MonoBehaviour
     {
         for(int i = 0;i< playerNum; i++)
             playerList[i].GetComponent<PlayerStateList>().pause = false;
+
+
+        switch (GameMode)
+        {
+            case MainGameManager.gameMode.foodBattle:
+                foodBattleManager.instance.init();
+                break;
+            case MainGameManager.gameMode.fallingBattle:
+                fallingGameManager.instance.init();
+                break;
+            case MainGameManager.gameMode.deathBattle:
+                break;
+            default:
+                Console.WriteLine("未鎖定");
+                break;
+        }
+
     }
 
     public void gameOver() 
@@ -97,5 +132,12 @@ public class MainGameManager : MonoBehaviour
         }
     }
 
-    
+    public enum gameMode 
+    {
+        none,
+        tuto,
+        foodBattle,
+        fallingBattle,
+        deathBattle,
+    }
 }

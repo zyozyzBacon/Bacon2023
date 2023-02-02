@@ -9,7 +9,6 @@ public class PlayerStateList : MonoBehaviour
     public bool dead;
     public bool walking;
     public bool jumping;
-    public bool jumped;
     public bool facingRight;
     public bool dashing;
     public bool dashCoolDowning;

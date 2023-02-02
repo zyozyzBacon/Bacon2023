@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
-public class platformGene : MonoBehaviour
+public class bubbleGene : MonoBehaviour
 {
 
     public float moveSpeed;
@@ -14,9 +13,7 @@ public class platformGene : MonoBehaviour
 
     public GameObject fallingObject;
 
-    public GameObject[] platformsArray = new GameObject[10];
-    int p;
-
+   
     public GameObject[] sidePoint = new GameObject[2];
     int i;
 
@@ -27,17 +24,6 @@ public class platformGene : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
 
-        for (int i = 0; i< 10; i++) 
-        {
-            platformsArray[i] = Instantiate(fallingObject);
-            platformsArray[i].transform.parent = this.transform;
-            platformsArray[i].transform.position = this.transform.position;
-            platformsArray[i].GetComponent<fallingPart>().parent = this.gameObject;
-            platformsArray[i].SetActive(false);
-        }
-
-
-        p = 0;
         StartCoroutine(timer(randomMoveTimer));
         StartCoroutine(platform(ptTimer));
     }
@@ -46,7 +32,7 @@ public class platformGene : MonoBehaviour
     void Update()
     {
         active = transform.parent.GetComponent<platCore>().Active;
-        if (active) 
+        if (active)
         {
             move();
         }
@@ -65,40 +51,34 @@ public class platformGene : MonoBehaviour
     }
 
 
-    void randomMove() 
+    void randomMove()
     {
-        moveSpeed = Random.Range(5,15);
-        randomMoveTimer = Random.Range(2, 3);
+        moveSpeed = Random.Range(5, 20);
+        randomMoveTimer = Random.Range(3f, 8);
         transform.position = new Vector3(
             Random.Range(sidePoint[0].transform.position.x, sidePoint[1].transform.position.x),
             transform.position.y,
             transform.position.z);
     }
 
-    IEnumerator platform(float sceonds) 
+    IEnumerator platform(float sceonds)
     {
         yield return new WaitForSeconds(sceonds);
 
         ptTimer = Random.Range(0.75f, 3.0f);
 
-        if (active) 
+        if (active)
         {
-            platformsArray[p].SetActive(true);
-            platformsArray[p].transform.parent = null;
-            platformsArray[p].GetComponent<fallingPart>().active = true;
-
-
-            p++;
-            if (p >= 10)
-                p = 0;
-
+            GameObject bubble = Instantiate(fallingObject,this.gameObject.transform);
+            bubble.transform.parent = null;
+            bubble.GetComponent<fallingPart>().active = true;
         }
 
         StartCoroutine(platform(ptTimer));
     }
 
 
-    IEnumerator timer(float sceonds) 
+    IEnumerator timer(float sceonds)
     {
         yield return new WaitForSeconds(sceonds);
 

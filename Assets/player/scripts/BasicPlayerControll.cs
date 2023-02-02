@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.U2D.Path.GUIFramework;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -17,6 +18,8 @@ public class BasicPlayerControll : MonoBehaviour
     [Header("跳躍相關")]
     [Tooltip("跳躍力道")][SerializeField] float jumpForce;
     [Tooltip("墜落速度極限")][SerializeField] float fallSpeed;
+    [Tooltip("是否允許多段跳躍")][SerializeField] bool doubleJump;
+    [Tooltip("多段跳躍次數")][SerializeField] int jumpAir;
 
     [Header("受傷相關")]
     [Tooltip("受傷後無敵時間")][SerializeField] float recoveryTime;
@@ -34,6 +37,7 @@ public class BasicPlayerControll : MonoBehaviour
 
     [Header("玩法相關")]
     [Tooltip("珍珠數量")][SerializeField] public int bubbles;
+    [Tooltip("死亡後手上珍珠")][SerializeField] public GameObject deadBubble;
     [Tooltip("珍珠顏色")][SerializeField] public ItemManager.foodColor FoodColor;
 
     [Header("[勿動]抓取子物件相關")]
@@ -42,6 +46,7 @@ public class BasicPlayerControll : MonoBehaviour
     [Tooltip("幽靈模式物件")][SerializeField] private GameObject GhostPlayer;
 
     Vector2 moveInput;
+    int jumpAirCurrent;
 
     Rigidbody2D rb;
     PlayerStateList pState;
@@ -54,6 +59,7 @@ public class BasicPlayerControll : MonoBehaviour
         pState = GetComponent<PlayerStateList>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         boxCollider = GetComponent<BoxCollider2D>();
+        jumpAirCurrent = 0;
     }
 
     void Update()
@@ -109,26 +115,28 @@ public class BasicPlayerControll : MonoBehaviour
     {
         float j = context.ReadValue<float>();
 
-        if (j != 0 && IsGrounded() && !pState.damaged)
+        if (j != 0 && !pState.damaged)
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-            //anim.SetTrigger("jumpTrigger");
+            if (IsGrounded())
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+                //anim.SetTrigger("jumpTrigger");
+            } 
+            else if(doubleJump && jumpAirCurrent < jumpAir)   
+            {
+                jumpAirCurrent++;
+                rb.velocity = new Vector2(rb.velocity.x, jumpForce * 0.75f);
+            }
         }
 
-        if (j == 0 && rb.velocity.y > 0)
-        {
+        if(j == 0 && rb.velocity.y > 0)
             rb.velocity = new Vector2(rb.velocity.x, 0);
-        }
-
     }
     private void jumpDetect() //跳躍相關的狀態偵測用(Update())
     {
         if (IsGrounded())
         {
-            if (pState.jumping)
-                StartCoroutine(jumpCoolDown(0.05f));
-
-            pState.jumping = false;
+            jumpAirCurrent = 0;
         }
         else
         {
@@ -138,22 +146,15 @@ public class BasicPlayerControll : MonoBehaviour
             }
 
             pState.jumping = true;
-        }
 
+        }
+ 
         //pState.grounded = IsGrounded();
         //anim.SetBool("jump", pState.jumping);
 
         //讓墜落速度有最大值極限而不是無限加速墜落
         if (rb.velocity.y < -Mathf.Abs(fallSpeed))
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -Mathf.Abs(fallSpeed), Mathf.Infinity));
-    }
-
-
-    private IEnumerator jumpCoolDown(float seconds) //跳躍冷卻(0.03秒)
-    {
-        pState.jumped = true;
-        yield return new WaitForSeconds(seconds);
-        pState.jumped = false;
     }
 
     private bool IsGrounded() //地面偵測 是否有站在地面上
@@ -357,4 +358,17 @@ public class BasicPlayerControll : MonoBehaviour
         }
     }
 
+    //暫停相關/////////////////////////////////////////////////////////
+    //吃食物相關///////////////////////////////////////////////////////
+
+    public void eating(GameObject foodObject)
+    {
+        //如果吃到顏色不對
+        if (FoodColor != foodObject.GetComponent<foodpart>().FoodColor)
+        {
+            FoodColor = foodObject.GetComponent<foodpart>().FoodColor;
+            bubbles = 0;
+        }
+        bubbles++;
+    }
 }

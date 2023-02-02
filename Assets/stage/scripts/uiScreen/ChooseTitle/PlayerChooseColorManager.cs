@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 using System.Drawing;
 using UnityEditor.SearchService;
 using UnityEngine.SceneManagement;
+using System;
 
 public class PlayerChooseColorManager : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class PlayerChooseColorManager : MonoBehaviour
 
     public Image[] colorPlace;
     public int[] playerColorList;
+
+    public MainGameManager.gameMode gameMode;
 
     [SerializeField] private GameObject pDataObject;
     public playerData pData;
@@ -74,8 +77,7 @@ public class PlayerChooseColorManager : MonoBehaviour
                 {
                     stop = true;
                     Debug.Log("開始遊戲");
-                    SceneManager.LoadScene("TestMain");
-                    
+                    loadgame();
 
                     pData.playerNum = playerNum;
                     for (int i = 0; i < playerNum; i++)
@@ -129,5 +131,23 @@ public class PlayerChooseColorManager : MonoBehaviour
             return true;
         else
             return false;
+    }
+
+    public void loadgame() 
+    {
+        switch (gameMode)
+        {
+            case MainGameManager.gameMode.foodBattle:
+                SceneManager.LoadScene("Stage01");
+                break;
+            case MainGameManager.gameMode.fallingBattle:
+                SceneManager.LoadScene("Stage02");
+                break;
+            case MainGameManager.gameMode.deathBattle:
+                break;
+            default:
+                Console.WriteLine("未鎖定");
+                break;
+        }
     }
 }

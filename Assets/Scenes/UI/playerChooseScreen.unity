@@ -1934,6 +1934,7 @@ MonoBehaviour:
   - {fileID: 947945190}
   - {fileID: 130717205}
   playerColorList: 
+  gameMode: 3
   pDataObject: {fileID: 1931710813}
   pData: {fileID: 1931710815}
   stop: 0
@@ -2059,6 +2060,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerNum: 0
   colorList: 00000000000000000000000000000000
+  gameplay: 0
 --- !u!1 &1985581782
 GameObject:
   m_ObjectHideFlags: 0

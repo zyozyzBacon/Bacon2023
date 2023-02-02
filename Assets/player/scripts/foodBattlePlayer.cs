@@ -34,7 +34,6 @@ public class foodBattlePlayer : MonoBehaviour
     [Tooltip("飽食度最大上限")][SerializeField] public int foodLimit = 100;
     [Tooltip("飢餓度減少倒數時間")][SerializeField] public float hurgryAttackTime;
     [Tooltip("飢餓度到變瘦")][SerializeField] public bool sick;
-    [Tooltip("出局後，手上是否有珍珠")][SerializeField] public GameObject bubble;
 
     private BasicPlayerControll pControll;
     private PlayerStateList pState;
@@ -49,28 +48,13 @@ public class foodBattlePlayer : MonoBehaviour
         StartCoroutine(hurgry(hurgryAttackTime));
     }
 
-    private IEnumerator hurgry(float seconds)
+    public void eating(GameObject foodObject) 
     {
-        yield return new WaitForSeconds(seconds);
-        food = food - (foodLimit / 5);
-        StartCoroutine(hurgry(hurgryAttackTime));
-    }
-
-    public void eating(GameObject foodObject)
-    {
-
-        //如果吃到顏色不對
-        if (pControll.FoodColor != foodObject.GetComponent<foodpart>().FoodColor)
-        {
-            pControll.FoodColor = foodObject.GetComponent<foodpart>().FoodColor;
-            pControll.bubbles = 0;
-        }
-
         if (!eatfood)
         {
             eatfood = true;
             food = food + foodObject.GetComponent<foodpart>().food;
-            pControll.bubbles++;
+
             StartCoroutine(fooding(0.02f));
         }
 
@@ -83,6 +67,13 @@ public class foodBattlePlayer : MonoBehaviour
     {
         yield return new WaitForSeconds(seconds);
         eatfood = false;
+    }
+
+    private IEnumerator hurgry(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        food = food - (foodLimit / 5);
+        StartCoroutine(hurgry(hurgryAttackTime));
     }
 
     private void killPlayer()

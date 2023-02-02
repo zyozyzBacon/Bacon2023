@@ -18,7 +18,7 @@ public class foodBattleManager : MonoBehaviour
 
     private Transform[] bubblePositon = new Transform[0];
 
-    public void Start()
+    public void Awake()
     {
         instance = this;
     }
