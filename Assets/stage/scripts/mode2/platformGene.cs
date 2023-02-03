@@ -79,12 +79,12 @@ public class platformGene : MonoBehaviour
     {
         yield return new WaitForSeconds(sceonds);
 
-        ptTimer = Random.Range(0.75f, 3.0f);
+        ptTimer = Random.Range(0.75f, 2f);
 
         if (active) 
         {
             platformsArray[p].SetActive(true);
-            platformsArray[p].transform.parent = null;
+            platformsArray[p].transform.parent =  GameObject.Find("###平台生成位置###").transform;
             platformsArray[p].GetComponent<fallingPart>().active = true;
 
 

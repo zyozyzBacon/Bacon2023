@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-using static tvPartGameplay;
 
 public class MainGameManager : MonoBehaviour
 {
@@ -129,6 +128,24 @@ public class MainGameManager : MonoBehaviour
         if (Last == playerNum - 1)
         {
             Debug.Log("遊戲結束");
+
+            for (int i = 0; i < playerNum; i++)
+                playerList[i].GetComponent<PlayerStateList>().pause = true;
+
+            switch (GameMode)
+            {
+                case MainGameManager.gameMode.foodBattle:
+                    foodBattleManager.instance.endGame();
+                    break;
+                case MainGameManager.gameMode.fallingBattle:
+                    fallingGameManager.instance.endGame();
+                    break;
+                case MainGameManager.gameMode.deathBattle:
+                    break;
+                default:
+                    Console.WriteLine("未鎖定");
+                    break;
+            }
         }
     }
 

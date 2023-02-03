@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.U2D.Path.GUIFramework;
 using UnityEngine;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class foodBattlePlayer : MonoBehaviour
 {

@@ -144,6 +144,7 @@ public class PlayerChooseColorManager : MonoBehaviour
                 SceneManager.LoadScene("Stage02");
                 break;
             case MainGameManager.gameMode.deathBattle:
+                SceneManager.LoadScene("Stage03");
                 break;
             default:
                 Console.WriteLine("¥¼Âê©w");

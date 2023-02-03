@@ -55,6 +55,14 @@ public class foodBattleManager : MonoBehaviour
         }
     }
 
+    public void endGame() 
+    {
+        for (int i = 0; i < bubblePositon.Length; i++)
+        {
+            Destroy(bubblePositon[i].GetChild(0));
+        }
+    }
+
     private IEnumerator bubbleWave(float seconds)
     {
         yield return new WaitForSeconds(seconds);

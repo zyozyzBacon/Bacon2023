@@ -70,7 +70,7 @@ public class bubbleGene : MonoBehaviour
         if (active)
         {
             GameObject bubble = Instantiate(fallingObject,this.gameObject.transform);
-            bubble.transform.parent = null;
+            bubble.transform.parent = GameObject.Find("###¬Ã¯]¥Í¦¨¦ì¸m###").transform;
             bubble.GetComponent<fallingPart>().active = true;
         }
 

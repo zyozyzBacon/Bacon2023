@@ -37,6 +37,7 @@ public class BasicPlayerControll : MonoBehaviour
 
     [Header("玩法相關")]
     [Tooltip("珍珠數量")][SerializeField] public int bubbles;
+    [Tooltip("是否允許攻擊")][SerializeField] public bool allowAttack;
     [Tooltip("死亡後手上珍珠")][SerializeField] public GameObject deadBubble;
     [Tooltip("珍珠顏色")][SerializeField] public ItemManager.foodColor FoodColor;
 
@@ -44,6 +45,7 @@ public class BasicPlayerControll : MonoBehaviour
     [Tooltip("電視模式物件")][SerializeField] public GameObject tvModePart;
     [Tooltip("衝刺撞人物件")][SerializeField] private GameObject DashCollider;
     [Tooltip("幽靈模式物件")][SerializeField] private GameObject GhostPlayer;
+    [Tooltip("槍物件")][SerializeField] private GameObject GunPower;
 
     Vector2 moveInput;
     int jumpAirCurrent;
@@ -371,4 +373,20 @@ public class BasicPlayerControll : MonoBehaviour
         }
         bubbles++;
     }
+
+    //吃食物相關///////////////////////////////////////////////////////
+    //射擊相關/////////////////////////////////////////////////////////
+
+    public void shootInput(InputAction.CallbackContext context) //輸入攻擊事件
+    {
+        float s = context.ReadValue<float>();
+
+        if (s == 1 && allowAttack)
+        {
+
+        }
+    }
+
+
+    //射擊相關/////////////////////////////////////////////////////////
 }

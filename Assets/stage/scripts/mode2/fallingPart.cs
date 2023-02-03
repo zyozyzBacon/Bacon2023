@@ -22,6 +22,8 @@ public class fallingPart : MonoBehaviour
     {
         if (active)
             rb.velocity = Vector2.down * speed;
+        else
+            rb.velocity = Vector2.zero;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
