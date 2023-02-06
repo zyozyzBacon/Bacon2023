@@ -25,6 +25,7 @@ public class PlayerChooseColorManager : MonoBehaviour
     [SerializeField]private bool stop;
 
     private InputActionAsset[] playerInputs = new InputActionAsset[4];
+    [SerializeField] private Sprite[] playerSprites = new Sprite[4];
 
     // Start is called before the first frame update
     void Awake()
@@ -47,6 +48,7 @@ public class PlayerChooseColorManager : MonoBehaviour
             GameObject player = playerInput.gameObject;
 
             player.GetComponent<chooseColorControll>().playerID = playerNum;
+            player.GetComponent<Image>().sprite = playerSprites[playerNum];
             player.transform.parent = GameObject.Find("Canvas").transform;
 
             player.GetComponent<chooseColorControll>().pos = new Image[4];
