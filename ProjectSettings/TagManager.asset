@@ -27,7 +27,7 @@ TagManager:
   - DeadPlayerLayer
   - ItemLayer
   - DashPlayer
-  - GhostPlayer
+  - 
   - GhostBorder
   - 
   - Background
@@ -36,7 +36,7 @@ TagManager:
   - Store2
   - Platform
   - Player
-  - 
+  - map
   - 
   - 
   - 
