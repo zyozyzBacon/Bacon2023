@@ -17,6 +17,7 @@ public class PlayerChooseColorManager : MonoBehaviour
     public Image[] colorPlace;
     public int[] playerColorList;
 
+    public MainGameManager.gameplayMode gameplayMode;
     public MainGameManager.gameMode gameMode;
 
     [SerializeField] private GameObject pDataObject;
@@ -27,7 +28,6 @@ public class PlayerChooseColorManager : MonoBehaviour
     private InputActionAsset[] playerInputs = new InputActionAsset[4];
     [SerializeField] private Sprite[] playerSprites = new Sprite[4];
 
-    // Start is called before the first frame update
     void Awake()
     {
         instance = this;
@@ -49,7 +49,7 @@ public class PlayerChooseColorManager : MonoBehaviour
 
             player.GetComponent<chooseColorControll>().playerID = playerNum;
             player.GetComponent<Image>().sprite = playerSprites[playerNum];
-            player.transform.parent = GameObject.Find("Canvas").transform;
+            
 
             player.GetComponent<chooseColorControll>().pos = new Image[4];
             for (int i = 0; i < 4;i++) 
@@ -58,6 +58,9 @@ public class PlayerChooseColorManager : MonoBehaviour
             }
 
             player.transform.position = player.GetComponent<chooseColorControll>().pos[0].transform.position;
+
+            player.transform.parent = player.GetComponent<chooseColorControll>().pos[0].transform;
+            player.GetComponent<chooseColorControll>().colorPanelCheck(-1,0);
 
             playerInputs[playerNum] = player.GetComponent<PlayerInput>().actions;
 
@@ -137,20 +140,32 @@ public class PlayerChooseColorManager : MonoBehaviour
 
     public void loadgame() 
     {
-        switch (gameMode)
+        pData.gameplayMode = gameplayMode;
+
+        if (gameplayMode != MainGameManager.gameplayMode.longBattle)
         {
-            case MainGameManager.gameMode.foodBattle:
-                SceneManager.LoadScene("Stage01");
-                break;
-            case MainGameManager.gameMode.fallingBattle:
-                SceneManager.LoadScene("Stage02");
-                break;
-            case MainGameManager.gameMode.deathBattle:
-                SceneManager.LoadScene("Stage03");
-                break;
-            default:
-                Console.WriteLine("未鎖定");
-                break;
+            pData.gameMode = gameMode;
+
+            switch (gameMode)
+            {
+                case MainGameManager.gameMode.foodBattle:
+                    SceneManager.LoadScene("Stage01");
+                    break;
+                case MainGameManager.gameMode.fallingBattle:
+                    SceneManager.LoadScene("Stage02");
+                    break;
+                case MainGameManager.gameMode.deathBattle:
+                    SceneManager.LoadScene("Stage03");
+                    break;
+                default:
+                    Console.WriteLine("未鎖定");
+                    break;
+            }
+        }
+        else 
+        {
+            pData.gameMode = MainGameManager.gameMode.foodBattle;
+            SceneManager.LoadScene("Stage01");
         }
     }
 }

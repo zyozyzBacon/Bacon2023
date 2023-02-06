@@ -41,16 +41,21 @@ public class chooseColorControll : MonoBehaviour
         {
             Input = context.ReadValue<Vector2>().x;
 
+            int before = 0;
+
             if (Input > 0.9)
             {
+                before = colorID;
                 colorID++;
             }
             else if (Input < -0.9)
             {
+                before = colorID;
                 colorID--;
             }
 
             positionCheck();
+            colorPanelCheck(before, colorID);
         }
         else 
         {
@@ -61,6 +66,16 @@ public class chooseColorControll : MonoBehaviour
     public void positionCheck() 
     {
         this.transform.position = pos[colorID].transform.position;
+        this.transform.parent = pos[colorID].transform;
+    }
+
+    public void colorPanelCheck(int before,int after) 
+    {
+        if (before != -1) 
+            pos[before].transform.parent.GetComponent<colorPanel>().phaseChage();
+
+
+        pos[after].transform.parent.GetComponent<colorPanel>().phaseChage();
     }
 
     public void colorChose(InputAction.CallbackContext context)
@@ -77,6 +92,8 @@ public class chooseColorControll : MonoBehaviour
                 if (PlayerChooseColorManager.instance.colorCheck(colorID))
                 {
                     PlayerChooseColorManager.instance.playerColorList[playerID] = colorID;
+                    pos[colorID].transform.parent.GetComponent<colorPanel>().select = true;
+                    colorPanelCheck(-1, colorID);
                     choose = true;
                 }
                 else
@@ -96,6 +113,8 @@ public class chooseColorControll : MonoBehaviour
                 asking = true;
                 StartCoroutine(askTime(0.5f));
                 PlayerChooseColorManager.instance.playerColorList[playerID] = -1;
+                pos[colorID].transform.parent.GetComponent<colorPanel>().select = false;
+                colorPanelCheck(-1, colorID);
                 choose = false;
             }
         }

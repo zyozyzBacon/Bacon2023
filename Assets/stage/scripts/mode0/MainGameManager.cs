@@ -157,4 +157,11 @@ public class MainGameManager : MonoBehaviour
         fallingBattle,
         deathBattle,
     }
+
+    public enum gameplayMode
+    {
+        test,
+        longBattle,
+        freeplay,
+    }
 }
