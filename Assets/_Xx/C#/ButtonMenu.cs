@@ -6,26 +6,29 @@ using UnityEngine.SceneManagement;
 public class ButtonMenu : MonoBehaviour
 {
     public GameObject SetButton, SoundButton;
-    public void SetSelect()
+    public void SetSelect()//設定選擇
     {
         SetButton.transform.rotation = Quaternion.Euler(0, 0, 0);
         SoundButton.SetActive(true);
     }
-    public void SetClose()
+    public void SetClose()//設定離開
     {
         SetButton.transform.rotation = Quaternion.Euler(0, 0, 45);
         SoundButton.SetActive(false);
     }
-    public void Sound()
+    public void Sound()//聲音
     {
 
     }
 
-    public void GameStart(string sceneName)
+    public void GameStart(string sceneName)//遊戲開始
     {
         SceneManager.LoadScene(sceneName);
     }
-
+    public void GameSelect(string sceneName)//選擇關卡
+    {
+        SceneManager.LoadScene(sceneName);
+    }
     public void Quiit()
     {
 

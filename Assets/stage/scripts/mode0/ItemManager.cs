@@ -46,8 +46,8 @@ public class ItemManager : MonoBehaviour
     public enum foodColor 
     {
         none,
-        red,
-        blu,
+        white,
+        black,
     }
     
 }
