@@ -118,6 +118,17 @@
                 },
                 {
                     "name": "",
+                    "id": "9013040b-8def-4f9f-a369-da3392823d54",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "4c0cc6c3-2795-40df-b46d-1a335f9fe272",
                     "path": "<Keyboard>/v",
                     "interactions": "",

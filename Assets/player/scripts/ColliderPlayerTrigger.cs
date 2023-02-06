@@ -68,14 +68,16 @@ public class ColliderPlayerTrigger : MonoBehaviour
                     if (collision.transform.parent != this.gameObject.transform && playerControll.deadBubble == null)
                     {
                         collision.transform.position = this.gameObject.transform.position;
-                        collision.transform.parent = this.gameObject.transform;
+                        collision.transform.parent = playerControll.deadBubbleOnHand.transform;
                         playerControll.deadBubble = collision.gameObject;
+
+                        if (collision.GetComponent<Rigidbody2D>() != null)
+                            Destroy(collision.GetComponent<Rigidbody2D>());
 
                         //第二模式相關
                         if (collision.GetComponent<fallingPart>() != null) 
                         {
                             Destroy(collision.GetComponent<fallingPart>());
-                            Destroy(collision.GetComponent<Rigidbody2D>());
                         }
                     }
                 }
@@ -89,6 +91,20 @@ public class ColliderPlayerTrigger : MonoBehaviour
             if (playerControll != null) 
             {
                 playerControll.retired();
+            }
+        }
+
+        if (collision.tag == "BubbleBullet" && !playerStateList.dead) 
+        {
+            if (collision.GetComponent<bubbleBullet>().parent != this.gameObject) 
+            {
+                if (playerControll != null)
+                {
+                    if (!playerStateList.recoverying)
+                        playerControll.damaged(collision.transform.position);
+                }
+                else
+                    Debug.LogError("出錯 玩家不正常");
             }
         }
     }

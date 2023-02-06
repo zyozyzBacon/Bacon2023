@@ -30,8 +30,8 @@ public class foodBattlePlayer : MonoBehaviour
 
 
     [Tooltip("飽食度最大上限")][SerializeField] public int foodLimit = 100;
-    [Tooltip("飢餓度減少倒數時間")][SerializeField] public float hurgryAttackTime;
-    [Tooltip("飢餓度到變瘦")][SerializeField] public bool sick;
+    [Tooltip("飢餓度減少倒數時間")][SerializeField] public float hurgryAttackTime = 10;
+    [Tooltip("飢餓度減少量")][SerializeField] public int hurgryAttack = 20;
 
     private BasicPlayerControll pControll;
     private PlayerStateList pState;
@@ -40,9 +40,12 @@ public class foodBattlePlayer : MonoBehaviour
     public void init()
     {
         food = foodLimit;
-        hurgryAttackTime = 10f;
         pControll = GetComponent<BasicPlayerControll>();
-        pState = GetComponent<PlayerStateList>();
+        pState = GetComponent<PlayerStateList>();    
+    }
+
+    public void startgame() 
+    {
         StartCoroutine(hurgry(hurgryAttackTime));
     }
 
@@ -70,7 +73,7 @@ public class foodBattlePlayer : MonoBehaviour
     private IEnumerator hurgry(float seconds)
     {
         yield return new WaitForSeconds(seconds);
-        food = food - (foodLimit / 5);
+        food = food - hurgryAttack;
         StartCoroutine(hurgry(hurgryAttackTime));
     }
 

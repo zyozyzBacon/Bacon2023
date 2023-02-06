@@ -82,6 +82,7 @@ public class MainGameManager : MonoBehaviour
                 case MainGameManager.gameMode.fallingBattle:
                     break;
                 case MainGameManager.gameMode.deathBattle:
+                    p.GetComponent<BasicPlayerControll>().allowAttack = true;
                     break;
                 default:
                     Console.WriteLine("¥¼Âê©w");
@@ -100,6 +101,8 @@ public class MainGameManager : MonoBehaviour
         {
             case MainGameManager.gameMode.foodBattle:
                 foodBattleManager.instance.init();
+                for (int i = 0; i < playerNum; i++)
+                    playerList[i].GetComponent<foodBattlePlayer>().startgame();
                 break;
             case MainGameManager.gameMode.fallingBattle:
                 fallingGameManager.instance.init();

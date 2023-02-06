@@ -36,6 +36,8 @@ public class BasicPlayerControll : MonoBehaviour
 
     [Header("玩法相關")]
     [Tooltip("珍珠數量")][SerializeField] public int bubbles;
+    [Tooltip("珍珠子彈速度")][SerializeField] public float bubbleSpeed;
+    [Tooltip("攻擊緩衝時間")][SerializeField] public float attackTime;
     [Tooltip("是否允許攻擊")][SerializeField] public bool allowAttack;
     [Tooltip("死亡後手上珍珠")][SerializeField] public GameObject deadBubble;
     [Tooltip("珍珠顏色")][SerializeField] public ItemManager.foodColor FoodColor;
@@ -45,6 +47,8 @@ public class BasicPlayerControll : MonoBehaviour
     [Tooltip("衝刺撞人物件")][SerializeField] private GameObject DashCollider;
     [Tooltip("幽靈模式物件")][SerializeField] private GameObject GhostPlayer;
     [Tooltip("槍物件")][SerializeField] private GameObject GunPower;
+    [Tooltip("子彈物件")][SerializeField] private GameObject BulletPrefabs;
+    [Tooltip("死亡後手上珍珠子物件")]public GameObject deadBubbleOnHand;
 
     Vector2 moveInput;
     int jumpAirCurrent;
@@ -97,11 +101,13 @@ public class BasicPlayerControll : MonoBehaviour
             if (moveInput.x > 0.7)
             {
                 transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+                GunPower.transform.rotation = Quaternion.Euler(0, 0, 0);
                 pState.facingRight = true;
             }
             else if (moveInput.x < -0.7)
             {
                 transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+                GunPower.transform.rotation = Quaternion.Euler(0, 180, 0);
                 pState.facingRight = false;
             }
         }
@@ -380,9 +386,24 @@ public class BasicPlayerControll : MonoBehaviour
     {
         float s = context.ReadValue<float>();
 
-        if (s == 1 && allowAttack)
+        if (s == 1 && allowAttack && !pState.attacking)
         {
+            if (bubbles > 0) 
+            {
+                bubbles--;
+                pState.attacking = true;
+                GameObject bullets = Instantiate(BulletPrefabs, GunPower.transform.position,GunPower.transform.rotation);
+                bullets.GetComponent<bubbleBullet>().parent = this.gameObject;
+                bullets.GetComponent<bubbleBullet>().speed = bubbleSpeed;
+                StartCoroutine(shootCount(attackTime));
+            }
+        }
 
+        IEnumerator shootCount(float seconds)
+        {
+            yield return new WaitForSeconds(seconds);
+
+            pState.attacking = false;
         }
     }
 

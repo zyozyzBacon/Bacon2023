@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 5315280106085442590}
   - component: {fileID: 5315280106085442588}
   - component: {fileID: 1013761995838430180}
-  m_Layer: 12
+  - component: {fileID: 3857408998958164258}
+  m_Layer: 0
   m_Name: "\u73CD\u73E0\u5B50\u5F48"
-  m_TagString: Bubble
+  m_TagString: BubbleBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -123,3 +124,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &3857408998958164258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5315280106085442592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 105ad3d389c5d4341a37f81b062dd114, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parent: {fileID: 0}
