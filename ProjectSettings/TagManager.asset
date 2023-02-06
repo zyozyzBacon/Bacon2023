@@ -27,15 +27,15 @@ TagManager:
   - DeadPlayerLayer
   - ItemLayer
   - DashPlayer
+  - GhostPlayer
+  - GhostBorder
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Background
+  - Floor
+  - Store
+  - Store2
+  - Platform
+  - Player
   - 
   - 
   - 
@@ -48,4 +48,22 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 4245683495
+    locked: 0
+  - name: Floor
+    uniqueID: 4117875121
+    locked: 0
+  - name: Platform
+    uniqueID: 1916510815
+    locked: 0
+  - name: Store
+    uniqueID: 2367510813
+    locked: 0
+  - name: Store2
+    uniqueID: 1964193367
+    locked: 0
+  - name: Player
+    uniqueID: 3512690951
     locked: 0

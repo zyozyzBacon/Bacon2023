@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor.UI;
 
 public class foodBattleManager : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class foodBattleManager : MonoBehaviour
     public GameObject bubblePrefab;
 
     private Transform[] bubblePositon = new Transform[0];
+
+    public Sprite[] bubbleColor = new Sprite[2];
 
     public void Awake()
     {
@@ -83,10 +86,15 @@ public class foodBattleManager : MonoBehaviour
                 bub.transform.parent = bubblePositon[r].transform;
 
                 if (c % 2 == 0)
-                    bub.GetComponent<foodpart>().FoodColor = ItemManager.foodColor.red;
-                else
-                    bub.GetComponent<foodpart>().FoodColor = ItemManager.foodColor.blu;
-
+                {
+                    bub.GetComponent<foodpart>().FoodColor = ItemManager.foodColor.white;
+                    bub.GetComponent<SpriteRenderer>().sprite = bubbleColor[0];
+                }
+                else 
+                {
+                    bub.GetComponent<foodpart>().FoodColor = ItemManager.foodColor.black;
+                    bub.GetComponent<SpriteRenderer>().sprite = bubbleColor[1];
+                } 
             }
         }
     }
