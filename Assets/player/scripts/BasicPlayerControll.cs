@@ -57,6 +57,7 @@ public class BasicPlayerControll : MonoBehaviour
     PlayerStateList pState;
     SpriteRenderer spriteRenderer;
     BoxCollider2D boxCollider;
+    Animator anim;
 
     void Awake()
     {
@@ -64,6 +65,7 @@ public class BasicPlayerControll : MonoBehaviour
         pState = GetComponent<PlayerStateList>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         boxCollider = GetComponent<BoxCollider2D>();
+        anim = GetComponent<Animator>();
         jumpAirCurrent = 0;
     }
 
@@ -110,8 +112,12 @@ public class BasicPlayerControll : MonoBehaviour
                 GunPower.transform.rotation = Quaternion.Euler(0, 180, 0);
                 pState.facingRight = false;
             }
-        }
 
+            if (moveInput.x != 0) 
+                anim.SetBool("Walk", true);
+            else
+                anim.SetBool("Walk", false);
+        }
     }
 
 
@@ -127,7 +133,6 @@ public class BasicPlayerControll : MonoBehaviour
             if (IsGrounded())
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-                //anim.SetTrigger("jumpTrigger");
             } 
             else if(doubleJump && jumpAirCurrent < jumpAir)   
             {
@@ -145,21 +150,20 @@ public class BasicPlayerControll : MonoBehaviour
         {
             jumpAirCurrent = 0;
             pState.jumping = false;
+            anim.SetBool("Jump", false);
         }
         else
         {
             if (!pState.jumping)
             {
-                //anim.SetTrigger("jumpTrigger");
+                anim.SetBool("Jump", true);
+                anim.SetTrigger("JumpTrigger");
             }
 
             pState.jumping = true;
 
         }
  
-        //pState.grounded = IsGrounded();
-        //anim.SetBool("jump", pState.jumping);
-
         //讓墜落速度有最大值極限而不是無限加速墜落
         if (rb.velocity.y < -Mathf.Abs(fallSpeed))
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -Mathf.Abs(fallSpeed), Mathf.Infinity));
@@ -316,6 +320,8 @@ public class BasicPlayerControll : MonoBehaviour
             rb.AddForce(new Vector2(12, 5) * knockDown);
             Debug.Log("往右邊暈眩");
         }
+
+        anim.SetTrigger("Hit");
     }
 
     IEnumerator dizzyCount(float seconds) 
@@ -337,19 +343,27 @@ public class BasicPlayerControll : MonoBehaviour
 
     public void retired() 
     {
+        anim.SetTrigger("Retired");
+        StartCoroutine(dead(2f));
+    }
+
+    IEnumerator dead(float seconds) 
+    {
         tvModePart.SetActive(false);
         DashCollider.SetActive(false);
-        GhostPlayer.SetActive(true);
-        spriteRenderer.enabled = false;
         boxCollider.enabled = false;
         rb.gravityScale = 0f;
         pState.tvModeOn = true;
-        tvMoveSpeed = walkSpeed ;
+        tvMoveSpeed = walkSpeed;
         pState.dead = true;
+
+        yield return new WaitForSeconds(seconds);
+
+        GhostPlayer.SetActive(true);
+        spriteRenderer.enabled = false;
 
         if (MainGameManager.instance != null)
             MainGameManager.instance.gameOver();
-
     }
 
     //退場相關/////////////////////////////////////////////////////////
