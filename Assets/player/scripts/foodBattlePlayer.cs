@@ -96,5 +96,4 @@ public class foodBattlePlayer : MonoBehaviour
     {
         StartCoroutine(hungryCoroutine);
     }
-
 }
