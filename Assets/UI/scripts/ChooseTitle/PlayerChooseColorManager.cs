@@ -149,7 +149,7 @@ public class PlayerChooseColorManager : MonoBehaviour
             switch (gameMode)
             {
                 case MainGameManager.gameMode.foodBattle:
-                    SceneManager.LoadScene("Stage01");
+                    SceneManager.LoadScene("Level1");
                     break;
                 case MainGameManager.gameMode.fallingBattle:
                     SceneManager.LoadScene("Stage02");
@@ -165,7 +165,7 @@ public class PlayerChooseColorManager : MonoBehaviour
         else 
         {
             pData.gameMode = MainGameManager.gameMode.foodBattle;
-            SceneManager.LoadScene("Stage01");
+            SceneManager.LoadScene("Level1");
         }
     }
 }

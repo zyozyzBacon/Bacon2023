@@ -60,10 +60,11 @@ public class foodBattlePlayer : MonoBehaviour
             food = food + foodObject.GetComponent<foodpart>().food;
 
             StartCoroutine(fooding(0.02f));
+
+            StopCoroutine(hungryCoroutine);
+            StartCoroutine(hungryCoroutine);
         }
 
-        StopCoroutine(hungryCoroutine);
-        StartCoroutine(hungryCoroutine);
     }
 
     private IEnumerator fooding(float seconds)
