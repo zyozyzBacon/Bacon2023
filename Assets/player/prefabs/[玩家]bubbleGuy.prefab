@@ -519,14 +519,14 @@ MonoBehaviour:
   Color: 0
   walkSpeed: 9
   tvMoveSpeed: 2.5
-  jumpForce: 15
+  jumpForce: 8
   fallSpeed: 20
   doubleJump: 0
   jumpAir: 0
   recoveryTime: 2
   dizzyTime: 0.25
   knockDown: 100
-  groundCheckY: 1.6
+  groundCheckY: 1.35
   groundLayer:
     serializedVersion: 2
     m_Bits: 128

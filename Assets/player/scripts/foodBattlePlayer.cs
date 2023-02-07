@@ -37,16 +37,19 @@ public class foodBattlePlayer : MonoBehaviour
     private PlayerStateList pState;
     [SerializeField] private bool eatfood;
 
+    IEnumerator hungryCoroutine;
+
     public void init()
     {
         food = foodLimit;
         pControll = GetComponent<BasicPlayerControll>();
-        pState = GetComponent<PlayerStateList>();    
+        pState = GetComponent<PlayerStateList>();
+        hungryCoroutine = hurgry(hurgryAttackTime);
     }
 
     public void startgame() 
     {
-        StartCoroutine(hurgry(hurgryAttackTime));
+        StartCoroutine(hungryCoroutine);
     }
 
     public void eating(GameObject foodObject) 
@@ -59,9 +62,8 @@ public class foodBattlePlayer : MonoBehaviour
             StartCoroutine(fooding(0.02f));
         }
 
-        StopCoroutine("hungry");
-        StopCoroutine("hungry");
-        StartCoroutine(hurgry(hurgryAttackTime));
+        StopCoroutine(hungryCoroutine);
+        StartCoroutine(hungryCoroutine);
     }
 
     private IEnumerator fooding(float seconds)
@@ -74,7 +76,7 @@ public class foodBattlePlayer : MonoBehaviour
     {
         yield return new WaitForSeconds(seconds);
         food = food - hurgryAttack;
-        StartCoroutine(hurgry(hurgryAttackTime));
+        StartCoroutine(hungryCoroutine);
     }
 
     private void killPlayer()
@@ -92,7 +94,7 @@ public class foodBattlePlayer : MonoBehaviour
 
     public void keepGo()
     {
-        StartCoroutine(hurgry(hurgryAttackTime));
+        StartCoroutine(hungryCoroutine);
     }
 
 }
