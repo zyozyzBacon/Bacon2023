@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 130717203}
   - component: {fileID: 130717206}
   - component: {fileID: 130717205}
+  - component: {fileID: 130717207}
   m_Layer: 5
   m_Name: Color4
   m_TagString: Untagged
@@ -203,6 +204,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 130717202}
   m_CullTransparentMesh: 1
+--- !u!114 &130717207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 130717202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4372e9b27c76184cb374c6074858423, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  select: 0
+  phase:
+  - {fileID: 21300000, guid: 62575b1464477b84c9e1239e505af7a3, type: 3}
+  - {fileID: 21300000, guid: d1a98f328841eea43a4df3a9a41fda00, type: 3}
+  - {fileID: 21300000, guid: d420677b87a28524f8faa425577103ee, type: 3}
 --- !u!1 &150220033
 GameObject:
   m_ObjectHideFlags: 0
@@ -261,7 +279,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b005fe3dcd2000d419f0adf8e1959e73, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -539,7 +557,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7ee6f9a6c826d4c4bb7359029243407d, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -695,7 +713,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 39a3e01aeb33d3f42867d083c80b7ab8, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -771,7 +789,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 39a3e01aeb33d3f42867d083c80b7ab8, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -800,6 +818,7 @@ GameObject:
   - component: {fileID: 317779145}
   - component: {fileID: 317779148}
   - component: {fileID: 317779147}
+  - component: {fileID: 317779149}
   m_Layer: 5
   m_Name: Color2
   m_TagString: Untagged
@@ -869,6 +888,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 317779144}
   m_CullTransparentMesh: 1
+--- !u!114 &317779149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 317779144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4372e9b27c76184cb374c6074858423, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  select: 0
+  phase:
+  - {fileID: 21300000, guid: 8b5d7a78b867f35449b6db1fa3020073, type: 3}
+  - {fileID: 21300000, guid: 9f493fe34180d4943ae1f181507d709a, type: 3}
+  - {fileID: 21300000, guid: f12436b566696b043baee32b867226c7, type: 3}
 --- !u!1 &347300397
 GameObject:
   m_ObjectHideFlags: 0
@@ -927,7 +963,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 274a7f9daec707f49a86fa7e35a0bb03, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1003,7 +1039,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b005fe3dcd2000d419f0adf8e1959e73, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1247,7 +1283,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 274a7f9daec707f49a86fa7e35a0bb03, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1407,7 +1443,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b005fe3dcd2000d419f0adf8e1959e73, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1483,7 +1519,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 274a7f9daec707f49a86fa7e35a0bb03, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1644,7 +1680,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 39a3e01aeb33d3f42867d083c80b7ab8, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1841,6 +1877,7 @@ GameObject:
   - component: {fileID: 947945188}
   - component: {fileID: 947945191}
   - component: {fileID: 947945190}
+  - component: {fileID: 947945192}
   m_Layer: 5
   m_Name: Color3
   m_TagString: Untagged
@@ -1910,6 +1947,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 947945187}
   m_CullTransparentMesh: 1
+--- !u!114 &947945192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 947945187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4372e9b27c76184cb374c6074858423, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  select: 0
+  phase:
+  - {fileID: 21300000, guid: 2aefe3e4fd3e1ee44ad01c988e6cfd0e, type: 3}
+  - {fileID: 21300000, guid: b647c76e2bb8e044b90f1dbcca3d9183, type: 3}
+  - {fileID: 21300000, guid: f200b1b6b077bfc4bb7240a3e34f104b, type: 3}
 --- !u!1 &1034251278
 GameObject:
   m_ObjectHideFlags: 0
@@ -1968,7 +2022,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7ee6f9a6c826d4c4bb7359029243407d, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2128,7 +2182,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b005fe3dcd2000d419f0adf8e1959e73, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2204,7 +2258,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7ee6f9a6c826d4c4bb7359029243407d, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2469,7 +2523,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 39a3e01aeb33d3f42867d083c80b7ab8, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2585,7 +2639,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7ee6f9a6c826d4c4bb7359029243407d, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2788,10 +2842,19 @@ MonoBehaviour:
   - {fileID: 947945190}
   - {fileID: 130717205}
   playerColorList: 
+<<<<<<<< HEAD:Assets/scenesProgress/playerChooseScreen.unity
+  gameplayMode: 0
+========
+>>>>>>>> origin/小小:Assets/_Xx/_Scenes/playerChooseScreen.unity
   gameMode: 2
   pDataObject: {fileID: 1931710813}
   pData: {fileID: 1931710815}
   stop: 0
+  playerSprites:
+  - {fileID: 21300000, guid: 39a3e01aeb33d3f42867d083c80b7ab8, type: 3}
+  - {fileID: 21300000, guid: 7ee6f9a6c826d4c4bb7359029243407d, type: 3}
+  - {fileID: 21300000, guid: 274a7f9daec707f49a86fa7e35a0bb03, type: 3}
+  - {fileID: 21300000, guid: b005fe3dcd2000d419f0adf8e1959e73, type: 3}
 --- !u!1 &1872074214
 GameObject:
   m_ObjectHideFlags: 0
@@ -2850,7 +2913,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 274a7f9daec707f49a86fa7e35a0bb03, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2914,7 +2977,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerNum: 0
   colorList: 00000000000000000000000000000000
-  gameplay: 0
+  gameplayMode: 0
+  gameMode: 0
 --- !u!1 &1985581782
 GameObject:
   m_ObjectHideFlags: 0
@@ -2926,6 +2990,7 @@ GameObject:
   - component: {fileID: 1985581783}
   - component: {fileID: 1985581785}
   - component: {fileID: 1985581784}
+  - component: {fileID: 1985581786}
   m_Layer: 5
   m_Name: Color1
   m_TagString: Untagged
@@ -2995,7 +3060,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1985581782}
   m_CullTransparentMesh: 1
+<<<<<<<< HEAD:Assets/scenesProgress/playerChooseScreen.unity
+--- !u!114 &1985581786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1985581782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4372e9b27c76184cb374c6074858423, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  select: 0
+  phase:
+  - {fileID: 21300000, guid: 2406fa191be494e4f927d397f7e1c1b1, type: 3}
+  - {fileID: 21300000, guid: 54f4625fd49c56649932379cfda11c01, type: 3}
+  - {fileID: 21300000, guid: 29a775792c2704846abba5f70751dc4d, type: 3}
+--- !u!1 &2031437129
+========
 --- !u!1 &2020568497
+>>>>>>>> origin/小小:Assets/_Xx/_Scenes/playerChooseScreen.unity
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

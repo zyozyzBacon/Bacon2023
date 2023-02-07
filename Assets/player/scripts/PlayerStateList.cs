@@ -15,4 +15,5 @@ public class PlayerStateList : MonoBehaviour
     public bool tvModeOn;
     public bool damaged;
     public bool recoverying;
+    public bool attacking;
 }

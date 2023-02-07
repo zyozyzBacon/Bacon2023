@@ -183,6 +183,37 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.5, y: 5}
   m_EdgeRadius: 0
+--- !u!1 &6577937505908247623
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8675764427207447403}
+  m_Layer: 8
+  m_Name: DeadBubble
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8675764427207447403
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6577937505908247623}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.5, y: -2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7126360053929608706}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7126360053929608708
 GameObject:
   m_ObjectHideFlags: 0
@@ -223,6 +254,7 @@ Transform:
   - {fileID: 8533189502585110947}
   - {fileID: 7568027923223449460}
   - {fileID: 8357891893548973077}
+  - {fileID: 8675764427207447403}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -352,7 +384,19 @@ MonoBehaviour:
     m_ActionId: d234cbdc-42e2-4d72-a602-d075c55983d4
     m_ActionName: Player01/Attack[/Keyboard/x]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7126360053929608718}
+        m_TargetAssemblyTypeName: BasicPlayerControll, Assembly-CSharp
+        m_MethodName: shootInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 4f0eed23-bdf5-4518-89d1-c39a3c1a53b6
     m_ActionName: Player01/Dash[/Keyboard/c]
   - m_PersistentCalls:
@@ -458,6 +502,7 @@ MonoBehaviour:
   tvModeOn: 0
   damaged: 0
   recoverying: 0
+  attacking: 0
 --- !u!114 &7126360053929608718
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -488,14 +533,18 @@ MonoBehaviour:
   dashSpeed: 14
   dashTime: 0.25
   dashCD: 0.25
-  bubbles: 0
+  bubbles: 20
+  bubbleSpeed: 11
+  attackTime: 0.1
   allowAttack: 0
   deadBubble: {fileID: 0}
   FoodColor: 0
   tvModePart: {fileID: 761496276369795586}
   DashCollider: {fileID: 1709779374316642737}
   GhostPlayer: {fileID: 9054985409185722765}
-  GunPower: {fileID: 0}
+  GunPower: {fileID: 8959031791433537547}
+  BulletPrefabs: {fileID: 5315280106085442592, guid: 76c4a1850b22d2b408ed2d579f0e71cf, type: 3}
+  deadBubbleOnHand: {fileID: 6577937505908247623}
 --- !u!114 &3465737390561413058
 MonoBehaviour:
   m_ObjectHideFlags: 0
