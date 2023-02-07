@@ -23,8 +23,7 @@ public class MainGameManager : MonoBehaviour
     [SerializeField] public int[] ammo = new int[4];
     [SerializeField] public GameObject TimerText;
     [SerializeField] private bool cameraLocked;
-    [SerializeField] private GameObject[] bubbblePlayer;
-    [SerializeField] private Sprite[] bubbleColor;
+    [SerializeField] private GameObject[] bubbblePlayer = new GameObject[4];
 
     CinemachineTargetGroup.Target[] cameraTarget;
     private playerData pData;
@@ -61,7 +60,6 @@ public class MainGameManager : MonoBehaviour
         for (int i = 0; i < playerNum; i++)
         {
             GameObject p = bubbblePlayer[pData.colorList[i]];
-            p.GetComponent<SpriteRenderer>().sprite = bubbleColor[pData.colorList[i]];
             this.gameObject.GetComponent<PlayerInputManager>().playerPrefab = p;
             p = this.gameObject.GetComponent<PlayerInputManager>().JoinPlayer().gameObject;
 

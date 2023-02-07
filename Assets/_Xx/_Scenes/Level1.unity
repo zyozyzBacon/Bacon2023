@@ -10198,6 +10198,11 @@ MonoBehaviour:
   ammo: 00000000000000000000000000000000
   TimerText: {fileID: 662204146}
   cameraLocked: 0
+  bubbblePlayer:
+  - {fileID: 4973288556108629955, guid: 42403d5e7080ebc49a2ac7101d8e8487, type: 3}
+  - {fileID: 8819739847824341106, guid: 6552e4820f55e9545877762abc60c619, type: 3}
+  - {fileID: 8307803189228372022, guid: 7320dd4bbb0200d448d35207ea2c2f9f, type: 3}
+  - {fileID: 6269976194884617692, guid: 165ef5d8c8475894a8c0d8c0bc81d243, type: 3}
 --- !u!114 &1169626989
 MonoBehaviour:
   m_ObjectHideFlags: 0
