@@ -89,11 +89,12 @@ public class platformGene : MonoBehaviour
 
 
             p++;
-            if (p >= 10)
+            if (p >= 10) 
+            {
                 p = 0;
-
+                //將平台改造成危險平台
+            }            
         }
-
         StartCoroutine(platform(ptTimer));
     }
 
