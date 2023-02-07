@@ -144,6 +144,7 @@ public class BasicPlayerControll : MonoBehaviour
         if (IsGrounded())
         {
             jumpAirCurrent = 0;
+            pState.jumping = false;
         }
         else
         {
