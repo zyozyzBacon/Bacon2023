@@ -2,9 +2,12 @@ using Cinemachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.XR;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainGameManager : MonoBehaviour
 {
@@ -20,7 +23,7 @@ public class MainGameManager : MonoBehaviour
     [SerializeField] public int[] ammo = new int[4];
     [SerializeField] public GameObject TimerText;
     [SerializeField] private bool cameraLocked;
-
+    [SerializeField] private GameObject[] bubbblePlayer = new GameObject[4];
 
     CinemachineTargetGroup.Target[] cameraTarget;
     private playerData pData;
@@ -56,7 +59,9 @@ public class MainGameManager : MonoBehaviour
 
         for (int i = 0; i < playerNum; i++)
         {
-            GameObject p = this.gameObject.GetComponent<PlayerInputManager>().JoinPlayer().gameObject;
+            GameObject p = bubbblePlayer[pData.colorList[i]];
+            this.gameObject.GetComponent<PlayerInputManager>().playerPrefab = p;
+            p = this.gameObject.GetComponent<PlayerInputManager>().JoinPlayer().gameObject;
 
             playerList.Add(i, p);
             p.transform.position = playerSpawn[i].position;
@@ -78,6 +83,7 @@ public class MainGameManager : MonoBehaviour
             {
                 case MainGameManager.gameMode.foodBattle:
                     p.AddComponent<foodBattlePlayer>().init();
+                    p.GetComponent<PlayerUI>().init();
                     break;
                 case MainGameManager.gameMode.fallingBattle:
                     break;
