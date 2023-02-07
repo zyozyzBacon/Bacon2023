@@ -525,8 +525,8 @@ MonoBehaviour:
   fallSpeed: 20
   doubleJump: 0
   jumpAir: 0
-  recoveryTime: 2
-  dizzyTime: 0.25
+  recoveryTime: 1
+  dizzyTime: 2
   knockDown: 100
   groundCheckY: 1.35
   groundLayer:
@@ -534,7 +534,7 @@ MonoBehaviour:
     m_Bits: 128
   dashSpeed: 14
   dashTime: 0.25
-  dashCD: 0.25
+  dashCD: 1.5
   bubbles: 20
   bubbleSpeed: 11
   attackTime: 0.1

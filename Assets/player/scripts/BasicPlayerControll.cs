@@ -140,9 +140,6 @@ public class BasicPlayerControll : MonoBehaviour
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce * 0.75f);
             }
         }
-
-        if(j == 0 && rb.velocity.y > 0)
-            rb.velocity = new Vector2(rb.velocity.x, 0);
     }
     private void jumpDetect() //跳躍相關的狀態偵測用(Update())
     {
