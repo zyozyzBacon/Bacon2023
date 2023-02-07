@@ -61,6 +61,9 @@ public class ColliderPlayerTrigger : MonoBehaviour
                     if(foodGameplay != null)
                         foodGameplay.eating(collision.gameObject);
                     Destroy(collision.gameObject);
+
+                    if (foodBattleManager.instance != null)
+                        foodBattleManager.instance.bubbleDetect();
                 }
                 else
                 {
@@ -79,6 +82,10 @@ public class ColliderPlayerTrigger : MonoBehaviour
                         {
                             Destroy(collision.GetComponent<fallingPart>());
                         }
+
+                        if (foodBattleManager.instance != null)
+                            foodBattleManager.instance.bubbleDetect();
+
                     }
                 }
             }

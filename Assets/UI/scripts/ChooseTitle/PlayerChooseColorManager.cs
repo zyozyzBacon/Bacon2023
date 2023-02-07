@@ -43,7 +43,7 @@ public class PlayerChooseColorManager : MonoBehaviour
 
     public void AddPlayerToList(PlayerInput playerInput)
     {
-        if (playerNum < 3)
+        if (playerNum < 4)
         {
             GameObject player = playerInput.gameObject;
 

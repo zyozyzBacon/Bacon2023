@@ -13,7 +13,7 @@ public class foodBattleManager : MonoBehaviour
     private float _time;
 
     [Tooltip("珍珠生成時間")][SerializeField] private float bubbleTime;
-    [Tooltip("一波珍珠生成的量")][SerializeField] private int bubbleWaveNum;
+    [Tooltip("一波珍珠生成的量")][SerializeField] private int BubbleWaveNum;
 
     public GameObject bubblePrefab;
 
@@ -21,6 +21,7 @@ public class foodBattleManager : MonoBehaviour
 
     public Sprite[] bubbleColor = new Sprite[2];
 
+    IEnumerator bubbleCoroutine;
     public void Awake()
     {
         instance = this;
@@ -36,25 +37,28 @@ public class foodBattleManager : MonoBehaviour
             bubblePositon[i] = GameObject.Find("###珍珠生成位置###").transform.GetChild(i);
         }
 
-        StartCoroutine(bubbleWave(bubbleTime));
+        bubbleCoroutine = bubbleWave(bubbleTime);
+
+        StartCoroutine(bubbleCoroutine);
 
     }
 
     public void bubbleDetect() 
     {
-        int Last = 0;
-
-        for (int i = 0; i < bubblePositon.Length; i++) 
+        int a = 0;
+        for (int i = 0; i < bubblePositon.Length; i++)
         {
-            if (bubblePositon[i].childCount == 0) 
-            {
-                Last++;
-            }
+            if (bubblePositon[i].childCount > 0)
+                a++;  
         }
 
-        if (Last == bubblePositon.Length-1 ) 
+        Debug.Log(a);
+
+        if (a <= 1) 
         {
-            StartCoroutine(bubbleWave(bubbleTime));
+            StopCoroutine(bubbleCoroutine);
+            bubbleCoroutine = bubbleWave(bubbleTime / 2);
+            StartCoroutine(bubbleCoroutine);
         }
     }
 
@@ -62,16 +66,19 @@ public class foodBattleManager : MonoBehaviour
     {
         for (int i = 0; i < bubblePositon.Length; i++)
         {
-            Destroy(bubblePositon[i].GetChild(0));
+            if(bubblePositon[i].childCount > 0)
+                Destroy(bubblePositon[i].GetChild(0).gameObject);
         }
     }
+
+
 
     private IEnumerator bubbleWave(float seconds)
     {
         yield return new WaitForSeconds(seconds);
 
         int c = 0;
-        for (int i = 0; i < bubbleWaveNum; i++) 
+        for (int i = 0; i < BubbleWaveNum; i++) 
         {
             int r = Random.Range(0, bubblePositon.Length);
             c++;
