@@ -49,10 +49,18 @@ public class PlayerUI : MonoBehaviour
         if (pFood != null) 
             text.SetText(pFood.food.ToString());
 
-        if (pControll.FoodColor == ItemManager.foodColor.white)
-            bubbleColor.sprite = bubble[0];
-        else if (pControll.FoodColor == ItemManager.foodColor.black)
-            bubbleColor.sprite = bubble[1];
-    }
+        if (pControll.FoodColor != ItemManager.foodColor.none)
+        {
+            if (pControll.FoodColor == ItemManager.foodColor.white)
+                bubbleColor.sprite = bubble[0];
+            else if (pControll.FoodColor == ItemManager.foodColor.black)
+                bubbleColor.sprite = bubble[1];
 
+            bubbleColor.gameObject.SetActive(true);
+        }
+        else 
+        {
+            bubbleColor.gameObject.SetActive(false);
+        }
+    }
 }
