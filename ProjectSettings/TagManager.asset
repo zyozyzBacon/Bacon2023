@@ -12,6 +12,7 @@ TagManager:
   - ItemLocation
   - Elevator
   - DeadZone
+  - BubbleBullet
   layers:
   - Default
   - TransparentFX
@@ -63,6 +64,9 @@ TagManager:
     locked: 0
   - name: Store2
     uniqueID: 1964193367
+    locked: 0
+  - name: Pearl
+    uniqueID: 2270509811
     locked: 0
   - name: Player
     uniqueID: 3512690951
