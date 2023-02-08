@@ -1,12 +1,8 @@
-using Cinemachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.XR;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MainGameManager : MonoBehaviour
@@ -25,6 +21,7 @@ public class MainGameManager : MonoBehaviour
     [SerializeField] private bool cameraLocked;
     [SerializeField] private GameObject[] bubbblePlayer = new GameObject[4];
     [SerializeField] private Sprite[] playerIcon =  new Sprite[4];
+    [SerializeField] public Vector3[] playerIconColor = new Vector3[4];
 
     private playerData pData;
 
@@ -70,10 +67,10 @@ public class MainGameManager : MonoBehaviour
             {
                 p.transform.localScale = new Vector3(-Mathf.Abs(p.transform.localScale.x), p.transform.localScale.y, p.transform.localScale.z);
             }
-
-            p.GetComponent<PlayerUI>().PlayerIcon = playerIcon[playerNum];
+    
             p.GetComponent<BasicPlayerControll>().ID = i;
             p.GetComponent<BasicPlayerControll>().Color = pData.colorList[i];
+            p.GetComponent<PlayerUI>().PlayerIcon = playerIcon[playerNum];
 
             switch (GameMode)
             {

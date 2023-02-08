@@ -214,6 +214,37 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.5, y: 5}
   m_EdgeRadius: 0
+--- !u!1 &3561420442233137173
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 350281083544983559}
+  m_Layer: 8
+  m_Name: PlayerNum
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &350281083544983559
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3561420442233137173}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -4, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4973288556108629957}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4973288556108629955
 GameObject:
   m_ObjectHideFlags: 0
@@ -256,6 +287,7 @@ Transform:
   - {fileID: 5685311213960187571}
   - {fileID: 6060845938560646610}
   - {fileID: 6883682649986519724}
+  - {fileID: 350281083544983559}
   - {fileID: 6248914448209772615}
   - {fileID: 3707783715562607281}
   - {fileID: 5954451699260976016}
@@ -568,15 +600,18 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4973288556108629955}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7091ecb1c2465a64395fe8641362d761, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Panel: {fileID: 410102250471152457, guid: 54372885734a06945afd1559c8bce6ff, type: 3}
+  uiPart: {fileID: 0}
+  iconPart: {fileID: 0}
+  PlayerIcon: {fileID: 0}
+  PlayerNumPanel: {fileID: 410102250471152457, guid: 7721ff56092612f43af0744a68482857, type: 3}
+  FoodPanel: {fileID: 410102250471152457, guid: 54372885734a06945afd1559c8bce6ff, type: 3}
   uiPos: {fileID: 6248914448209772615}
-  bubbleColor: {fileID: 0}
-  text: {fileID: 0}
+  iconPos: {fileID: 350281083544983559}
   bubble:
   - {fileID: 21300000, guid: 836f1fc5e76726f4d92390a9591fc00b, type: 3}
   - {fileID: 21300000, guid: caf4c9bfee8497b45a7307e07bd0d8e6, type: 3}

@@ -9,10 +9,10 @@ using static UnityEngine.Rendering.DebugUI;
 public class PlayerUI : MonoBehaviour
 {
     [HideInInspector]public GameObject uiPart;
-    [HideInInspector] public GameObject iconPart;
+    [HideInInspector]public GameObject iconPart;
     [HideInInspector]public Sprite PlayerIcon;
-    public GameObject PlayerNumPanel;
 
+    public GameObject PlayerNumPanel;
     public GameObject FoodPanel;
 
     public Transform uiPos;
@@ -38,6 +38,11 @@ public class PlayerUI : MonoBehaviour
     
     public void init()
     {
+        pFood = GetComponent<foodBattlePlayer>();
+        pControll = GetComponent<BasicPlayerControll>();
+        pState = GetComponent<PlayerStateList>();
+
+
         mCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
 
         uiPart = Instantiate(FoodPanel);
@@ -51,9 +56,13 @@ public class PlayerUI : MonoBehaviour
         iconrt = iconPart.GetComponent<RectTransform>();
         iconPart.transform.parent = GameObject.Find("Canvas").transform;
 
-        pFood = GetComponent<foodBattlePlayer>();
-        pControll = GetComponent<BasicPlayerControll>();
-        pState = GetComponent<PlayerStateList>();
+        iconPart.GetComponent<Image>().color = new Color
+        (
+            MainGameManager.instance.playerIconColor[pControll.Color].x / 255,
+            MainGameManager.instance.playerIconColor[pControll.Color].y / 255,
+            MainGameManager.instance.playerIconColor[pControll.Color].z / 255
+        );
+
         active = true;
     }
 

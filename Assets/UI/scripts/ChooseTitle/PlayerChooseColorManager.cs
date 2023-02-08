@@ -28,6 +28,7 @@ public class PlayerChooseColorManager : MonoBehaviour
 
     private InputActionAsset[] playerInputs = new InputActionAsset[4];
     [SerializeField] private Sprite[] playerSprites = new Sprite[4];
+    [SerializeField] public Vector3[] playerIconColor = new Vector3[4];
 
     void Awake()
     {
