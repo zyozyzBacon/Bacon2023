@@ -379,8 +379,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3fce45ace9acf645b4280e3f8b0a457, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  food: 30
-  FoodColor: 0
+  food: 5
+  FoodColor: 1
 --- !u!58 &4494534264538960274
 CircleCollider2D:
   m_ObjectHideFlags: 0

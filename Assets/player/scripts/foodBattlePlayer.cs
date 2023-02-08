@@ -30,7 +30,7 @@ public class foodBattlePlayer : MonoBehaviour
 
 
     [Tooltip("飽食度最大上限")][SerializeField] public int foodLimit = 100;
-    [Tooltip("飢餓度減少倒數時間")][SerializeField] public float hurgryAttackTime = 10;
+    [Tooltip("飢餓度減少倒數時間")][SerializeField] public float hurgryAttackTime = 5;
     [Tooltip("飢餓度減少量")][SerializeField] public int hurgryAttack = 20;
 
     private BasicPlayerControll pControll;

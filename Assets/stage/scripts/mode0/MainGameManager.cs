@@ -81,13 +81,14 @@ public class MainGameManager : MonoBehaviour
 
             switch (GameMode)
             {
-                case MainGameManager.gameMode.foodBattle:
+                case gameMode.foodBattle:
                     p.AddComponent<foodBattlePlayer>().init();
+                    p.GetComponent<PlayerUI>().enabled = true;
                     p.GetComponent<PlayerUI>().init();
                     break;
-                case MainGameManager.gameMode.fallingBattle:
+                case gameMode.fallingBattle:
                     break;
-                case MainGameManager.gameMode.deathBattle:
+                case gameMode.deathBattle:
                     p.GetComponent<BasicPlayerControll>().allowAttack = true;
                     break;
                 default:
@@ -105,15 +106,18 @@ public class MainGameManager : MonoBehaviour
 
         switch (GameMode)
         {
-            case MainGameManager.gameMode.foodBattle:
+            case gameMode.tuto:
+                TutoGameManager.instance.init(playerNum);
+                break;
+            case gameMode.foodBattle:
                 foodBattleManager.instance.init();
                 for (int i = 0; i < playerNum; i++)
                     playerList[i].GetComponent<foodBattlePlayer>().startgame();
                 break;
-            case MainGameManager.gameMode.fallingBattle:
+            case gameMode.fallingBattle:
                 fallingGameManager.instance.init();
                 break;
-            case MainGameManager.gameMode.deathBattle:
+            case gameMode.deathBattle:
                 break;
             default:
                 Console.WriteLine("未鎖定");
@@ -143,13 +147,13 @@ public class MainGameManager : MonoBehaviour
 
             switch (GameMode)
             {
-                case MainGameManager.gameMode.foodBattle:
+                case gameMode.foodBattle:
                     foodBattleManager.instance.endGame();
                     break;
-                case MainGameManager.gameMode.fallingBattle:
+                case gameMode.fallingBattle:
                     fallingGameManager.instance.endGame();
                     break;
-                case MainGameManager.gameMode.deathBattle:
+                case gameMode.deathBattle:
                     break;
                 default:
                     Console.WriteLine("未鎖定");

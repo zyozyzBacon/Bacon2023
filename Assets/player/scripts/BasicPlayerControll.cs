@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements.Experimental;
 
 public class BasicPlayerControll : MonoBehaviour
 {
@@ -126,9 +127,7 @@ public class BasicPlayerControll : MonoBehaviour
 
     public void jumpInput(InputAction.CallbackContext context) //輸入跳躍事件
     {
-        float j = context.ReadValue<float>();
-
-        if (j != 0 && !pState.damaged)
+        if (!pState.damaged)
         {
             if (IsGrounded())
             {
@@ -421,4 +420,24 @@ public class BasicPlayerControll : MonoBehaviour
 
 
     //射擊相關/////////////////////////////////////////////////////////
+    //新手教程相關/////////////////////////////////////////////////////
+
+    bool asking;
+    public void readyInput(InputAction.CallbackContext context) 
+    {
+        if (TutoGameManager.instance != null) 
+        {
+
+        }
+    }
+
+    private IEnumerator askTime(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        asking = false;
+    }
+
+
+
+    //新手教程相關/////////////////////////////////////////////////////
 }
