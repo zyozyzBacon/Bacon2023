@@ -10263,8 +10263,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   time: 9999
-  bubbleTime: 2
-  BubbleWaveNum: 5
+  bubbleTime: 1.25
+  BubbleWaveNum: 3
   bubblePrefab:
   - {fileID: 4494534264538960302, guid: 3e0ac77fce18ed043aa0f8f037174e42, type: 3}
   - {fileID: 4494534264538960302, guid: e7e62100e6a4afa4c8a8f17d94d6be40, type: 3}

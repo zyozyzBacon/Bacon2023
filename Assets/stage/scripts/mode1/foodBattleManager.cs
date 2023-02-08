@@ -107,11 +107,13 @@ public class foodBattleManager : MonoBehaviour
                     }   
                 }
 
+                Debug.Log(b + "," + w);
+
                 if (b == w) 
                 {
-                    int a = Random.Range(0, 1);
+                    int a = Random.Range(0, 100);
 
-                    switch (a)
+                    switch (a % 2)
                     {
                         case 0:
                             b++;

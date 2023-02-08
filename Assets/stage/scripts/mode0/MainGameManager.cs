@@ -83,7 +83,7 @@ public class MainGameManager : MonoBehaviour
             {
                 case gameMode.foodBattle:
                     p.AddComponent<foodBattlePlayer>().init();
-                    p.AddComponent<PlayerUI>().enabled = true;
+                    p.GetComponent<PlayerUI>().enabled = true;
                     p.GetComponent<PlayerUI>().init();
                     break;
                 case gameMode.fallingBattle:
