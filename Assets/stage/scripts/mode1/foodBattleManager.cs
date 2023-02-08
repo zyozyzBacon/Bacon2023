@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor.UI;
+using static ItemManager;
 
 public class foodBattleManager : MonoBehaviour
 {
@@ -15,11 +16,9 @@ public class foodBattleManager : MonoBehaviour
     [Tooltip("珍珠生成時間")][SerializeField] private float bubbleTime;
     [Tooltip("場上珍珠生成的量")][SerializeField] private int BubbleWaveNum;
 
-    public GameObject bubblePrefab;
+    public GameObject[] bubblePrefab = new GameObject[2];
 
     private Transform[] bubblePositon = new Transform[0];
-
-    public Sprite[] bubbleColor = new Sprite[2];
 
     IEnumerator bubbleCoroutine;
 
@@ -52,7 +51,7 @@ public class foodBattleManager : MonoBehaviour
         for (int i = 0; i < bubblePositon.Length; i++)
         {
             if (bubblePositon[i].childCount > 0)
-                a++;  
+                a++;     
         }
 
         if (a < BubbleWaveNum + 1) 
@@ -89,21 +88,51 @@ public class foodBattleManager : MonoBehaviour
             }
             else 
             {
-                GameObject bub = Instantiate(bubblePrefab, bubblePositon[r].position, bubblePositon[r].rotation);
-                bub.transform.parent = bubblePositon[r].transform;
+                int w = 0;
+                int b = 0;
 
-                c++;
-
-                if (c % 2 == 0)
+                for (int a = 0; a < bubblePositon.Length; a++)
                 {
-                    bub.GetComponent<foodpart>().FoodColor = ItemManager.foodColor.white;
-                    bub.GetComponent<SpriteRenderer>().sprite = bubbleColor[0];
+                    if (bubblePositon[a].childCount > 0) 
+                    {
+                        if (bubblePositon[a].GetChild(0).GetComponent<foodpart>().FoodColor == foodColor.white)
+                        {
+                            w++;
+                        }
+                        else if(bubblePositon[a].GetChild(0).GetComponent<foodpart>().FoodColor == foodColor.black)
+                        {
+                            b++;
+                        }
+
+                    }   
                 }
-                else 
+
+                if (b == w) 
                 {
-                    bub.GetComponent<foodpart>().FoodColor = ItemManager.foodColor.black;
-                    bub.GetComponent<SpriteRenderer>().sprite = bubbleColor[1];
-                } 
+                    int a = Random.Range(0, 1);
+
+                    switch (a)
+                    {
+                        case 0:
+                            b++;
+                            break;
+                        case 1:
+                            w++;
+                            break;
+                    }
+                }
+                
+
+                if (b > w)
+                {
+                    GameObject bub = Instantiate(bubblePrefab[0], bubblePositon[r].position, bubblePositon[r].rotation);
+                    bub.transform.parent = bubblePositon[r].transform;
+                }
+                else if (b < w)
+                {
+                    GameObject bub = Instantiate(bubblePrefab[1], bubblePositon[r].position, bubblePositon[r].rotation);
+                    bub.transform.parent = bubblePositon[r].transform;
+                }     
             }
         }
     }
