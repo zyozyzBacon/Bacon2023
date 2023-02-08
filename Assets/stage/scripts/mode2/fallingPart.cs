@@ -36,6 +36,9 @@ public class fallingPart : MonoBehaviour
                 this.gameObject.transform.parent = parent.transform;
                 this.gameObject.transform.position = parent.transform.position;
                 active = false;
+
+                if (this.gameObject.GetComponent<dangerPlatform>() != null)
+                    Destroy(this.gameObject.GetComponent<dangerPlatform>());
             }
             else
                 Destroy(this.gameObject);

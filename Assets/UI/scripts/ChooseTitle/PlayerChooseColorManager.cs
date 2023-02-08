@@ -148,14 +148,17 @@ public class PlayerChooseColorManager : MonoBehaviour
 
             switch (gameMode)
             {
+                case MainGameManager.gameMode.tuto:
+                    SceneManager.LoadScene("Level0");
+                    break;
                 case MainGameManager.gameMode.foodBattle:
                     SceneManager.LoadScene("Level1");
                     break;
                 case MainGameManager.gameMode.fallingBattle:
-                    SceneManager.LoadScene("Stage02");
+                    SceneManager.LoadScene("betaStage02");
                     break;
                 case MainGameManager.gameMode.deathBattle:
-                    SceneManager.LoadScene("Stage03");
+                    SceneManager.LoadScene("betaStage03");
                     break;
                 default:
                     Console.WriteLine("¥¼Âê©w");
@@ -164,8 +167,8 @@ public class PlayerChooseColorManager : MonoBehaviour
         }
         else 
         {
-            pData.gameMode = MainGameManager.gameMode.foodBattle;
-            SceneManager.LoadScene("Level1");
+            pData.gameMode = MainGameManager.gameMode.tuto;
+            SceneManager.LoadScene("Level0");
         }
     }
 }

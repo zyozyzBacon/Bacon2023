@@ -123,8 +123,6 @@ public class chooseColorControll : MonoBehaviour
 
     public void toGame(InputAction.CallbackContext context) 
     {
-        float j = context.ReadValue<float>();
-
         if (startcontroll && choose && !asking) 
         {
             asking = true;

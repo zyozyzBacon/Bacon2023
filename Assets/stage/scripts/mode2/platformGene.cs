@@ -92,7 +92,7 @@ public class platformGene : MonoBehaviour
             if (p >= 10) 
             {
                 p = 0;
-                //將平台改造成危險平台
+                platformsArray[p].AddComponent<dangerPlatform>();
             }            
         }
         StartCoroutine(platform(ptTimer));

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class dangerPlatform : MonoBehaviour
@@ -23,10 +24,9 @@ public class dangerPlatform : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "DeadZone")
+        if (collision.tag == "Player")
         {
-
+            dangerOn();
         }
     }
-
 }
