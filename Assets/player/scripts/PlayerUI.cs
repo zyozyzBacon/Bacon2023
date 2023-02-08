@@ -9,66 +9,84 @@ using static UnityEngine.Rendering.DebugUI;
 public class PlayerUI : MonoBehaviour
 {
     [HideInInspector]public GameObject uiPart;
+    [HideInInspector] public GameObject iconPart;
+    [HideInInspector]public Sprite PlayerIcon;
+    public GameObject PlayerNumPanel;
 
-    public GameObject Panel;
+    public GameObject FoodPanel;
 
     public Transform uiPos;
-
-    public Image bubbleColor;
-    public TextMeshProUGUI text;
+    public Transform iconPos;
 
     [SerializeField] private Sprite[] bubble;
+    private Image bubbleColor;
+    private TextMeshProUGUI text;
+    private Camera mCamera;
 
-    Camera mCamera;
     private RectTransform rt;
+    Vector2 panelPos;
+
+    private RectTransform iconrt;
     Vector2 pos;
 
-    PlayerStateList pState;
+    private PlayerStateList pState;
     private BasicPlayerControll pControll;
     private foodBattlePlayer pFood;
 
 
-    // Start is called before the first frame update
+    bool active;
+    
     public void init()
     {
-        uiPart = Instantiate(Panel);
-        uiPart.transform.parent = GameObject.Find("Canvas").transform;
         mCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-        rt = uiPart.GetComponent<RectTransform>();
-        bubbleColor = uiPart.transform.GetChild(0).GetComponent<Image>();
 
-        pFood = GetComponent<foodBattlePlayer>();
+        uiPart = Instantiate(FoodPanel);
+        rt = uiPart.GetComponent<RectTransform>();
+        uiPart.transform.parent = GameObject.Find("Canvas").transform;
+
+        bubbleColor = uiPart.transform.GetChild(0).GetComponent<Image>();
         text = uiPart.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
 
+        iconPart = Instantiate(PlayerNumPanel);
+        iconrt = iconPart.GetComponent<RectTransform>();
+        iconPart.transform.parent = GameObject.Find("Canvas").transform;
+
+        pFood = GetComponent<foodBattlePlayer>();
         pControll = GetComponent<BasicPlayerControll>();
         pState = GetComponent<PlayerStateList>();
+        active = true;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (!pState.dead) 
+        if (active) 
         {
-            pos = RectTransformUtility.WorldToScreenPoint(mCamera, uiPos.position);
-            rt.position = pos;
+            pos = RectTransformUtility.WorldToScreenPoint(mCamera, iconPos.position);
+            iconrt.position = pos;
 
-            if (pFood != null)
-                text.SetText(pFood.food.ToString());
-
-            if (pControll.FoodColor != ItemManager.foodColor.none)
+            if (!pState.dead)
             {
-                if (pControll.FoodColor == ItemManager.foodColor.white)
-                    bubbleColor.sprite = bubble[0];
-                else if (pControll.FoodColor == ItemManager.foodColor.black)
-                    bubbleColor.sprite = bubble[1];
+                panelPos = RectTransformUtility.WorldToScreenPoint(mCamera, uiPos.position);
+                rt.position = panelPos;
 
-                bubbleColor.gameObject.SetActive(true);
-            }
-            else
-            {
-                bubbleColor.gameObject.SetActive(false);
-            }
+                if (pFood != null)
+                    text.SetText(pFood.food.ToString());
 
+                if (pControll.FoodColor != ItemManager.foodColor.none)
+                {
+                    if (pControll.FoodColor == ItemManager.foodColor.white)
+                        bubbleColor.sprite = bubble[0];
+                    else if (pControll.FoodColor == ItemManager.foodColor.black)
+                        bubbleColor.sprite = bubble[1];
+
+                    bubbleColor.gameObject.SetActive(true);
+                }
+                else
+                {
+                    bubbleColor.gameObject.SetActive(false);
+                }
+
+            }
         }
 
     }

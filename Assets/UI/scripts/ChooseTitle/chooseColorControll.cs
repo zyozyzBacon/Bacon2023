@@ -43,12 +43,12 @@ public class chooseColorControll : MonoBehaviour
 
             int before = 0;
 
-            if (Input > 0.9)
+            if (Input == 1)
             {
                 before = colorID;
                 colorID++;
             }
-            else if (Input < -0.9)
+            else if (Input == -1)
             {
                 before = colorID;
                 colorID--;

@@ -24,6 +24,7 @@ public class MainGameManager : MonoBehaviour
     [SerializeField] public GameObject TimerText;
     [SerializeField] private bool cameraLocked;
     [SerializeField] private GameObject[] bubbblePlayer = new GameObject[4];
+    [SerializeField] private Sprite[] playerIcon =  new Sprite[4];
 
     private playerData pData;
 
@@ -70,6 +71,7 @@ public class MainGameManager : MonoBehaviour
                 p.transform.localScale = new Vector3(-Mathf.Abs(p.transform.localScale.x), p.transform.localScale.y, p.transform.localScale.z);
             }
 
+            p.GetComponent<PlayerUI>().PlayerIcon = playerIcon[playerNum];
             p.GetComponent<BasicPlayerControll>().ID = i;
             p.GetComponent<BasicPlayerControll>().Color = pData.colorList[i];
 
@@ -77,7 +79,6 @@ public class MainGameManager : MonoBehaviour
             {
                 case gameMode.foodBattle:
                     p.AddComponent<foodBattlePlayer>().init();
-                    p.GetComponent<PlayerUI>().enabled = true;
                     p.GetComponent<PlayerUI>().init();
                     break;
                 case gameMode.fallingBattle:

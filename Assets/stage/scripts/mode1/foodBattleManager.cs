@@ -112,8 +112,6 @@ public class foodBattleManager : MonoBehaviour
                     }   
                 }
 
-                Debug.Log(b + "," + w);
-
                 if (b == w) 
                 {
                     int a = Random.Range(0, 100);
@@ -132,13 +130,11 @@ public class foodBattleManager : MonoBehaviour
 
                 if (b > w)
                 {
-                    Debug.Log("¥Õ");
                     GameObject bub = Instantiate(bubblePrefab[0], bubblePositon[r].position, bubblePositon[r].rotation);
                     bub.transform.parent = bubblePositon[r].transform;
                 }
                 else if (b < w)
                 {
-                    Debug.Log("¶Â");
                     GameObject bub = Instantiate(bubblePrefab[1], bubblePositon[r].position, bubblePositon[r].rotation);
                     bub.transform.parent = bubblePositon[r].transform;
                 }     
