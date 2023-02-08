@@ -38,7 +38,7 @@ TagManager:
   - Platform
   - Player
   - map
-  - 
+  - TextUI
   - 
   - 
   - 
@@ -55,6 +55,9 @@ TagManager:
     locked: 0
   - name: Floor
     uniqueID: 4117875121
+    locked: 0
+  - name: TextUI
+    uniqueID: 207203
     locked: 0
   - name: Platform
     uniqueID: 1916510815
