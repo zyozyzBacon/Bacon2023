@@ -875,7 +875,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -782276345
-  m_SortingLayer: 8
+  m_SortingLayer: 9
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -9658,7 +9658,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 0
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 0000000027fd0ffdb1c971f51d591d8d573613755fa23b7207695fd1
+  m_ApplyToSortingLayers: 0000000027fd0ffdb1c971f51d591d8d573613755fa23b7207695fd1f33a55875b31cb8f
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -10265,10 +10265,9 @@ MonoBehaviour:
   time: 9999
   bubbleTime: 2
   BubbleWaveNum: 5
-  bubblePrefab: {fileID: 4494534264538960302, guid: 9a208c8386ed2b1498dd836043553b8c, type: 3}
-  bubbleColor:
-  - {fileID: 21300000, guid: 836f1fc5e76726f4d92390a9591fc00b, type: 3}
-  - {fileID: 21300000, guid: caf4c9bfee8497b45a7307e07bd0d8e6, type: 3}
+  bubblePrefab:
+  - {fileID: 4494534264538960302, guid: 3e0ac77fce18ed043aa0f8f037174e42, type: 3}
+  - {fileID: 4494534264538960302, guid: e7e62100e6a4afa4c8a8f17d94d6be40, type: 3}
 --- !u!114 &1169626992
 MonoBehaviour:
   m_ObjectHideFlags: 0
