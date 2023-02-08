@@ -68,12 +68,15 @@ TagManager:
   - name: Store2
     uniqueID: 1964193367
     locked: 0
+  - name: Player_Shiny
+    uniqueID: 2178473525
+    locked: 0
+  - name: Player
+    uniqueID: 3512690951
+    locked: 0
   - name: Pearl_Shiny
     uniqueID: 2412458331
     locked: 0
   - name: Pearl
     uniqueID: 2270509811
-    locked: 0
-  - name: Player
-    uniqueID: 3512690951
     locked: 0
