@@ -8,6 +8,8 @@ using static UnityEngine.Rendering.DebugUI;
 
 public class PlayerUI : MonoBehaviour
 {
+    [HideInInspector]public GameObject uiPart;
+
     public GameObject Panel;
 
     public Transform uiPos;
@@ -21,6 +23,7 @@ public class PlayerUI : MonoBehaviour
     private RectTransform rt;
     Vector2 pos;
 
+    PlayerStateList pState;
     private BasicPlayerControll pControll;
     private foodBattlePlayer pFood;
 
@@ -28,7 +31,7 @@ public class PlayerUI : MonoBehaviour
     // Start is called before the first frame update
     public void init()
     {
-        GameObject uiPart = Instantiate(Panel);
+        uiPart = Instantiate(Panel);
         uiPart.transform.parent = GameObject.Find("Canvas").transform;
         mCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         rt = uiPart.GetComponent<RectTransform>();
@@ -38,29 +41,35 @@ public class PlayerUI : MonoBehaviour
         text = uiPart.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
 
         pControll = GetComponent<BasicPlayerControll>();
+        pState = GetComponent<PlayerStateList>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        pos = RectTransformUtility.WorldToScreenPoint(mCamera, uiPos.position);
-        rt.position = pos;
-
-        if (pFood != null) 
-            text.SetText(pFood.food.ToString());
-
-        if (pControll.FoodColor != ItemManager.foodColor.none)
+        if (!pState.dead) 
         {
-            if (pControll.FoodColor == ItemManager.foodColor.white)
-                bubbleColor.sprite = bubble[0];
-            else if (pControll.FoodColor == ItemManager.foodColor.black)
-                bubbleColor.sprite = bubble[1];
+            pos = RectTransformUtility.WorldToScreenPoint(mCamera, uiPos.position);
+            rt.position = pos;
 
-            bubbleColor.gameObject.SetActive(true);
+            if (pFood != null)
+                text.SetText(pFood.food.ToString());
+
+            if (pControll.FoodColor != ItemManager.foodColor.none)
+            {
+                if (pControll.FoodColor == ItemManager.foodColor.white)
+                    bubbleColor.sprite = bubble[0];
+                else if (pControll.FoodColor == ItemManager.foodColor.black)
+                    bubbleColor.sprite = bubble[1];
+
+                bubbleColor.gameObject.SetActive(true);
+            }
+            else
+            {
+                bubbleColor.gameObject.SetActive(false);
+            }
+
         }
-        else 
-        {
-            bubbleColor.gameObject.SetActive(false);
-        }
+
     }
 }

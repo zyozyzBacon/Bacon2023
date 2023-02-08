@@ -7,6 +7,7 @@ using System.Drawing;
 using UnityEditor.SearchService;
 using UnityEngine.SceneManagement;
 using System;
+using UnityEngine.InputSystem.XInput;
 
 public class PlayerChooseColorManager : MonoBehaviour
 {
@@ -171,4 +172,6 @@ public class PlayerChooseColorManager : MonoBehaviour
             SceneManager.LoadScene("Level0");
         }
     }
+
+
 }

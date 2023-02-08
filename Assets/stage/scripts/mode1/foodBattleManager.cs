@@ -62,12 +62,17 @@ public class foodBattleManager : MonoBehaviour
         }
     }
 
-    public void endGame() 
+    public void endGame(Dictionary<int, GameObject> playerList) 
     {
         for (int i = 0; i < bubblePositon.Length; i++)
         {
             if(bubblePositon[i].childCount > 0)
                 Destroy(bubblePositon[i].GetChild(0).gameObject);
+        }
+
+        for (int p = 0;p < playerList.Count; p++) 
+        {
+            playerList[p].GetComponent<foodBattlePlayer>().StopAllCoroutines();
         }
     }
 

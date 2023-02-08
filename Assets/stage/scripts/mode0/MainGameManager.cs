@@ -25,7 +25,6 @@ public class MainGameManager : MonoBehaviour
     [SerializeField] private bool cameraLocked;
     [SerializeField] private GameObject[] bubbblePlayer = new GameObject[4];
 
-    CinemachineTargetGroup.Target[] cameraTarget;
     private playerData pData;
 
     private void Awake()
@@ -55,8 +54,6 @@ public class MainGameManager : MonoBehaviour
         playerList = new Dictionary<int, GameObject>();
         playerNum = pData.playerNum;
 
-        cameraTarget = instance.gameObject.GetComponent<CinemachineTargetGroup>().m_Targets;
-
         for (int i = 0; i < playerNum; i++)
         {
             GameObject p = bubbblePlayer[pData.colorList[i]];
@@ -72,9 +69,6 @@ public class MainGameManager : MonoBehaviour
             {
                 p.transform.localScale = new Vector3(-Mathf.Abs(p.transform.localScale.x), p.transform.localScale.y, p.transform.localScale.z);
             }
-
-            if (!cameraLocked)
-                cameraTarget[i].target = p.transform;
 
             p.GetComponent<BasicPlayerControll>().ID = i;
             p.GetComponent<BasicPlayerControll>().Color = pData.colorList[i];
@@ -148,7 +142,7 @@ public class MainGameManager : MonoBehaviour
             switch (GameMode)
             {
                 case gameMode.foodBattle:
-                    foodBattleManager.instance.endGame();
+                    foodBattleManager.instance.endGame(playerList);
                     break;
                 case gameMode.fallingBattle:
                     fallingGameManager.instance.endGame();

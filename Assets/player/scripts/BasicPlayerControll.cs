@@ -55,6 +55,7 @@ public class BasicPlayerControll : MonoBehaviour
     int jumpAirCurrent;
 
     Rigidbody2D rb;
+    PlayerUI pUI;
     PlayerStateList pState;
     SpriteRenderer spriteRenderer;
     BoxCollider2D boxCollider;
@@ -66,6 +67,7 @@ public class BasicPlayerControll : MonoBehaviour
         pState = GetComponent<PlayerStateList>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         boxCollider = GetComponent<BoxCollider2D>();
+        pUI = GetComponent<PlayerUI>();
         anim = GetComponent<Animator>();
         jumpAirCurrent = 0;
     }
@@ -101,13 +103,13 @@ public class BasicPlayerControll : MonoBehaviour
         {
             rb.velocity = new Vector2(moveInput.x * walkSpeed, rb.velocity.y);
 
-            if (moveInput.x > 0.7)
+            if (moveInput.x > 0.1)
             {
                 transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
                 GunPower.transform.rotation = Quaternion.Euler(0, 0, 0);
                 pState.facingRight = true;
             }
-            else if (moveInput.x < -0.7)
+            else if (moveInput.x < -0.1)
             {
                 transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
                 GunPower.transform.rotation = Quaternion.Euler(0, 180, 0);
@@ -339,6 +341,7 @@ public class BasicPlayerControll : MonoBehaviour
 
     public void retired() 
     {
+        
         anim.SetTrigger("Retired");
         StartCoroutine(dead(2f));
     }
@@ -352,9 +355,12 @@ public class BasicPlayerControll : MonoBehaviour
         pState.tvModeOn = true;
         tvMoveSpeed = walkSpeed;
         pState.dead = true;
+        pState.pause = true;
+        Destroy(pUI.uiPart.gameObject);
 
         yield return new WaitForSeconds(seconds);
 
+        pState.pause = false;
         GhostPlayer.SetActive(true);
         spriteRenderer.enabled = false;
 
