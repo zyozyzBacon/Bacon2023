@@ -89,7 +89,7 @@ public class MainGameManager : MonoBehaviour
                     break;
             }
 
-            p.GetComponent<PlayerUI>().PlayerIcon = playerIcon[playerNum];
+            p.GetComponent<PlayerUI>().PlayerIcon = playerIcon[i];
             p.GetComponent<PlayerUI>().init();
         }
     }

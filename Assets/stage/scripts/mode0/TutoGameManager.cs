@@ -18,8 +18,9 @@ public class TutoGameManager : MonoBehaviour
     }
 
 
-    public void init(int playerNum, Dictionary<int, GameObject> _playerList)
+    public void init(int _playerNum, Dictionary<int, GameObject> _playerList)
     {
+        playerNum = _playerNum;
         playerReadyState = new bool[playerNum];
         playerList = _playerList;
     }
@@ -27,7 +28,10 @@ public class TutoGameManager : MonoBehaviour
 
     public void playerreadytoGame() 
     {
-        Debug.Log(playerReadyCheck());
+        if(playerReadyCheck())
+            Debug.Log("完成");
+        else
+            Debug.Log("還沒完成");
     }
 
     bool playerReadyCheck()
@@ -37,13 +41,12 @@ public class TutoGameManager : MonoBehaviour
         for (int a = 0; a < playerNum; a++) 
         {
             playerReadyState[a] = playerList[a].GetComponent<tutoPlayer>().ready;
-        }
 
-        for (int i = 0; i < playerNum; i++)
-        {
-            if (playerReadyState[i])
+            if (playerReadyState[a])
                 p++;
         }
+
+        Debug.Log(p + "," + playerNum);
 
         if (p >= playerNum)
             return true;

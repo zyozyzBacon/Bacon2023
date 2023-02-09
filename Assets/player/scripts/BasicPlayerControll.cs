@@ -431,9 +431,9 @@ public class BasicPlayerControll : MonoBehaviour
     bool asking;
     public void readyInput(InputAction.CallbackContext context) 
     {
-        if (TutoGameManager.instance != null && this.gameObject.GetComponent<tutoPlayer>() != null)
+        if (TutoGameManager.instance != null && this.gameObject.GetComponent<tutoPlayer>() != null )
         {
-            if (!asking) 
+            if (!asking && !pState.pause) 
             {
                 GetComponent<tutoPlayer>().readyInput();
                 StartCoroutine(askTime(0.5f));

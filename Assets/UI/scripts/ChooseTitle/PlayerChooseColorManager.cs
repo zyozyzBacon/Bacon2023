@@ -66,7 +66,6 @@ public class PlayerChooseColorManager : MonoBehaviour
 
             playerInputs[playerNum] = player.GetComponent<PlayerInput>().actions;
 
-            Debug.Log(playerInput.devices[playerNum]);
             playerNum++;
 
 
