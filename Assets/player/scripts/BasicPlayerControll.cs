@@ -431,18 +431,22 @@ public class BasicPlayerControll : MonoBehaviour
     bool asking;
     public void readyInput(InputAction.CallbackContext context) 
     {
-        if (TutoGameManager.instance != null) 
+        if (TutoGameManager.instance != null && this.gameObject.GetComponent<tutoPlayer>() != null)
         {
-
+            if (!asking) 
+            {
+                GetComponent<tutoPlayer>().readyInput();
+                StartCoroutine(askTime(0.5f));
+            }
         }
     }
 
     private IEnumerator askTime(float seconds)
     {
+        asking = true;
         yield return new WaitForSeconds(seconds);
         asking = false;
     }
-
 
 
     //新手教程相關/////////////////////////////////////////////////////

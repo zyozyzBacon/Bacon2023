@@ -534,8 +534,8 @@ Transform:
   - {fileID: 8179910571573375234}
   - {fileID: 7745868630116860515}
   - {fileID: 6982103174316616989}
-  - {fileID: 1688809959464117859}
   - {fileID: 333083288838258899}
+  - {fileID: 1688809959464117859}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -685,7 +685,19 @@ MonoBehaviour:
     m_ActionId: 1d0654d2-0a3d-42f2-9990-f84e44a83c7a
     m_ActionName: Player01/UsingItem[/Keyboard/v]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8819739847824341112}
+        m_TargetAssemblyTypeName: BasicPlayerControll, Assembly-CSharp
+        m_MethodName: readyInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 957ebc14-b497-448e-b704-0422be7f1192
     m_ActionName: Player01/Start[/Keyboard/enter]
   m_NeverAutoSwitchControlSchemes: 0
@@ -854,9 +866,10 @@ MonoBehaviour:
   iconPart: {fileID: 0}
   PlayerIcon: {fileID: 0}
   PlayerNumPanel: {fileID: 410102250471152457, guid: 7721ff56092612f43af0744a68482857, type: 3}
+  TutoUiPanel: {fileID: 410102250471152457, guid: 407b0016edc07244e8c6a596d500d519, type: 3}
   FoodPanel: {fileID: 410102250471152457, guid: 54372885734a06945afd1559c8bce6ff, type: 3}
-  uiPos: {fileID: 333083288838258899}
-  iconPos: {fileID: 1688809959464117859}
+  uiPanelTransform: {fileID: 333083288838258899}
+  iconTransform: {fileID: 1688809959464117859}
   bubble:
   - {fileID: 21300000, guid: 836f1fc5e76726f4d92390a9591fc00b, type: 3}
   - {fileID: 21300000, guid: caf4c9bfee8497b45a7307e07bd0d8e6, type: 3}

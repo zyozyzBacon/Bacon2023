@@ -9,6 +9,7 @@ public class TutoGameManager : MonoBehaviour
 
     public int playerNum;
 
+    private Dictionary<int, GameObject> playerList;
     public bool[] playerReadyState;
 
     public void Awake()
@@ -17,23 +18,30 @@ public class TutoGameManager : MonoBehaviour
     }
 
 
-    public void init(int playerNum)
+    public void init(int playerNum, Dictionary<int, GameObject> _playerList)
     {
         playerReadyState = new bool[playerNum];
+        playerList = _playerList;
     }
 
-    public void playerCheck() 
+
+    public void playerreadytoGame() 
     {
-    
+        Debug.Log(playerReadyCheck());
     }
 
     bool playerReadyCheck()
     {
         int p = 0;
 
+        for (int a = 0; a < playerNum; a++) 
+        {
+            playerReadyState[a] = playerList[a].GetComponent<tutoPlayer>().ready;
+        }
+
         for (int i = 0; i < playerNum; i++)
         {
-            if (playerReadyState[i] != false)
+            if (playerReadyState[i])
                 p++;
         }
 

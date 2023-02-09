@@ -38,6 +38,7 @@ public class PlayerChooseColorManager : MonoBehaviour
         for (int i = 0 ; i < playerColorList.Length; i++) 
         {
             playerColorList[i] = -1;
+
         }
 
         DontDestroyOnLoad(pDataObject);
@@ -51,7 +52,6 @@ public class PlayerChooseColorManager : MonoBehaviour
 
             player.GetComponent<chooseColorControll>().playerID = playerNum;
             player.GetComponent<Image>().sprite = playerSprites[playerNum];
-            
 
             player.GetComponent<chooseColorControll>().pos = new Image[4];
             for (int i = 0; i < 4;i++) 
@@ -66,7 +66,10 @@ public class PlayerChooseColorManager : MonoBehaviour
 
             playerInputs[playerNum] = player.GetComponent<PlayerInput>().actions;
 
+            Debug.Log(playerInput.devices[playerNum]);
             playerNum++;
+
+
         }
         else 
         {

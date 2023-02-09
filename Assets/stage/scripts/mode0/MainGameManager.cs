@@ -12,7 +12,7 @@ public class MainGameManager : MonoBehaviour
 
     public Dictionary<int, GameObject> playerList;
 
-    [SerializeField] private gameMode GameMode;
+    [SerializeField] public gameMode GameMode;
 
     [SerializeField] private int playerNum;
     [SerializeField] private Transform[] playerSpawn;
@@ -70,13 +70,14 @@ public class MainGameManager : MonoBehaviour
     
             p.GetComponent<BasicPlayerControll>().ID = i;
             p.GetComponent<BasicPlayerControll>().Color = pData.colorList[i];
-            p.GetComponent<PlayerUI>().PlayerIcon = playerIcon[playerNum];
 
             switch (GameMode)
             {
+                case gameMode.tuto:
+                    p.AddComponent<tutoPlayer>();
+                    break;
                 case gameMode.foodBattle:
                     p.AddComponent<foodBattlePlayer>().init();
-                    p.GetComponent<PlayerUI>().init();
                     break;
                 case gameMode.fallingBattle:
                     break;
@@ -87,6 +88,9 @@ public class MainGameManager : MonoBehaviour
                     Console.WriteLine("¥¼Âê©w");
                     break;
             }
+
+            p.GetComponent<PlayerUI>().PlayerIcon = playerIcon[playerNum];
+            p.GetComponent<PlayerUI>().init();
         }
     }
 
@@ -99,7 +103,7 @@ public class MainGameManager : MonoBehaviour
         switch (GameMode)
         {
             case gameMode.tuto:
-                TutoGameManager.instance.init(playerNum);
+                TutoGameManager.instance.init(playerNum, playerList);
                 break;
             case gameMode.foodBattle:
                 foodBattleManager.instance.init();
