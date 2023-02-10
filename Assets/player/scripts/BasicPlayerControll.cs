@@ -319,13 +319,19 @@ public class BasicPlayerControll : MonoBehaviour
             Debug.Log("©π•k√‰∑wØt");
         }
 
+        StartCoroutine(holdCount(dizzyTime / 3));
         anim.SetTrigger("Hit");
+    }
+
+    IEnumerator holdCount(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        rb.velocity = new Vector2(0, rb.velocity.y);
     }
 
     IEnumerator dizzyCount(float seconds) 
     {
-        yield return new WaitForSeconds(seconds);
-
+        yield return new WaitForSeconds(seconds);  
         pState.damaged = false;
     }
 

@@ -669,8 +669,8 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 957ebc14-b497-448e-b704-0422be7f1192
     m_ActionName: Player01/Start[/Keyboard/enter]
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
+  m_NeverAutoSwitchControlSchemes: 1
+  m_DefaultControlScheme: Controller
   m_DefaultActionMap: Player01
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
@@ -787,7 +787,7 @@ MonoBehaviour:
   jumpAir: 0
   recoveryTime: 1
   dizzyTime: 2
-  knockDown: 100
+  knockDown: 20
   groundCheckY: 1.35
   groundLayer:
     serializedVersion: 2
