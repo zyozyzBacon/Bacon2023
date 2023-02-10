@@ -62,12 +62,17 @@ public class foodBattleManager : MonoBehaviour
         }
     }
 
-    public void endGame() 
+    public void endGame(Dictionary<int, GameObject> playerList) 
     {
         for (int i = 0; i < bubblePositon.Length; i++)
         {
             if(bubblePositon[i].childCount > 0)
                 Destroy(bubblePositon[i].GetChild(0).gameObject);
+        }
+
+        for (int p = 0;p < playerList.Count; p++) 
+        {
+            playerList[p].GetComponent<foodBattlePlayer>().StopAllCoroutines();
         }
     }
 
@@ -107,8 +112,6 @@ public class foodBattleManager : MonoBehaviour
                     }   
                 }
 
-                Debug.Log(b + "," + w);
-
                 if (b == w) 
                 {
                     int a = Random.Range(0, 100);
@@ -127,13 +130,11 @@ public class foodBattleManager : MonoBehaviour
 
                 if (b > w)
                 {
-                    Debug.Log("¥Õ");
                     GameObject bub = Instantiate(bubblePrefab[0], bubblePositon[r].position, bubblePositon[r].rotation);
                     bub.transform.parent = bubblePositon[r].transform;
                 }
                 else if (b < w)
                 {
-                    Debug.Log("¶Â");
                     GameObject bub = Instantiate(bubblePrefab[1], bubblePositon[r].position, bubblePositon[r].rotation);
                     bub.transform.parent = bubblePositon[r].transform;
                 }     

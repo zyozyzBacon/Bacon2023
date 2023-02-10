@@ -20,14 +20,10 @@ public class ItemManager : MonoBehaviour
     [Header("道具生成位置列表")]
     [SerializeField] private Transform remotePostion;
 
-    CinemachineTargetGroup.Target[] cameraTarget;
-
     // Start is called before the first frame update
     void Awake()
     {
         instance = this;
-
-        cameraTarget = instance.gameObject.GetComponent<CinemachineTargetGroup>().m_Targets;
     }
 
     public void remoteTaken() 
@@ -40,7 +36,6 @@ public class ItemManager : MonoBehaviour
     {
         yield return new WaitForSeconds(seconds);
         Instantiate(remoteObject,remotePostion);
-        cameraTarget[4].target = remoteObject.transform;
     }
 
     public enum foodColor 

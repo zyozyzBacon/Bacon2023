@@ -19987,7 +19987,6 @@ GameObject:
   - component: {fileID: 1169626988}
   - component: {fileID: 1169626987}
   - component: {fileID: 1169626990}
-  - component: {fileID: 1169626989}
   - component: {fileID: 1169626991}
   m_Layer: 0
   m_Name: GameManager
@@ -20063,37 +20062,16 @@ MonoBehaviour:
   - {fileID: 8819739847824341106, guid: 6552e4820f55e9545877762abc60c619, type: 3}
   - {fileID: 8307803189228372022, guid: 7320dd4bbb0200d448d35207ea2c2f9f, type: 3}
   - {fileID: 6269976194884617692, guid: 165ef5d8c8475894a8c0d8c0bc81d243, type: 3}
---- !u!114 &1169626989
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1169626985}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5eb80d8e62d9d145bb50fb783c0f731, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_PositionMode: 1
-  m_RotationMode: 1
-  m_UpdateMethod: 2
-  m_Targets:
-  - target: {fileID: 0}
-    weight: 1
-    radius: 0
-  - target: {fileID: 0}
-    weight: 1
-    radius: 0
-  - target: {fileID: 0}
-    weight: 1
-    radius: 0
-  - target: {fileID: 0}
-    weight: 1
-    radius: 0
-  - target: {fileID: 0}
-    weight: 1
-    radius: 0
+  playerIcon:
+  - {fileID: 21300000, guid: 320213500f555254fb84608ac8ae6c26, type: 3}
+  - {fileID: 21300000, guid: 9f42ca66f9990c6418271d36e0abd96b, type: 3}
+  - {fileID: 21300000, guid: fc335e8dac036494099f5925b7a3ad19, type: 3}
+  - {fileID: 21300000, guid: 258f57f842e16b3469cd11dcec98058f, type: 3}
+  playerIconColor:
+  - {x: 188, y: 86, z: 247}
+  - {x: 219, y: 225, z: 56}
+  - {x: 34, y: 197, z: 232}
+  - {x: 254, y: 93, z: 93}
 --- !u!114 &1169626990
 MonoBehaviour:
   m_ObjectHideFlags: 0

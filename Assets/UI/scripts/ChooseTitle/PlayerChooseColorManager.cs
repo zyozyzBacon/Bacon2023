@@ -1,10 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
-using System.Drawing;
-using UnityEditor.SearchService;
 using UnityEngine.SceneManagement;
 using System;
 
@@ -14,6 +10,9 @@ public class PlayerChooseColorManager : MonoBehaviour
 
     public int playerNum;
 
+    public bool keyboardTest;
+
+    public GameObject playerIcon;
     public Image[] colorPlace;
     public int[] playerColorList;
 
@@ -27,6 +26,8 @@ public class PlayerChooseColorManager : MonoBehaviour
 
     private InputActionAsset[] playerInputs = new InputActionAsset[4];
     [SerializeField] private Sprite[] playerSprites = new Sprite[4];
+    [SerializeField] public Vector3[] playerIconColor = new Vector3[4];
+    private InputDevice[] deviceString = new InputDevice[4];
 
     void Awake()
     {
@@ -36,20 +37,63 @@ public class PlayerChooseColorManager : MonoBehaviour
         for (int i = 0 ; i < playerColorList.Length; i++) 
         {
             playerColorList[i] = -1;
+
         }
 
+        init();
         DontDestroyOnLoad(pDataObject);
     }
 
-    public void AddPlayerToList(PlayerInput playerInput)
+    public void init()
+    {
+        var devices = InputSystem.devices;
+
+        int d = 0;
+        for (int i = 0; i < devices.Count; i++)
+        {
+            InputDevice device = null;
+
+            if (devices[i].name != "Mouse") 
+            {
+
+                if (devices[i].name == "Keyboard")
+                {
+                    if (keyboardTest)
+                    {
+                        device = devices[i];
+                        d++;
+                    }
+                }
+                else
+                {
+                    device = devices[i];
+                    d++;
+                }
+            }          
+            else
+                device = null;
+
+            if (device != null) 
+            {
+                deviceString[d] = device;
+                AddPlayerToList();
+            }
+        }
+    }
+
+    public void AddPlayerToList()
     {
         if (playerNum < 4)
         {
-            GameObject player = playerInput.gameObject;
+            GameObject player = playerIcon.gameObject;
+
+            if (keyboardTest)
+                player.GetComponent<PlayerInput>().defaultControlScheme = "Any";
+
+            player = this.gameObject.GetComponent<PlayerInputManager>().JoinPlayer().gameObject;
 
             player.GetComponent<chooseColorControll>().playerID = playerNum;
             player.GetComponent<Image>().sprite = playerSprites[playerNum];
-            
 
             player.GetComponent<chooseColorControll>().pos = new Image[4];
             for (int i = 0; i < 4;i++) 
@@ -71,6 +115,8 @@ public class PlayerChooseColorManager : MonoBehaviour
             Debug.Log("已達四位玩家 人數上限");
         }
     }
+
+
 
     public void readyToGame() 
     {
@@ -171,4 +217,6 @@ public class PlayerChooseColorManager : MonoBehaviour
             SceneManager.LoadScene("Level0");
         }
     }
+
+
 }

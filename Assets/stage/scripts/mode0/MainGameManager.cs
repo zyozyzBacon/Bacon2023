@@ -1,12 +1,8 @@
-using Cinemachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.XR;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MainGameManager : MonoBehaviour
@@ -16,7 +12,7 @@ public class MainGameManager : MonoBehaviour
 
     public Dictionary<int, GameObject> playerList;
 
-    [SerializeField] private gameMode GameMode;
+    [SerializeField] public gameMode GameMode;
 
     [SerializeField] private int playerNum;
     [SerializeField] private Transform[] playerSpawn;
@@ -24,8 +20,9 @@ public class MainGameManager : MonoBehaviour
     [SerializeField] public GameObject TimerText;
     [SerializeField] private bool cameraLocked;
     [SerializeField] private GameObject[] bubbblePlayer = new GameObject[4];
+    [SerializeField] private Sprite[] playerIcon =  new Sprite[4];
+    [SerializeField] public Vector3[] playerIconColor = new Vector3[4];
 
-    CinemachineTargetGroup.Target[] cameraTarget;
     private playerData pData;
 
     private void Awake()
@@ -55,8 +52,6 @@ public class MainGameManager : MonoBehaviour
         playerList = new Dictionary<int, GameObject>();
         playerNum = pData.playerNum;
 
-        cameraTarget = instance.gameObject.GetComponent<CinemachineTargetGroup>().m_Targets;
-
         for (int i = 0; i < playerNum; i++)
         {
             GameObject p = bubbblePlayer[pData.colorList[i]];
@@ -72,19 +67,17 @@ public class MainGameManager : MonoBehaviour
             {
                 p.transform.localScale = new Vector3(-Mathf.Abs(p.transform.localScale.x), p.transform.localScale.y, p.transform.localScale.z);
             }
-
-            if (!cameraLocked)
-                cameraTarget[i].target = p.transform;
-
+    
             p.GetComponent<BasicPlayerControll>().ID = i;
             p.GetComponent<BasicPlayerControll>().Color = pData.colorList[i];
 
             switch (GameMode)
             {
+                case gameMode.tuto:
+                    p.AddComponent<tutoPlayer>();
+                    break;
                 case gameMode.foodBattle:
                     p.AddComponent<foodBattlePlayer>().init();
-                    p.GetComponent<PlayerUI>().enabled = true;
-                    p.GetComponent<PlayerUI>().init();
                     break;
                 case gameMode.fallingBattle:
                     break;
@@ -95,6 +88,9 @@ public class MainGameManager : MonoBehaviour
                     Console.WriteLine("¥¼Âê©w");
                     break;
             }
+
+            p.GetComponent<PlayerUI>().PlayerIcon = playerIcon[i];
+            p.GetComponent<PlayerUI>().init();
         }
     }
 
@@ -107,7 +103,7 @@ public class MainGameManager : MonoBehaviour
         switch (GameMode)
         {
             case gameMode.tuto:
-                TutoGameManager.instance.init(playerNum);
+                TutoGameManager.instance.init(playerNum, playerList);
                 break;
             case gameMode.foodBattle:
                 foodBattleManager.instance.init();
@@ -148,7 +144,7 @@ public class MainGameManager : MonoBehaviour
             switch (GameMode)
             {
                 case gameMode.foodBattle:
-                    foodBattleManager.instance.endGame();
+                    foodBattleManager.instance.endGame(playerList);
                     break;
                 case gameMode.fallingBattle:
                     fallingGameManager.instance.endGame();

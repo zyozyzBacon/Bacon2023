@@ -43,12 +43,12 @@ public class chooseColorControll : MonoBehaviour
 
             int before = 0;
 
-            if (Input > 0.9)
+            if (Input == 1)
             {
                 before = colorID;
                 colorID++;
             }
-            else if (Input < -0.9)
+            else if (Input == -1)
             {
                 before = colorID;
                 colorID--;
@@ -93,6 +93,12 @@ public class chooseColorControll : MonoBehaviour
                 {
                     PlayerChooseColorManager.instance.playerColorList[playerID] = colorID;
                     pos[colorID].transform.parent.GetComponent<colorPanel>().select = true;
+                    GetComponent<Image>().color = new Color
+                        (
+                        PlayerChooseColorManager.instance.playerIconColor[colorID].x / 255,
+                        PlayerChooseColorManager.instance.playerIconColor[colorID].y / 255,
+                        PlayerChooseColorManager.instance.playerIconColor[colorID].z / 255
+                        );
                     colorPanelCheck(-1, colorID);
                     choose = true;
                 }
@@ -115,6 +121,7 @@ public class chooseColorControll : MonoBehaviour
                 PlayerChooseColorManager.instance.playerColorList[playerID] = -1;
                 pos[colorID].transform.parent.GetComponent<colorPanel>().select = false;
                 colorPanelCheck(-1, colorID);
+                GetComponent<Image>().color = Color.white;
                 choose = false;
             }
         }

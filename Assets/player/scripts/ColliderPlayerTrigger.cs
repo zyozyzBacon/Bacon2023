@@ -70,7 +70,7 @@ public class ColliderPlayerTrigger : MonoBehaviour
                     //死亡玩家吃到時的反應
                     if (collision.transform.parent != this.gameObject.transform && playerControll.deadBubble == null)
                     {
-                        collision.transform.position = this.gameObject.transform.position;
+                        collision.transform.position = playerControll.deadBubbleOnHand.transform.position;
                         collision.transform.parent = playerControll.deadBubbleOnHand.transform;
                         playerControll.deadBubble = collision.gameObject;
 

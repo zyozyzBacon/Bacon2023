@@ -3119,24 +3119,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_NotificationBehavior: 2
-  m_MaxPlayerCount: 5
+  m_MaxPlayerCount: 4
   m_AllowJoining: 1
-  m_JoinBehavior: 0
+  m_JoinBehavior: 2
   m_PlayerJoinedEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1803175319}
-        m_TargetAssemblyTypeName: PlayerChooseColorManager, Assembly-CSharp
-        m_MethodName: AddPlayerToList
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_PlayerLeftEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -3175,6 +3163,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerNum: 0
+  keyboardTest: 0
+  playerIcon: {fileID: 3093232773840387093, guid: 69c0392bdbb69c348b0710ed6e7c4570, type: 3}
   colorPlace:
   - {fileID: 1985581784}
   - {fileID: 317779147}
@@ -3182,15 +3172,20 @@ MonoBehaviour:
   - {fileID: 130717205}
   playerColorList: 
   gameplayMode: 0
-  gameMode: 2
+  gameMode: 1
   pDataObject: {fileID: 1931710813}
   pData: {fileID: 1931710815}
   stop: 0
   playerSprites:
-  - {fileID: 21300000, guid: 39a3e01aeb33d3f42867d083c80b7ab8, type: 3}
-  - {fileID: 21300000, guid: 7ee6f9a6c826d4c4bb7359029243407d, type: 3}
-  - {fileID: 21300000, guid: 274a7f9daec707f49a86fa7e35a0bb03, type: 3}
-  - {fileID: 21300000, guid: b005fe3dcd2000d419f0adf8e1959e73, type: 3}
+  - {fileID: 21300000, guid: 320213500f555254fb84608ac8ae6c26, type: 3}
+  - {fileID: 21300000, guid: 9f42ca66f9990c6418271d36e0abd96b, type: 3}
+  - {fileID: 21300000, guid: fc335e8dac036494099f5925b7a3ad19, type: 3}
+  - {fileID: 21300000, guid: 258f57f842e16b3469cd11dcec98058f, type: 3}
+  playerIconColor:
+  - {x: 188, y: 86, z: 247}
+  - {x: 219, y: 225, z: 56}
+  - {x: 34, y: 197, z: 232}
+  - {x: 254, y: 93, z: 93}
 --- !u!1 &1872074214
 GameObject:
   m_ObjectHideFlags: 0
