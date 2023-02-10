@@ -83,3 +83,6 @@ TagManager:
   - name: Pearl
     uniqueID: 2270509811
     locked: 0
+  - name: Ribbon
+    uniqueID: 113639297
+    locked: 0
