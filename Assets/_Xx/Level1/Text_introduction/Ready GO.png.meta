@@ -110,40 +110,40 @@ TextureImporter:
       name: Ready GO_0
       rect:
         serializedVersion: 2
-        x: 110
-        y: 660
-        width: 1076
-        height: 476
+        x: 74
+        y: 571
+        width: 971
+        height: 371
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 499ff906a2b39e142a3b407fc4a0aec7
-      internalID: -788950360
+      spriteID: ccbd2dd2720442b4a88cc3a3992334d0
+      internalID: -1229024856
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ready GO_1
+      name: Ready GO_3
       rect:
         serializedVersion: 2
-        x: 92
-        y: 157
-        width: 1073
-        height: 472
+        x: 63
+        y: 141
+        width: 974
+        height: 367
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6f2c9902be8cf9d4fbc7f89d127f3b26
-      internalID: 1055239415
+      spriteID: a53d70715381050459048c535d02adec
+      internalID: -66466237
       vertices: []
       indices: 
       edges: []
@@ -159,8 +159,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Ready GO_1: 1055239415
-      Ready GO_0: -788950360
+      Ready GO_5: -1118306813
+      Ready GO_2: 1838871825
+      Ready GO_1: -494049366
+      Ready GO_3: -66466237
+      Ready GO_0: -1229024856
+      Ready GO_4: 874746638
   spritePackingTag: 
   pSDRemoveMatte: 0
   userData: 

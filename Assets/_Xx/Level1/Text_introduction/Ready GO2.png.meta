@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b567d1163ee3e5c4b9180dc252387889
+guid: eaebb235a960e60468c2f41e509d8d00
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -105,7 +105,49 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Ready GO2_0
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 686
+        width: 1245
+        height: 474
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf5b1a271afbaef4084027415a9dac5f
+      internalID: 1261911248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ready GO2_3
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 132
+        width: 1245
+        height: 468
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5599a3c1f0df713448038fb672cf058e
+      internalID: -803738115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -116,7 +158,13 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Ready GO2_1: 938123377
+      Ready GO2_5: -1173434219
+      Ready GO2_0: 1261911248
+      Ready GO2_3: -803738115
+      Ready GO2_2: -1308825503
+      Ready GO2_4: -1074353549
   spritePackingTag: 
   pSDRemoveMatte: 0
   userData: 
