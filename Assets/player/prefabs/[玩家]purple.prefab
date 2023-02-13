@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &691511174807897551
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7769273619194026858}
+  m_Layer: 0
+  m_Name: PlayerNum
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7769273619194026858
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 691511174807897551}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -4.5, z: 0}
+  m_LocalScale: {x: 4, y: 4, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4973288556108629957}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1066053994012465702
 GameObject:
   m_ObjectHideFlags: 0
@@ -455,6 +486,7 @@ Transform:
   - {fileID: 6248914448209772615}
   - {fileID: 6518771533748765351}
   - {fileID: 3617688097964723497}
+  - {fileID: 7769273619194026858}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -604,7 +636,19 @@ MonoBehaviour:
     m_ActionId: 1d0654d2-0a3d-42f2-9990-f84e44a83c7a
     m_ActionName: Player01/UsingItem[/Keyboard/v]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4973288556108629961}
+        m_TargetAssemblyTypeName: BasicPlayerControll, Assembly-CSharp
+        m_MethodName: readyInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 957ebc14-b497-448e-b704-0422be7f1192
     m_ActionName: Player01/Start[/Keyboard/enter]
   m_NeverAutoSwitchControlSchemes: 0
@@ -764,15 +808,19 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4973288556108629955}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7091ecb1c2465a64395fe8641362d761, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Panel: {fileID: 410102250471152457, guid: 54372885734a06945afd1559c8bce6ff, type: 3}
-  uiPos: {fileID: 6248914448209772615}
-  bubbleColor: {fileID: 0}
-  text: {fileID: 0}
+  uiPart: {fileID: 0}
+  iconPart: {fileID: 0}
+  PlayerIcon: {fileID: 0}
+  PlayerNumPanel: {fileID: 410102250471152457, guid: 7721ff56092612f43af0744a68482857, type: 3}
+  TutoUiPanel: {fileID: 410102250471152457, guid: 407b0016edc07244e8c6a596d500d519, type: 3}
+  FoodPanel: {fileID: 410102250471152457, guid: 54372885734a06945afd1559c8bce6ff, type: 3}
+  uiPanelTransform: {fileID: 6248914448209772615}
+  iconTransform: {fileID: 7769273619194026858}
   bubble:
   - {fileID: 21300000, guid: 836f1fc5e76726f4d92390a9591fc00b, type: 3}
   - {fileID: 21300000, guid: caf4c9bfee8497b45a7307e07bd0d8e6, type: 3}

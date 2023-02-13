@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class TutoGameManager : MonoBehaviour
 {
 
@@ -28,8 +28,11 @@ public class TutoGameManager : MonoBehaviour
 
     public void playerreadytoGame() 
     {
-        if(playerReadyCheck())
+        if (playerReadyCheck())
+        {
+            SceneManager.LoadScene("comicsP2");
             Debug.Log("完成");
+        }
         else
             Debug.Log("還沒完成");
     }

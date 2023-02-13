@@ -22837,7 +22837,7 @@ GameObject:
   - component: {fileID: 1408524851}
   - component: {fileID: 1408524850}
   m_Layer: 5
-  m_Name: GameRulesCanvas
+  m_Name: GameOverCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
