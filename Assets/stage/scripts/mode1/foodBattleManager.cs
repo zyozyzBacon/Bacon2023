@@ -22,7 +22,6 @@ public class foodBattleManager : MonoBehaviour
 
     IEnumerator bubbleCoroutine;
 
-    int c;
     public void Awake()
     {
         instance = this;
@@ -41,8 +40,6 @@ public class foodBattleManager : MonoBehaviour
         bubbleCoroutine = bubbleWave(bubbleTime , BubbleWaveNum);
 
         StartCoroutine(bubbleCoroutine);
-
-        c = 0;
     }
 
     public void bubbleDetect() 

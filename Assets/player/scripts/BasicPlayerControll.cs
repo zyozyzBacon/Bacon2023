@@ -456,4 +456,15 @@ public class BasicPlayerControll : MonoBehaviour
 
 
     //新手教程相關/////////////////////////////////////////////////////
+    //取消說明相關/////////////////////////////////////////////////////
+
+    public void readedInstructionInput(InputAction.CallbackContext context)
+    {
+        if (instruction.instance != null && MainGameManager.instance.InstructionBool == true)
+        {
+            instruction.instance.nextPhase();
+        }
+    }
+
+    //取消說明相關/////////////////////////////////////////////////////
 }

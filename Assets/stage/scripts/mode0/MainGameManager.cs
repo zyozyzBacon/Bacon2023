@@ -14,6 +14,7 @@ public class MainGameManager : MonoBehaviour
 
     [SerializeField] public gameMode GameMode;
 
+    [SerializeField] private float readyTime; 
     [SerializeField] private int playerNum;
     [SerializeField] private Transform[] playerSpawn;
     [SerializeField] public int[] ammo = new int[4];
@@ -22,6 +23,8 @@ public class MainGameManager : MonoBehaviour
     [SerializeField] private GameObject[] bubbblePlayer = new GameObject[4];
     [SerializeField] private Sprite[] playerIcon =  new Sprite[4];
     [SerializeField] public Vector3[] playerIconColor = new Vector3[4];
+    [SerializeField] public bool InstructionBool;
+    [SerializeField] private GameObject InstructionCanvas;
 
     private playerData pData;
 
@@ -32,21 +35,23 @@ public class MainGameManager : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(timer());
-    }
-
-    IEnumerator timer()
-    {
         init();
-        yield return new WaitForSeconds(3f);
-        ItemManager.instance.remoteTaken();
-        startGame();
+
+        if (InstructionCanvas != null)
+        {
+            instruction.instance.init();
+        }
+        else 
+        {
+            startGame();
+        }
     }
 
 
     private void init()
     {
-        if(GameObject.Find("###PlayerData###").GetComponent<playerData>() != null)
+
+        if (GameObject.Find("###PlayerData###").GetComponent<playerData>() != null)
             pData = GameObject.Find("###PlayerData###").GetComponent<playerData>();
 
         playerList = new Dictionary<int, GameObject>();
@@ -57,6 +62,11 @@ public class MainGameManager : MonoBehaviour
             GameObject p = bubbblePlayer[pData.colorList[i]];
             this.gameObject.GetComponent<PlayerInputManager>().playerPrefab = p;
             p = this.gameObject.GetComponent<PlayerInputManager>().JoinPlayer().gameObject;
+
+            if (pData.keyboardTest)
+                p.GetComponent<PlayerInput>().defaultControlScheme = "Keyboard";
+            else
+                p.GetComponent<PlayerInput>().defaultControlScheme = "Controller";
 
             playerList.Add(i, p);
             p.transform.position = playerSpawn[i].position;
@@ -94,7 +104,7 @@ public class MainGameManager : MonoBehaviour
         }
     }
 
-    void startGame() 
+    public void startGame() 
     {
         for(int i = 0;i< playerNum; i++)
             playerList[i].GetComponent<PlayerStateList>().pause = false;

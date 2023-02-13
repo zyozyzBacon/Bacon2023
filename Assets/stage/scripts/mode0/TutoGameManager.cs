@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TutoGameManager : MonoBehaviour
 {
@@ -26,13 +27,32 @@ public class TutoGameManager : MonoBehaviour
     }
 
 
-    public void playerreadytoGame() 
+    public void playerreadytoGame()
     {
-        if(playerReadyCheck())
-            Debug.Log("完成");
-        else
-            Debug.Log("還沒完成");
+        if (playerReadyCheck())
+        {
+            StartCoroutine(nextLevel());
+        }
     }
+
+    IEnumerator nextLevel() 
+    {
+        for (int i = 0; i < playerNum; i++) 
+        {
+            playerList[i].GetComponent<PlayerStateList>().pause = true;
+        }
+
+        yield return new WaitForSeconds(1f);
+
+        loadscene();
+    }
+
+    void loadscene() 
+    {
+        SceneManager.LoadScene("Level1");
+    }
+
+
 
     bool playerReadyCheck()
     {

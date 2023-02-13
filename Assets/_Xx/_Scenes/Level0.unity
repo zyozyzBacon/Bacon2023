@@ -826,6 +826,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameMode: 1
+  readyTime: 0
   playerNum: 0
   playerSpawn:
   - {fileID: 326587076}
@@ -850,6 +851,8 @@ MonoBehaviour:
   - {x: 219, y: 225, z: 56}
   - {x: 34, y: 197, z: 232}
   - {x: 254, y: 93, z: 93}
+  InstructionBool: 0
+  InstructionCanvas: {fileID: 0}
 --- !u!114 &256702293
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1964,7 +1967,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -782276345
-  m_SortingLayer: 8
+  m_SortingLayer: 9
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
