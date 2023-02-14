@@ -7,17 +7,15 @@ public class ItemManager : MonoBehaviour
 {
     public static ItemManager instance;
 
-    [Header("道具開關")]
-    [SerializeField][Tooltip("遙控器")] private bool remoteON;
-
-    [Header("道具生成時間相關")]
-    [SerializeField][Tooltip("遙控器時間")] private float remoteTime;
 
     [Header("道具列表")]
+    public GameObject[] ItemList;
+    
+
+    [Header("廢案")]
+    [SerializeField][Tooltip("遙控器")] private bool remoteON;
+    [SerializeField][Tooltip("遙控器時間")] private float remoteTime;
     [SerializeField] private GameObject remoteObject;
-
-
-    [Header("道具生成位置列表")]
     [SerializeField] private Transform remotePostion;
 
     // Start is called before the first frame update

@@ -1056,7 +1056,19 @@ MonoBehaviour:
     m_ActionId: 4f0eed23-bdf5-4518-89d1-c39a3c1a53b6
     m_ActionName: Player01/Dash[/Keyboard/c]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8307803189228372028}
+        m_TargetAssemblyTypeName: BasicPlayerControll, Assembly-CSharp
+        m_MethodName: itemUseInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 1d0654d2-0a3d-42f2-9990-f84e44a83c7a
     m_ActionName: Player01/UsingItem[/Keyboard/v]
   - m_PersistentCalls:
@@ -1171,6 +1183,8 @@ MonoBehaviour:
   damaged: 0
   recoverying: 0
   attacking: 0
+  eating: 0
+  usingItem: 0
 --- !u!114 &8307803189228372028
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1193,7 +1207,7 @@ MonoBehaviour:
   jumpAir: 0
   recoveryTime: 1
   dizzyTime: 2
-  knockDown: 100
+  knockDown: 20
   groundCheckY: 1.35
   groundLayer:
     serializedVersion: 2
@@ -1201,18 +1215,21 @@ MonoBehaviour:
   dashSpeed: 14
   dashTime: 0.25
   dashCD: 1.5
-  bubbles: 20
+  bubbles: 0
+  bubblesforItem: 3
   bubbleSpeed: 11
   attackTime: 0.1
   allowAttack: 0
   deadBubble: {fileID: 0}
   FoodColor: 0
+  CurrentItem: {fileID: 0}
   tvModePart: {fileID: 1963486534113913904}
   DashCollider: {fileID: 438132318012204931}
   GhostPlayer: {fileID: 7784209227275220927}
   GunPower: {fileID: 7924659409848983097}
   BulletPrefabs: {fileID: 5315280106085442592, guid: 76c4a1850b22d2b408ed2d579f0e71cf, type: 3}
   deadBubbleOnHand: {fileID: 5397373949899426421}
+  bubblesforItemCurrent: 0
 --- !u!114 &2429148319472239088
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -57,10 +57,13 @@ public class ColliderPlayerTrigger : MonoBehaviour
                 if (!playerStateList.dead)
                 {
                     //吃到食物的玩家的反應 (前提是還活著的玩家)
-                    playerControll.eating(collision.gameObject);
-                    if(foodGameplay != null)
-                        foodGameplay.eating(collision.gameObject);
-                    Destroy(collision.gameObject);
+                    if (!playerStateList.eating) 
+                    {
+                        playerControll.eating(collision.gameObject);
+                        if (foodGameplay != null)
+                            foodGameplay.eating(collision.gameObject);
+                        Destroy(collision.gameObject);
+                    }
 
                     if (foodBattleManager.instance != null)
                         foodBattleManager.instance.bubbleDetect();
