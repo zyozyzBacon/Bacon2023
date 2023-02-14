@@ -13,6 +13,8 @@ public class TutoGameManager : MonoBehaviour
     private Dictionary<int, GameObject> playerList;
     public bool[] playerReadyState;
 
+    [SerializeField]private Animator anim;
+
     public void Awake()
     {
         instance = this;
@@ -42,6 +44,7 @@ public class TutoGameManager : MonoBehaviour
             playerList[i].GetComponent<PlayerStateList>().pause = true;
         }
 
+        anim.SetTrigger("Trigger");
         yield return new WaitForSeconds(1f);
 
         loadscene();

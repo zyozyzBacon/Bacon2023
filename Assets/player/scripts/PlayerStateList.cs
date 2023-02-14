@@ -18,4 +18,5 @@ public class PlayerStateList : MonoBehaviour
     public bool attacking;
     public bool eating;
     public bool usingItem;
+    public bool readed;
 }

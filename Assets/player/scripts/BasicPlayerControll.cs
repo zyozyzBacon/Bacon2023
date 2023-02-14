@@ -415,8 +415,11 @@ public class BasicPlayerControll : MonoBehaviour
         if (bubblesforItemCurrent >= bubblesforItem)
         {
             bubblesforItemCurrent = 0;
-            if (CurrentItem == null)
+            if (CurrentItem == null) 
+            {
                 itemGet();
+            }
+                
         }
 
         StartCoroutine(eatTimer(0.15f));
@@ -488,7 +491,11 @@ public class BasicPlayerControll : MonoBehaviour
     {
         if (instruction.instance != null && MainGameManager.instance.InstructionBool == true)
         {
-            instruction.instance.nextPhase();
+            if (instruction.instance.ActionAllow) 
+            {
+                pState.readed = true;
+                instruction.instance.playerReaded(ID);
+            }
         }
     }
 
@@ -499,6 +506,7 @@ public class BasicPlayerControll : MonoBehaviour
     {
         int r = Random.Range(0, ItemManager.instance.ItemList.Length);
         CurrentItem = ItemManager.instance.ItemList[r];
+        pUI.GetItemUI(CurrentItem.GetComponent<ShowItem>().Icon);
     }
 
     //隨機獲取道具相關/////////////////////////////////////////////////
@@ -516,6 +524,7 @@ public class BasicPlayerControll : MonoBehaviour
                 pState.usingItem = true;
                 iitemInterface.ItemTrigger(this.gameObject);
                 CurrentItem = null;
+                pUI.disableItemUI();
                 StartCoroutine(itemTimer(1));
             }
         }

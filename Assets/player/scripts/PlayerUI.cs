@@ -11,13 +11,16 @@ public class PlayerUI : MonoBehaviour
     [HideInInspector]public GameObject uiPart;
     [HideInInspector]public GameObject iconPart;
     [HideInInspector]public Sprite PlayerIcon;
+    [HideInInspector]public GameObject ItemPart;
 
     public GameObject PlayerNumPanel;
     public GameObject TutoUiPanel;
     public GameObject FoodPanel;
+    public GameObject ItemPanel;
 
     public Transform uiPanelTransform;
     public Transform iconTransform;
+    public Transform ItemTransform;
 
     [SerializeField] private Sprite[] bubble;
     private Image bubbleColor;
@@ -29,6 +32,9 @@ public class PlayerUI : MonoBehaviour
 
     private RectTransform iconrt;
     Vector2 iconpos;
+
+    private RectTransform itemrt;
+    Vector2 itemPos;
 
     private PlayerStateList pState;
     private BasicPlayerControll pControll;
@@ -57,6 +63,11 @@ public class PlayerUI : MonoBehaviour
             MainGameManager.instance.playerIconColor[pControll.Color].z / 255
         );
 
+        ItemPart = Instantiate(ItemPanel);
+        itemrt = ItemPart.GetComponent<RectTransform>();
+        ItemPart.transform.parent = GameObject.Find("Canvas").transform;
+        ItemPart.GetComponent<Image>().enabled = false;
+
         switch (MainGameManager.instance.GameMode) 
         {
             case MainGameManager.gameMode.tuto:
@@ -82,12 +93,27 @@ public class PlayerUI : MonoBehaviour
         active = true;
     }
 
+    public void GetItemUI(Sprite image) 
+    {
+        ItemPart.GetComponent<Image>().enabled = true;
+        ItemPart.GetComponent<Image>().sprite = image;
+    }
+
+    public void disableItemUI() 
+    {
+        ItemPart.GetComponent<Image>().sprite = null;
+        ItemPart.GetComponent<Image>().enabled = false;
+    }
+
     void Update()
     {
         if (active) 
         {
             iconpos = RectTransformUtility.WorldToScreenPoint(mCamera, iconTransform.position);
             iconrt.position = iconpos;
+
+            itemPos = RectTransformUtility.WorldToScreenPoint(mCamera, ItemTransform.position);
+            itemrt.position = itemPos;
 
             if (!pState.dead)
             {

@@ -725,6 +725,7 @@ Transform:
   - {fileID: 6692786497008585900}
   - {fileID: 5051832558738259917}
   - {fileID: 5584469381861691571}
+  - {fileID: 3563023306292822701}
   - {fileID: 6208288285572234259}
   - {fileID: 8668240762581936694}
   - {fileID: 4712757032017826905}
@@ -917,6 +918,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 957ebc14-b497-448e-b704-0422be7f1192
     m_ActionName: Player01/Start[/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 27a879fd-494b-4adb-b8ca-dd42db01da23
+    m_ActionName: Player01/Cheat
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: Controller
   m_DefaultActionMap: Player01
@@ -1015,6 +1020,7 @@ MonoBehaviour:
   attacking: 0
   eating: 0
   usingItem: 0
+  readed: 0
 --- !u!114 &6269976194884617686
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1087,11 +1093,14 @@ MonoBehaviour:
   uiPart: {fileID: 0}
   iconPart: {fileID: 0}
   PlayerIcon: {fileID: 0}
+  ItemPart: {fileID: 0}
   PlayerNumPanel: {fileID: 410102250471152457, guid: 7721ff56092612f43af0744a68482857, type: 3}
   TutoUiPanel: {fileID: 410102250471152457, guid: 407b0016edc07244e8c6a596d500d519, type: 3}
   FoodPanel: {fileID: 410102250471152457, guid: 54372885734a06945afd1559c8bce6ff, type: 3}
+  ItemPanel: {fileID: 410102250471152457, guid: 63ec7efa8babb1a4c9b6590f131574bf, type: 3}
   uiPanelTransform: {fileID: 6208288285572234259}
   iconTransform: {fileID: 8668240762581936694}
+  ItemTransform: {fileID: 3563023306292822701}
   bubble:
   - {fileID: 21300000, guid: 836f1fc5e76726f4d92390a9591fc00b, type: 3}
   - {fileID: 21300000, guid: caf4c9bfee8497b45a7307e07bd0d8e6, type: 3}
@@ -1296,3 +1305,34 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &8473407155703678498
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3563023306292822701}
+  m_Layer: 8
+  m_Name: ItemPart
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3563023306292822701
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8473407155703678498}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 7, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6269976194884617690}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

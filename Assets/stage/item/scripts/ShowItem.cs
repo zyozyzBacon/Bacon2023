@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class ShowItem : MonoBehaviour, IitemInterface
 {
+
+    public Sprite Icon;
     public float seconds;
 
     void IitemInterface.ItemTrigger(GameObject player)
