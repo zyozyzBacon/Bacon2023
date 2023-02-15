@@ -88,7 +88,9 @@ public class PlayerChooseColorManager : MonoBehaviour
             GameObject player = playerIcon.gameObject;
 
             if (keyboardTest)
-                player.GetComponent<PlayerInput>().defaultControlScheme = "Any";
+                player.GetComponent<PlayerInput>().defaultControlScheme = "Keyboard";
+            else
+                player.GetComponent<PlayerInput>().defaultControlScheme = "Controller";
 
             player = this.gameObject.GetComponent<PlayerInputManager>().JoinPlayer().gameObject;
 
@@ -131,6 +133,7 @@ public class PlayerChooseColorManager : MonoBehaviour
                     loadgame();
 
                     pData.playerNum = playerNum;
+                    pData.keyboardTest = keyboardTest;
                     for (int i = 0; i < playerNum; i++)
                     {
                         pData.colorList[i] = playerColorList[i];

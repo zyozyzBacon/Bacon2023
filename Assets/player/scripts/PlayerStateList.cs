@@ -16,4 +16,7 @@ public class PlayerStateList : MonoBehaviour
     public bool damaged;
     public bool recoverying;
     public bool attacking;
+    public bool eating;
+    public bool usingItem;
+    public bool readed;
 }

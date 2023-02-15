@@ -3308,6 +3308,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerNum: 0
   colorList: 00000000000000000000000000000000
+  keyboardTest: 0
   gameplayMode: 2
   gameMode: 1
 --- !u!1 &1985581782

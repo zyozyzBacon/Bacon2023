@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &691511174807897551
+--- !u!1 &600430826879638549
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,24 +8,24 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7769273619194026858}
-  m_Layer: 0
-  m_Name: PlayerNum
+  - component: {fileID: 1802863193045241456}
+  m_Layer: 8
+  m_Name: ItemPart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7769273619194026858
+--- !u!4 &1802863193045241456
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 691511174807897551}
+  m_GameObject: {fileID: 600430826879638549}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -4.5, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 1}
+  m_LocalPosition: {x: 0, y: 7, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4973288556108629957}
@@ -483,10 +483,11 @@ Transform:
   - {fileID: 5685311213960187571}
   - {fileID: 6060845938560646610}
   - {fileID: 6883682649986519724}
+  - {fileID: 1802863193045241456}
   - {fileID: 6248914448209772615}
+  - {fileID: 4191890978128318953}
   - {fileID: 6518771533748765351}
   - {fileID: 3617688097964723497}
-  - {fileID: 7769273619194026858}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -597,6 +598,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 4973288556108629961}
+        m_TargetAssemblyTypeName: BasicPlayerControll, Assembly-CSharp
+        m_MethodName: readedInstructionInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 8385d8ee-1d2e-41fa-91c2-6df49baa0b54
     m_ActionName: Player01/Jump[/Keyboard/z]
   - m_PersistentCalls:
@@ -632,7 +645,19 @@ MonoBehaviour:
     m_ActionId: 4f0eed23-bdf5-4518-89d1-c39a3c1a53b6
     m_ActionName: Player01/Dash[/Keyboard/c]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4973288556108629961}
+        m_TargetAssemblyTypeName: BasicPlayerControll, Assembly-CSharp
+        m_MethodName: itemUseInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 1d0654d2-0a3d-42f2-9990-f84e44a83c7a
     m_ActionName: Player01/UsingItem[/Keyboard/v]
   - m_PersistentCalls:
@@ -651,8 +676,12 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 957ebc14-b497-448e-b704-0422be7f1192
     m_ActionName: Player01/Start[/Keyboard/enter]
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 27a879fd-494b-4adb-b8ca-dd42db01da23
+    m_ActionName: Player01/Cheat
+  m_NeverAutoSwitchControlSchemes: 1
+  m_DefaultControlScheme: Controller
   m_DefaultActionMap: Player01
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
@@ -671,7 +700,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 5
   m_Material: {fileID: 6200000, guid: 28a67510375632c4abe4d1b08e3788a5, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 0
@@ -747,6 +776,9 @@ MonoBehaviour:
   damaged: 0
   recoverying: 0
   attacking: 0
+  eating: 0
+  usingItem: 0
+  readed: 0
 --- !u!114 &4973288556108629961
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -763,13 +795,13 @@ MonoBehaviour:
   Color: 0
   walkSpeed: 9
   tvMoveSpeed: 2.5
-  jumpForce: 8
+  jumpForce: 18
   fallSpeed: 20
   doubleJump: 0
   jumpAir: 0
   recoveryTime: 1
   dizzyTime: 2
-  knockDown: 100
+  knockDown: 20
   groundCheckY: 1.35
   groundLayer:
     serializedVersion: 2
@@ -777,18 +809,21 @@ MonoBehaviour:
   dashSpeed: 14
   dashTime: 0.25
   dashCD: 1.5
-  bubbles: 20
+  bubbles: 0
+  bubblesforItem: 3
   bubbleSpeed: 11
   attackTime: 0.1
   allowAttack: 0
   deadBubble: {fileID: 0}
   FoodColor: 0
+  CurrentItem: {fileID: 0}
   tvModePart: {fileID: 3274154269385763781}
   DashCollider: {fileID: 3484407778837143670}
   GhostPlayer: {fileID: 6505595212885192778}
   GunPower: {fileID: 6608362658914572748}
   BulletPrefabs: {fileID: 5315280106085442592, guid: 76c4a1850b22d2b408ed2d579f0e71cf, type: 3}
   deadBubbleOnHand: {fileID: 8982647635596643712}
+  bubblesforItemCurrent: 0
 --- !u!114 &1727558075808679429
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -816,11 +851,14 @@ MonoBehaviour:
   uiPart: {fileID: 0}
   iconPart: {fileID: 0}
   PlayerIcon: {fileID: 0}
+  ItemPart: {fileID: 0}
   PlayerNumPanel: {fileID: 410102250471152457, guid: 7721ff56092612f43af0744a68482857, type: 3}
   TutoUiPanel: {fileID: 410102250471152457, guid: 407b0016edc07244e8c6a596d500d519, type: 3}
   FoodPanel: {fileID: 410102250471152457, guid: 54372885734a06945afd1559c8bce6ff, type: 3}
+  ItemPanel: {fileID: 410102250471152457, guid: 63ec7efa8babb1a4c9b6590f131574bf, type: 3}
   uiPanelTransform: {fileID: 6248914448209772615}
-  iconTransform: {fileID: 7769273619194026858}
+  iconTransform: {fileID: 4191890978128318953}
+  ItemTransform: {fileID: 1802863193045241456}
   bubble:
   - {fileID: 21300000, guid: 836f1fc5e76726f4d92390a9591fc00b, type: 3}
   - {fileID: 21300000, guid: caf4c9bfee8497b45a7307e07bd0d8e6, type: 3}
@@ -1261,6 +1299,37 @@ Transform:
   m_GameObject: {fileID: 8982647635596643712}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.5, y: -2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4973288556108629957}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &9205545923958981483
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4191890978128318953}
+  m_Layer: 8
+  m_Name: IconPart
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4191890978128318953
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9205545923958981483}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -4.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

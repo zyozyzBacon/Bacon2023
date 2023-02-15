@@ -13,7 +13,7 @@ public class BasicPlayerControll : MonoBehaviour
 
     [Header("移動相關")]
     [Tooltip("移動速度")][SerializeField] float walkSpeed;
-    [Tooltip("電視模式速度")][SerializeField]public float tvMoveSpeed;
+    [Tooltip("電視模式速度")][SerializeField] public float tvMoveSpeed;
 
     [Header("跳躍相關")]
     [Tooltip("跳躍力道")][SerializeField] float jumpForce;
@@ -27,7 +27,7 @@ public class BasicPlayerControll : MonoBehaviour
     [Tooltip("受傷後擊退力道")][SerializeField] float knockDown;
 
     [Header("地面物件檢測")]
-    [Tooltip("射線檢測距離(高度)")][SerializeField] float groundCheckY; 
+    [Tooltip("射線檢測距離(高度)")][SerializeField] float groundCheckY;
     [Tooltip("偵測地面物件Layer")][SerializeField] LayerMask groundLayer;
 
     [Header("衝刺檢測")]
@@ -37,11 +37,15 @@ public class BasicPlayerControll : MonoBehaviour
 
     [Header("玩法相關")]
     [Tooltip("珍珠數量")][SerializeField] public int bubbles;
+    [Tooltip("珍珠換道具數量")][SerializeField] public int bubblesforItem;
     [Tooltip("珍珠子彈速度")][SerializeField] public float bubbleSpeed;
     [Tooltip("攻擊緩衝時間")][SerializeField] public float attackTime;
     [Tooltip("是否允許攻擊")][SerializeField] public bool allowAttack;
     [Tooltip("死亡後手上珍珠")][SerializeField] public GameObject deadBubble;
     [Tooltip("珍珠顏色")][SerializeField] public ItemManager.foodColor FoodColor;
+
+    [Header("道具相關")]
+    [Tooltip("手上道具ID")][SerializeField] public GameObject CurrentItem;
 
     [Header("[勿動]抓取子物件相關")]
     [Tooltip("電視模式物件")][SerializeField] public GameObject tvModePart;
@@ -49,10 +53,11 @@ public class BasicPlayerControll : MonoBehaviour
     [Tooltip("幽靈模式物件")][SerializeField] private GameObject GhostPlayer;
     [Tooltip("槍物件")][SerializeField] private GameObject GunPower;
     [Tooltip("子彈物件")][SerializeField] private GameObject BulletPrefabs;
-    [Tooltip("死亡後手上珍珠子物件")]public GameObject deadBubbleOnHand;
+    [Tooltip("死亡後手上珍珠子物件")] public GameObject deadBubbleOnHand;
 
     Vector2 moveInput;
     int jumpAirCurrent;
+    public int bubblesforItemCurrent;
 
     Rigidbody2D rb;
     PlayerUI pUI;
@@ -70,18 +75,19 @@ public class BasicPlayerControll : MonoBehaviour
         pUI = GetComponent<PlayerUI>();
         anim = GetComponent<Animator>();
         jumpAirCurrent = 0;
+        bubblesforItemCurrent = 0;
     }
 
     void Update()
     {
-        if (!pState.pause) 
+        if (!pState.pause)
         {
             if (!pState.tvModeOn)
             {
                 walk();
                 dash();
             }
-            else 
+            else
             {
                 tvMove();
             }
@@ -99,7 +105,7 @@ public class BasicPlayerControll : MonoBehaviour
 
     void walk()
     {
-        if (!pState.dashing && !pState.damaged) 
+        if (!pState.dashing && !pState.damaged)
         {
             rb.velocity = new Vector2(moveInput.x * walkSpeed, rb.velocity.y);
 
@@ -116,7 +122,7 @@ public class BasicPlayerControll : MonoBehaviour
                 pState.facingRight = false;
             }
 
-            if (moveInput.x != 0) 
+            if (moveInput.x != 0)
                 anim.SetBool("Walk", true);
             else
                 anim.SetBool("Walk", false);
@@ -134,8 +140,8 @@ public class BasicPlayerControll : MonoBehaviour
             if (IsGrounded())
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-            } 
-            else if(doubleJump && jumpAirCurrent < jumpAir)   
+            }
+            else if (doubleJump && jumpAirCurrent < jumpAir)
             {
                 jumpAirCurrent++;
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce * 0.75f);
@@ -161,7 +167,7 @@ public class BasicPlayerControll : MonoBehaviour
             pState.jumping = true;
 
         }
- 
+
         //讓墜落速度有最大值極限而不是無限加速墜落
         if (rb.velocity.y < -Mathf.Abs(fallSpeed))
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -Mathf.Abs(fallSpeed), Mathf.Infinity));
@@ -181,21 +187,21 @@ public class BasicPlayerControll : MonoBehaviour
 
     public void dashInput(InputAction.CallbackContext context)
     {
-        if (!pState.dashCoolDowning && !pState.damaged) 
+        if (!pState.dashCoolDowning && !pState.damaged)
         {
             pState.dashing = true;
             pState.dashCoolDowning = true;
             StartCoroutine(dashCount(dashTime));
-            StartCoroutine(dashCoodDownCount(dashTime + dashCD)); 
+            StartCoroutine(dashCoodDownCount(dashTime + dashCD));
         }
-            
+
     }
 
-    void dash() 
+    void dash()
     {
-        if (pState.dashing) 
+        if (pState.dashing)
         {
-            if (pState.facingRight) 
+            if (pState.facingRight)
                 rb.velocity = Vector2.right * dashSpeed;
             else
                 rb.velocity = Vector2.left * dashSpeed;
@@ -242,7 +248,7 @@ public class BasicPlayerControll : MonoBehaviour
         rb.gravityScale = 0f;
         pState.tvModeOn = true;
 
-        transform.localEulerAngles= Vector3.zero;
+        transform.localEulerAngles = Vector3.zero;
 
         if (this.gameObject.GetComponent<foodBattlePlayer>() != null)
             this.gameObject.GetComponent<foodBattlePlayer>().holdOn();
@@ -308,9 +314,9 @@ public class BasicPlayerControll : MonoBehaviour
 
         float p = this.transform.position.x - others.x;
 
-        if (p < 0) 
+        if (p < 0)
         {
-            rb.AddForce(new Vector2(-12,5) * knockDown);
+            rb.AddForce(new Vector2(-12, 5) * knockDown);
             Debug.Log("往左邊暈眩");
         }
         else
@@ -329,13 +335,13 @@ public class BasicPlayerControll : MonoBehaviour
         rb.velocity = new Vector2(0, rb.velocity.y);
     }
 
-    IEnumerator dizzyCount(float seconds) 
+    IEnumerator dizzyCount(float seconds)
     {
-        yield return new WaitForSeconds(seconds);  
+        yield return new WaitForSeconds(seconds);
         pState.damaged = false;
     }
 
-    IEnumerator damagedCount(float seconds) 
+    IEnumerator damagedCount(float seconds)
     {
         yield return new WaitForSeconds(seconds);
 
@@ -345,14 +351,14 @@ public class BasicPlayerControll : MonoBehaviour
     //受傷相關/////////////////////////////////////////////////////////
     //退場相關/////////////////////////////////////////////////////////
 
-    public void retired() 
+    public void retired()
     {
-        
+
         anim.SetTrigger("Retired");
         StartCoroutine(dead(2f));
     }
 
-    IEnumerator dead(float seconds) 
+    IEnumerator dead(float seconds)
     {
         tvModePart.SetActive(false);
         DashCollider.SetActive(false);
@@ -393,6 +399,8 @@ public class BasicPlayerControll : MonoBehaviour
 
     public void eating(GameObject foodObject)
     {
+        pState.eating = true;
+
         //如果吃到顏色不對
         if (FoodColor != foodObject.GetComponent<foodpart>().FoodColor)
         {
@@ -400,6 +408,27 @@ public class BasicPlayerControll : MonoBehaviour
             bubbles = 0;
         }
         bubbles++;
+
+
+        bubblesforItemCurrent++;
+
+        if (bubblesforItemCurrent >= bubblesforItem)
+        {
+            bubblesforItemCurrent = 0;
+            if (CurrentItem == null) 
+            {
+                itemGet();
+            }
+                
+        }
+
+        StartCoroutine(eatTimer(0.15f));
+    }
+
+    IEnumerator eatTimer(float seconds) 
+    {
+        yield return new WaitForSeconds(seconds);
+        pState.eating = false;
     }
 
     //吃食物相關///////////////////////////////////////////////////////
@@ -456,4 +485,58 @@ public class BasicPlayerControll : MonoBehaviour
 
 
     //新手教程相關/////////////////////////////////////////////////////
+    //取消說明相關/////////////////////////////////////////////////////
+
+    public void readedInstructionInput(InputAction.CallbackContext context)
+    {
+        if (instruction.instance != null && MainGameManager.instance.InstructionBool == true)
+        {
+            if (instruction.instance.ActionAllow) 
+            {
+                pState.readed = true;
+                instruction.instance.playerReaded(ID);
+            }
+        }
+    }
+
+    //取消說明相關/////////////////////////////////////////////////////
+    //隨機獲取道具相關/////////////////////////////////////////////////
+
+    void itemGet()
+    {
+        int r = Random.Range(0, ItemManager.instance.ItemList.Length);
+        CurrentItem = ItemManager.instance.ItemList[r];
+        pUI.GetItemUI(CurrentItem.GetComponent<ShowItem>().Icon);
+    }
+
+    //隨機獲取道具相關/////////////////////////////////////////////////
+    //使用道具相關/////////////////////////////////////////////////////
+
+    public void itemUseInput(InputAction.CallbackContext context)
+    {
+        if (CurrentItem != null) 
+        {
+            GameObject newItem = Instantiate(CurrentItem);
+            IitemInterface iitemInterface = newItem.GetComponent<IitemInterface>();
+
+            if (iitemInterface != null && !pState.usingItem)
+            {
+                pState.usingItem = true;
+                iitemInterface.ItemTrigger(this.gameObject);
+                CurrentItem = null;
+                pUI.disableItemUI();
+                StartCoroutine(itemTimer(1));
+            }
+        }
+
+    }
+
+    IEnumerator itemTimer(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        pState.usingItem = false;
+    }
+
+
+    //使用道具相關/////////////////////////////////////////////////////
 }
