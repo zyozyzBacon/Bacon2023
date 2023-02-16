@@ -3163,7 +3163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerNum: 0
-  keyboardTest: 1
+  keyboardTest: 0
   playerIcon: {fileID: 3093232773840387093, guid: 69c0392bdbb69c348b0710ed6e7c4570, type: 3}
   colorPlace:
   - {fileID: 1985581784}
