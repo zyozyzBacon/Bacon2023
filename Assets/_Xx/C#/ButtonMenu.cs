@@ -20,7 +20,13 @@ public class ButtonMenu : MonoBehaviour
     {
 
     }
-
+    public void Skip()//跳過
+    {
+        if(Input.GetKey(KeyCode.N))
+        {
+            SceneManager.LoadScene("playerChooseScreen");
+        }
+    }
     public void GameStart(string sceneName)//遊戲開始
     {
         SceneManager.LoadScene(sceneName);

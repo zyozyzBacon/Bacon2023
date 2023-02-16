@@ -1155,7 +1155,7 @@ MonoBehaviour:
     m_ActionId: 27a879fd-494b-4adb-b8ca-dd42db01da23
     m_ActionName: Player01/Cheat
   m_NeverAutoSwitchControlSchemes: 1
-  m_DefaultControlScheme: Controller
+  m_DefaultControlScheme: Keyboard
   m_DefaultActionMap: Player01
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}

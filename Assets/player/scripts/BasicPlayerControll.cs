@@ -8,56 +8,58 @@ using UnityEngine.UIElements.Experimental;
 public class BasicPlayerControll : MonoBehaviour
 {
     [Header("辨識相關")]
-    [Tooltip("玩家")][SerializeField] public int ID;
-    [Tooltip("顏色")][SerializeField] public int Color;
+    [Tooltip("玩家")] [SerializeField] public int ID;
+    [Tooltip("顏色")] [SerializeField] public int Color;
 
     [Header("移動相關")]
-    [Tooltip("移動速度")][SerializeField] float walkSpeed;
-    [Tooltip("電視模式速度")][SerializeField] public float tvMoveSpeed;
+    [Tooltip("移動速度")] [SerializeField] float walkSpeed;
+    [Tooltip("電視模式速度")] [SerializeField] public float tvMoveSpeed;
 
     [Header("跳躍相關")]
-    [Tooltip("跳躍力道")][SerializeField] float jumpForce;
-    [Tooltip("墜落速度極限")][SerializeField] float fallSpeed;
-    [Tooltip("是否允許多段跳躍")][SerializeField] bool doubleJump;
-    [Tooltip("多段跳躍次數")][SerializeField] int jumpAir;
+    [Tooltip("跳躍力道")] [SerializeField] float jumpForce;
+    [Tooltip("墜落速度極限")] [SerializeField] float fallSpeed;
+    [Tooltip("是否允許多段跳躍")] [SerializeField] bool doubleJump;
+    [Tooltip("多段跳躍次數")] [SerializeField] int jumpAir;
 
     [Header("受傷相關")]
-    [Tooltip("受傷後無敵時間")][SerializeField] float recoveryTime;
-    [Tooltip("受傷後暈眩時間")][SerializeField] float dizzyTime;
-    [Tooltip("受傷後擊退力道")][SerializeField] float knockDown;
+    [Tooltip("受傷後無敵時間")] [SerializeField] float recoveryTime;
+    [Tooltip("受傷後暈眩時間")] [SerializeField] float dizzyTime;
+    [Tooltip("受傷後擊退力道")] [SerializeField] float knockDown;
 
     [Header("地面物件檢測")]
-    [Tooltip("射線檢測距離(高度)")][SerializeField] float groundCheckY;
-    [Tooltip("偵測地面物件Layer")][SerializeField] LayerMask groundLayer;
+    [Tooltip("射線檢測距離(高度)")] [SerializeField] float groundCheckY;
+    [Tooltip("偵測地面物件Layer")] [SerializeField] LayerMask groundLayer;
 
     [Header("衝刺檢測")]
-    [Tooltip("衝刺速度")][SerializeField] float dashSpeed;
-    [Tooltip("衝刺時間")][SerializeField] float dashTime;
-    [Tooltip("衝刺冷卻所需時間")][SerializeField] float dashCD;
+    [Tooltip("衝刺速度")] [SerializeField] float dashSpeed;
+    [Tooltip("衝刺時間")] [SerializeField] float dashTime;
+    [Tooltip("衝刺冷卻所需時間")] [SerializeField] float dashCD;
 
     [Header("玩法相關")]
-    [Tooltip("珍珠數量")][SerializeField] public int bubbles;
-    [Tooltip("珍珠換道具數量")][SerializeField] public int bubblesforItem;
-    [Tooltip("珍珠子彈速度")][SerializeField] public float bubbleSpeed;
-    [Tooltip("攻擊緩衝時間")][SerializeField] public float attackTime;
-    [Tooltip("是否允許攻擊")][SerializeField] public bool allowAttack;
-    [Tooltip("死亡後手上珍珠")][SerializeField] public GameObject deadBubble;
-    [Tooltip("珍珠顏色")][SerializeField] public ItemManager.foodColor FoodColor;
+    [Tooltip("珍珠數量")] [SerializeField] public int bubbles;
+    [Tooltip("珍珠換道具數量")] [SerializeField] public int bubblesforItem;
+    [Tooltip("珍珠子彈速度")] [SerializeField] public float bubbleSpeed;
+    [Tooltip("攻擊緩衝時間")] [SerializeField] public float attackTime;
+    [Tooltip("是否允許攻擊")] [SerializeField] public bool allowAttack;
+    [Tooltip("死亡後手上珍珠")] [SerializeField] public GameObject deadBubble;
+    [Tooltip("珍珠顏色")] [SerializeField] public ItemManager.foodColor FoodColor;
 
     [Header("道具相關")]
-    [Tooltip("手上道具ID")][SerializeField] public GameObject CurrentItem;
+    [Tooltip("手上道具ID")] [SerializeField] public GameObject CurrentItem;
 
     [Header("[勿動]抓取子物件相關")]
-    [Tooltip("電視模式物件")][SerializeField] public GameObject tvModePart;
-    [Tooltip("衝刺撞人物件")][SerializeField] private GameObject DashCollider;
-    [Tooltip("幽靈模式物件")][SerializeField] private GameObject GhostPlayer;
-    [Tooltip("槍物件")][SerializeField] private GameObject GunPower;
-    [Tooltip("子彈物件")][SerializeField] private GameObject BulletPrefabs;
+    [Tooltip("電視模式物件")] [SerializeField] public GameObject tvModePart;
+    [Tooltip("衝刺撞人物件")] [SerializeField] private GameObject DashCollider;
+    [Tooltip("幽靈模式物件")] [SerializeField] private GameObject GhostPlayer;
+    [Tooltip("槍物件")] [SerializeField] private GameObject GunPower;
+    [Tooltip("子彈物件")] [SerializeField] private GameObject BulletPrefabs;
     [Tooltip("死亡後手上珍珠子物件")] public GameObject deadBubbleOnHand;
 
     Vector2 moveInput;
     int jumpAirCurrent;
     public int bubblesforItemCurrent;
+
+    float JumpBuffer;
 
     Rigidbody2D rb;
     PlayerUI pUI;
@@ -93,9 +95,30 @@ public class BasicPlayerControll : MonoBehaviour
             }
         }
         pauseState();
+        TryJump();
         jumpDetect();
+        JumpBuffer -= Time.deltaTime;
     }
+    void TryJump()
+    {
+        if (JumpBuffer > 0)
+        {
+            if (!pState.damaged)
+            {
 
+                if (IsGrounded())
+                {
+                    rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+                }
+                else if (doubleJump && jumpAirCurrent < jumpAir)
+                {
+                    jumpAirCurrent++;
+                    rb.velocity = new Vector2(rb.velocity.x, jumpForce * 0.75f);
+                }
+                JumpBuffer = 0;
+            }
+        }
+    }
 
     //移動相關/////////////////////////////////////////////////////////
     public void derictionInput(InputAction.CallbackContext context) //方向輸入
@@ -107,15 +130,15 @@ public class BasicPlayerControll : MonoBehaviour
     {
         if (!pState.dashing && !pState.damaged)
         {
-            rb.velocity = new Vector2(moveInput.x * walkSpeed, rb.velocity.y);
+            rb.velocity = new Vector2(moveInput.x == 0 ? 0 : (Mathf.Sign(moveInput.x) * walkSpeed), rb.velocity.y);
 
-            if (moveInput.x > 0.1)
+            if (moveInput.x > 0)
             {
                 transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
                 GunPower.transform.rotation = Quaternion.Euler(0, 0, 0);
                 pState.facingRight = true;
             }
-            else if (moveInput.x < -0.1)
+            else if (moveInput.x < 0)
             {
                 transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
                 GunPower.transform.rotation = Quaternion.Euler(0, 180, 0);
@@ -135,18 +158,9 @@ public class BasicPlayerControll : MonoBehaviour
 
     public void jumpInput(InputAction.CallbackContext context) //輸入跳躍事件
     {
-        if (!pState.damaged)
-        {
-            if (IsGrounded())
-            {
-                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-            }
-            else if (doubleJump && jumpAirCurrent < jumpAir)
-            {
-                jumpAirCurrent++;
-                rb.velocity = new Vector2(rb.velocity.x, jumpForce * 0.75f);
-            }
-        }
+        if (context.started == false) return;
+        JumpBuffer =0.15f;
+
     }
     private void jumpDetect() //跳躍相關的狀態偵測用(Update())
     {
@@ -415,17 +429,17 @@ public class BasicPlayerControll : MonoBehaviour
         if (bubblesforItemCurrent >= bubblesforItem)
         {
             bubblesforItemCurrent = 0;
-            if (CurrentItem == null) 
+            if (CurrentItem == null)
             {
                 itemGet();
             }
-                
+
         }
 
         StartCoroutine(eatTimer(0.15f));
     }
 
-    IEnumerator eatTimer(float seconds) 
+    IEnumerator eatTimer(float seconds)
     {
         yield return new WaitForSeconds(seconds);
         pState.eating = false;
@@ -440,11 +454,11 @@ public class BasicPlayerControll : MonoBehaviour
 
         if (s == 1 && allowAttack && !pState.attacking)
         {
-            if (bubbles > 0) 
+            if (bubbles > 0)
             {
                 bubbles--;
                 pState.attacking = true;
-                GameObject bullets = Instantiate(BulletPrefabs, GunPower.transform.position,GunPower.transform.rotation);
+                GameObject bullets = Instantiate(BulletPrefabs, GunPower.transform.position, GunPower.transform.rotation);
                 bullets.GetComponent<bubbleBullet>().parent = this.gameObject;
                 bullets.GetComponent<bubbleBullet>().speed = bubbleSpeed;
                 StartCoroutine(shootCount(attackTime));
@@ -464,11 +478,11 @@ public class BasicPlayerControll : MonoBehaviour
     //新手教程相關/////////////////////////////////////////////////////
 
     bool asking;
-    public void readyInput(InputAction.CallbackContext context) 
+    public void readyInput(InputAction.CallbackContext context)
     {
-        if (TutoGameManager.instance != null && this.gameObject.GetComponent<tutoPlayer>() != null )
+        if (TutoGameManager.instance != null && this.gameObject.GetComponent<tutoPlayer>() != null)
         {
-            if (!asking && !pState.pause) 
+            if (!asking && !pState.pause)
             {
                 GetComponent<tutoPlayer>().readyInput();
                 StartCoroutine(askTime(0.5f));
@@ -491,7 +505,7 @@ public class BasicPlayerControll : MonoBehaviour
     {
         if (instruction.instance != null && MainGameManager.instance.InstructionBool == true)
         {
-            if (instruction.instance.ActionAllow) 
+            if (instruction.instance.ActionAllow)
             {
                 pState.readed = true;
                 instruction.instance.playerReaded(ID);
@@ -514,7 +528,7 @@ public class BasicPlayerControll : MonoBehaviour
 
     public void itemUseInput(InputAction.CallbackContext context)
     {
-        if (CurrentItem != null) 
+        if (CurrentItem != null)
         {
             GameObject newItem = Instantiate(CurrentItem);
             IitemInterface iitemInterface = newItem.GetComponent<IitemInterface>();
