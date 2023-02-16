@@ -11,8 +11,8 @@ public class bubbleGene : MonoBehaviour
 
     private bool active;
 
-    public GameObject fallingObject;
-
+    public GameObject AllfallingObject;
+    private GameObject[] fallingObject;
    
     public GameObject[] sidePoint = new GameObject[2];
     int i;
@@ -23,6 +23,10 @@ public class bubbleGene : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        fallingObject = new GameObject[AllfallingObject.transform.childCount];
+        for (int f = 0; f < AllfallingObject.transform.childCount; f++)
+            fallingObject[f] = AllfallingObject.transform.GetChild(f).gameObject;
 
         StartCoroutine(timer(randomMoveTimer));
         StartCoroutine(platform(ptTimer));
@@ -54,7 +58,6 @@ public class bubbleGene : MonoBehaviour
     void randomMove()
     {
         moveSpeed = Random.Range(5, 20);
-        randomMoveTimer = Random.Range(3f, 8);
         transform.position = new Vector3(
             Random.Range(sidePoint[0].transform.position.x, sidePoint[1].transform.position.x),
             transform.position.y,
@@ -65,13 +68,13 @@ public class bubbleGene : MonoBehaviour
     {
         yield return new WaitForSeconds(sceonds);
 
-        ptTimer = Random.Range(0.75f, 3.0f);
+        int r = Random.Range(0,AllfallingObject.transform.childCount);
 
         if (active)
         {
-            GameObject bubble = Instantiate(fallingObject,this.gameObject.transform);
-            bubble.transform.parent = GameObject.Find("###珍珠生成位置###").transform;
-            bubble.GetComponent<fallingPart>().active = true;
+            GameObject item = Instantiate(fallingObject[r],this.gameObject.transform);
+            item.transform.parent = GameObject.Find("###珍珠生成位置###").transform;
+            item.GetComponent<fallingPart>().active = true;
         }
 
         StartCoroutine(platform(ptTimer));

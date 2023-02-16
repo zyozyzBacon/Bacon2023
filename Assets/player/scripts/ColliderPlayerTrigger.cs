@@ -50,6 +50,20 @@ public class ColliderPlayerTrigger : MonoBehaviour
             }
         }
 
+        if (collision.tag == "DangerItem" && !playerStateList.dead)
+        {
+            if (playerControll != null)
+            {
+                if (!playerStateList.recoverying)
+                    playerControll.damaged(collision.transform.parent.position);
+
+            }
+            else
+                Debug.LogError("出錯 玩家不正常");
+        }
+
+
+
         if (collision.tag == "Bubble")
         {
             if (playerControll != null) 

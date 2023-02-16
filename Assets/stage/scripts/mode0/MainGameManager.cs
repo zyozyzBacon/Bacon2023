@@ -14,7 +14,6 @@ public class MainGameManager : MonoBehaviour
 
     [SerializeField] public gameMode GameMode;
 
-    [SerializeField] private float readyTime; 
     [SerializeField] private int playerNum;
     [SerializeField] private Transform[] playerSpawn;
     [SerializeField] public int[] ammo = new int[4];

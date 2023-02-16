@@ -827,7 +827,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameMode: 1
-  readyTime: 0
   playerNum: 0
   playerSpawn:
   - {fileID: 326587076}

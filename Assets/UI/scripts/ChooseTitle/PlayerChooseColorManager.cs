@@ -204,7 +204,7 @@ public class PlayerChooseColorManager : MonoBehaviour
                     SceneManager.LoadScene("Level1");
                     break;
                 case MainGameManager.gameMode.fallingBattle:
-                    SceneManager.LoadScene("betaStage02");
+                    SceneManager.LoadScene("Level2");
                     break;
                 case MainGameManager.gameMode.deathBattle:
                     SceneManager.LoadScene("betaStage03");
