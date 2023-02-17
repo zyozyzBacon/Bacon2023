@@ -22,10 +22,7 @@ public class ButtonMenu : MonoBehaviour
     }
     public void Skip(string sceneName)//跳過
     {
-        if(Input.GetKey(KeyCode.N))
-        {
-            SceneManager.LoadScene(sceneName);
-        }
+        
     }
     public void GameStart(string sceneName)//遊戲開始
     {

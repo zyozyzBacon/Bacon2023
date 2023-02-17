@@ -1401,6 +1401,8 @@ MonoBehaviour:
   bubble:
   - {fileID: 21300000, guid: 836f1fc5e76726f4d92390a9591fc00b, type: 3}
   - {fileID: 21300000, guid: caf4c9bfee8497b45a7307e07bd0d8e6, type: 3}
+  ShinyB: {fileID: 8012865463622841224}
+  ShinyW: {fileID: 2721002547224444972}
 --- !u!1 &8558265941019963964
 GameObject:
   m_ObjectHideFlags: 0
