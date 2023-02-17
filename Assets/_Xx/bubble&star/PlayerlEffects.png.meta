@@ -107,7 +107,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PlayerlEffects_0
+      name: Hit_7
       rect:
         serializedVersion: 2
         x: 2390
@@ -135,8 +135,8 @@ TextureImporter:
         y: 1523
         width: 189
         height: 85
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 6
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -156,8 +156,8 @@ TextureImporter:
         y: 1523
         width: 189
         height: 85
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 6
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -177,8 +177,8 @@ TextureImporter:
         y: 1523
         width: 189
         height: 85
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 6
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -191,15 +191,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerlEffects_10
+      name: Rush_1
       rect:
         serializedVersion: 2
         x: 122
-        y: 1123
-        width: 226
-        height: 94
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        y: 1118
+        width: 350
+        height: 138
+      alignment: 6
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -212,15 +212,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerlEffects_11
+      name: Rush_2
       rect:
         serializedVersion: 2
-        x: 512
-        y: 1113
-        width: 312
-        height: 120
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 509
+        y: 1118
+        width: 350
+        height: 138
+      alignment: 6
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -233,15 +233,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerlEffects_12
+      name: Rush_3
       rect:
         serializedVersion: 2
         x: 957
-        y: 1110
-        width: 441
-        height: 121
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        y: 1118
+        width: 570
+        height: 138
+      alignment: 6
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -254,15 +254,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerlEffects_13
+      name: Rush_4
       rect:
         serializedVersion: 2
         x: 1567
-        y: 1113
-        width: 530
-        height: 112
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        y: 1118
+        width: 570
+        height: 138
+      alignment: 6
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -275,15 +275,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerlEffects_25
+      name: Rush_5
       rect:
         serializedVersion: 2
         x: 2211
         y: 1118
         width: 570
         height: 138
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 6
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -296,7 +296,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerlEffects_45
+      name: Jump_2
       rect:
         serializedVersion: 2
         x: 521
@@ -317,7 +317,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerlEffects_52
+      name: Jump_1
       rect:
         serializedVersion: 2
         x: 92
@@ -338,7 +338,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerlEffects_53
+      name: Jump_3
       rect:
         serializedVersion: 2
         x: 1009
@@ -359,7 +359,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerlEffects_54
+      name: Jump_4
       rect:
         serializedVersion: 2
         x: 1524
@@ -380,7 +380,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerlEffects_57
+      name: Jump_5
       rect:
         serializedVersion: 2
         x: 2128
@@ -401,7 +401,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerlEffects_61
+      name: Hit_4
       rect:
         serializedVersion: 2
         x: 1167
@@ -422,7 +422,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerlEffects_62
+      name: Hit_5
       rect:
         serializedVersion: 2
         x: 1559
@@ -443,28 +443,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerlEffects_63
-      rect:
-        serializedVersion: 2
-        x: 1681
-        y: 394
-        width: 12
-        height: 21
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ae42050fbbf88c440a3edf788aeda2be
-      internalID: -1657713335
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlayerlEffects_69
+      name: Hit_3
       rect:
         serializedVersion: 2
         x: 824
@@ -485,7 +464,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerlEffects_70
+      name: Hit_6
       rect:
         serializedVersion: 2
         x: 1939
@@ -506,7 +485,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerlEffects_75
+      name: Hit_2
       rect:
         serializedVersion: 2
         x: 489
@@ -527,7 +506,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerlEffects_81
+      name: Hit_1
       rect:
         serializedVersion: 2
         x: 171
@@ -558,26 +537,24 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      PlayerlEffects_70: -1452341075
       PlayerlEffects_101: -1430886108
+      Hit_7: -552494809
       PlayerlEffects_37: -853507209
       Run_2: 413976214
       PlayerlEffects_88: -2139000729
       PlayerlEffects_47: -623760231
-      PlayerlEffects_53: 1641574964
       PlayerlEffects_96: 1250360328
-      PlayerlEffects_13: -460204460
+      Hit_2: 1421849924
       PlayerlEffects_63: -1657713335
       PlayerlEffects_71: 1114146840
       Run_1: -1041398712
       PlayerlEffects_28: -420230710
-      PlayerlEffects_69: -1232157086
       PlayerlEffects_16: -419661564
       PlayerlEffects_66: -83751231
       PlayerlEffects_32: -1256793738
       PlayerlEffects_15: -996150299
       PlayerlEffects_31: 1310838391
-      PlayerlEffects_62: 689012105
+      Rush_5: -126599908
       PlayerlEffects_93: -1468228605
       PlayerlEffects_89: -877630745
       PlayerlEffects_40: 953249003
@@ -589,6 +566,8 @@ TextureImporter:
       PlayerlEffects_44: -1254702627
       PlayerlEffects_97: -1870599472
       PlayerlEffects_91: -2099635139
+      Jump_3: 1641574964
+      Hit_4: 734233978
       PlayerlEffects_103: 1515300517
       PlayerlEffects_80: -1194485952
       PlayerlEffects_73: 1176666262
@@ -598,67 +577,67 @@ TextureImporter:
       PlayerlEffects_42: 103641816
       PlayerlEffects_90: 1848054164
       PlayerlEffects_56: 1409038539
-      PlayerlEffects_0: -552494809
+      PlayerlEffects_105: 1866811642
       PlayerlEffects_84: 1252142593
       PlayerlEffects_92: -2019292168
       PlayerlEffects_19: -1605912363
-      PlayerlEffects_52: 607679462
-      PlayerlEffects_105: 1866811642
       PlayerlEffects_46: -1290311640
       PlayerlEffects_35: 1345733620
       PlayerlEffects_55: -200124841
+      Rush_1: -2048129198
       PlayerlEffects_2: -501148567
       PlayerlEffects_99: -1254321069
       PlayerlEffects_41: 2040943551
       PlayerlEffects_98: 1845004646
       PlayerlEffects_106: -616471416
+      Rush_3: -1042399181
       PlayerlEffects_94: 242097636
       PlayerlEffects_39: -1810476073
-      PlayerlEffects_54: -449825192
       PlayerlEffects_26: -2138263964
       PlayerlEffects_87: 2050051666
-      PlayerlEffects_12: -1042399181
       PlayerlEffects_95: 904780154
+      Jump_2: 6192230
       PlayerlEffects_33: 1727837127
       PlayerlEffects_38: 1592780108
       PlayerlEffects_83: 1013865819
+      Jump_1: 607679462
+      Jump_5: -431156964
       PlayerlEffects_51: -1980178013
       PlayerlEffects_18: 1674986949
-      PlayerlEffects_61: 734233978
       PlayerlEffects_74: 1003630701
-      PlayerlEffects_75: 1421849924
+      Rush_4: -460204460
       PlayerlEffects_77: -301019530
       PlayerlEffects_49: -1581376914
       PlayerlEffects_64: 1028371786
       PlayerlEffects_36: -297303513
+      Rush_2: 66691627
       PlayerlEffects_68: -457062179
       PlayerlEffects_7: 1586512872
+      Hit_6: -1452341075
       PlayerlEffects_58: 215062837
-      PlayerlEffects_10: -2048129198
+      Hit_3: -1232157086
       PlayerlEffects_34: -1406589716
+      Hit_5: 689012105
       PlayerlEffects_60: -718455802
       PlayerlEffects_43: -1417679704
       PlayerlEffects_85: 438010426
       PlayerlEffects_22: 134971387
       PlayerlEffects_21: -2125644661
-      PlayerlEffects_25: -126599908
-      PlayerlEffects_11: 66691627
-      PlayerlEffects_27: -85765459
       PlayerlEffects_23: -1617192824
+      PlayerlEffects_27: -85765459
+      PlayerlEffects_50: 234487467
       PlayerlEffects_24: 1068198197
       PlayerlEffects_9: -1542058804
-      PlayerlEffects_50: 234487467
       PlayerlEffects_30: -979803927
-      PlayerlEffects_45: 6192230
       PlayerlEffects_14: -620518243
+      Hit_1: 769161289
       PlayerlEffects_48: 1726666027
+      Jump_4: -449825192
       PlayerlEffects_17: -909130832
-      PlayerlEffects_57: -431156964
       PlayerlEffects_59: 1881705320
       PlayerlEffects_76: 1556039403
       PlayerlEffects_100: 684681422
       PlayerlEffects_107: -304145984
-      PlayerlEffects_81: 769161289
       PlayerlEffects_72: 832140898
       PlayerlEffects_78: -764515886
       PlayerlEffects_102: -970999690
