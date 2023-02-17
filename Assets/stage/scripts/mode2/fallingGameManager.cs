@@ -10,7 +10,7 @@ public class fallingGameManager : MonoBehaviour
     [Tooltip("模式時間")][SerializeField] private float time;
     private float _time;
 
-    [Tooltip("第一個平台")][SerializeField] private GameObject FirstPlatform;
+    [Tooltip("第一個平台")][SerializeField] private GameObject[] FirstPlatform;
     [Tooltip("平台啟動點")][SerializeField] private GameObject PlatCore;
     [Tooltip("所有珍珠")][SerializeField] private GameObject allBubble;
     [Tooltip("所有平台")][SerializeField] private GameObject allPlatform;
@@ -43,6 +43,7 @@ public class fallingGameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(seconds);
 
-        FirstPlatform.GetComponent<fallingPart>().active = true;
+        for (int f = 0; f < FirstPlatform.Length; f++) 
+            FirstPlatform[f].GetComponent<fallingPart>().active = true;
     }
 }

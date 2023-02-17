@@ -65,7 +65,7 @@ public class BasicPlayerControll : MonoBehaviour
     PlayerUI pUI;
     PlayerStateList pState;
     SpriteRenderer spriteRenderer;
-    BoxCollider2D boxCollider;
+    Collider2D Collider;
     Animator anim;
 
     void Awake()
@@ -73,7 +73,7 @@ public class BasicPlayerControll : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         pState = GetComponent<PlayerStateList>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        boxCollider = GetComponent<BoxCollider2D>();
+        Collider = GetComponent<Collider2D>();
         pUI = GetComponent<PlayerUI>();
         anim = GetComponent<Animator>();
         jumpAirCurrent = 0;
@@ -189,7 +189,7 @@ public class BasicPlayerControll : MonoBehaviour
 
     private bool IsGrounded() //地面偵測 是否有站在地面上
     {
-        if (Physics2D.Raycast(transform.position, Vector2.down, groundCheckY, groundLayer))
+        if (Physics2D.Raycast(transform.position, Vector2.down, groundCheckY, groundLayer) && rb.velocity.y <= 0)
             return true;
         else
             return false;
@@ -258,7 +258,7 @@ public class BasicPlayerControll : MonoBehaviour
         tvModePart.SetActive(true);
         DashCollider.SetActive(false);
         spriteRenderer.enabled = false;
-        boxCollider.enabled = false;
+        Collider.enabled = false;
         rb.gravityScale = 0f;
         pState.tvModeOn = true;
 
@@ -273,7 +273,7 @@ public class BasicPlayerControll : MonoBehaviour
         tvModePart.SetActive(false);
         DashCollider.SetActive(true);
         spriteRenderer.enabled = true;
-        boxCollider.enabled = true;
+        Collider.enabled = true;
         rb.gravityScale = 1f;
         pState.tvModeOn = false;
 
@@ -330,12 +330,12 @@ public class BasicPlayerControll : MonoBehaviour
 
         if (p < 0)
         {
-            rb.AddForce(new Vector2(-12, 5) * knockDown);
+            rb.AddForce(new Vector2(-5, 12) * knockDown);
             Debug.Log("往左邊暈眩");
         }
         else
         {
-            rb.AddForce(new Vector2(12, 5) * knockDown);
+            rb.AddForce(new Vector2(5, 12) * knockDown);
             Debug.Log("往右邊暈眩");
         }
 
@@ -367,8 +367,12 @@ public class BasicPlayerControll : MonoBehaviour
 
     public void retired()
     {
-
         anim.SetTrigger("Retired");
+
+        pState.dead = true;
+        if (MainGameManager.instance != null)
+            MainGameManager.instance.gameOver();
+
         StartCoroutine(dead(2f));
     }
 
@@ -376,11 +380,10 @@ public class BasicPlayerControll : MonoBehaviour
     {
         tvModePart.SetActive(false);
         DashCollider.SetActive(false);
-        boxCollider.enabled = false;
+        Collider.enabled = false;
         rb.gravityScale = 0f;
         pState.tvModeOn = true;
         tvMoveSpeed = walkSpeed;
-        pState.dead = true;
         pState.pause = true;
         Destroy(pUI.uiPart.gameObject);
 
@@ -389,9 +392,6 @@ public class BasicPlayerControll : MonoBehaviour
         pState.pause = false;
         GhostPlayer.SetActive(true);
         spriteRenderer.enabled = false;
-
-        if (MainGameManager.instance != null)
-            MainGameManager.instance.gameOver();
     }
 
     //退場相關/////////////////////////////////////////////////////////

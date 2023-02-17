@@ -115,7 +115,7 @@ public class PlayerUI : MonoBehaviour
             itemPos = RectTransformUtility.WorldToScreenPoint(mCamera, ItemTransform.position);
             itemrt.position = itemPos;
 
-            if (!pState.dead)
+            if (!pState.dead && uiPart != null)
             {
 
                 panelPos = RectTransformUtility.WorldToScreenPoint(mCamera, uiPanelTransform.position);

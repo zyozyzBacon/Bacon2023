@@ -14,7 +14,7 @@ public class platformGene : MonoBehaviour
 
     public GameObject fallingObject;
 
-    public GameObject[] platformsArray = new GameObject[10];
+    public GameObject[] platformsArray;
     int p;
 
     public GameObject[] sidePoint = new GameObject[2];
@@ -26,16 +26,16 @@ public class platformGene : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        platformsArray = new GameObject[fallingObject.transform.childCount];
 
-        for (int i = 0; i< 10; i++) 
-        {
-            platformsArray[i] = Instantiate(fallingObject);
+        for (int i = 0; i< fallingObject.transform.childCount; i++) 
+        {      
+            platformsArray[i] = Instantiate(fallingObject.transform.GetChild(i).gameObject);
             platformsArray[i].transform.parent = this.transform;
             platformsArray[i].transform.position = this.transform.position;
             platformsArray[i].GetComponent<fallingPart>().parent = this.gameObject;
             platformsArray[i].SetActive(false);
         }
-
 
         p = 0;
         StartCoroutine(timer(randomMoveTimer));
@@ -79,20 +79,24 @@ public class platformGene : MonoBehaviour
     {
         yield return new WaitForSeconds(sceonds);
 
-        ptTimer = Random.Range(0.75f, 2f);
-
         if (active) 
         {
-            platformsArray[p].SetActive(true);
-            platformsArray[p].transform.parent =  GameObject.Find("###平台生成位置###").transform;
-            platformsArray[p].GetComponent<fallingPart>().active = true;
+            int r = Random.Range(0, fallingObject.transform.childCount);
 
+            while (platformsArray[r].activeSelf == true)
+            {
+                r = Random.Range(0, fallingObject.transform.childCount);
+            }
+
+            platformsArray[r].SetActive(true);
+            platformsArray[r].transform.parent =  GameObject.Find("###平台生成位置###").transform;
+            platformsArray[r].GetComponent<fallingPart>().active = true;
 
             p++;
             if (p >= 10) 
             {
                 p = 0;
-                platformsArray[p].AddComponent<dangerPlatform>();
+                //platformsArray[r].AddComponent<dangerPlatform>();
             }            
         }
         StartCoroutine(platform(ptTimer));

@@ -7,7 +7,7 @@ public class fallingPart : MonoBehaviour
 
     public bool active;
 
-    public int speed;
+    public float speed;
 
     Rigidbody2D rb;
 
