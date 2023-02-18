@@ -67,7 +67,7 @@ public class BasicPlayerControll : MonoBehaviour
     SpriteRenderer spriteRenderer;
     Collider2D Collider;
     Animator anim;
-
+    public Animator animE;
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -146,9 +146,15 @@ public class BasicPlayerControll : MonoBehaviour
             }
 
             if (moveInput.x != 0)
+            {
                 anim.SetBool("Walk", true);
+                animE.SetBool("WalkE", true);
+            }
             else
+            {
                 anim.SetBool("Walk", false);
+                animE.SetBool("WalkE", false);
+            }
         }
     }
 
@@ -159,9 +165,11 @@ public class BasicPlayerControll : MonoBehaviour
     public void jumpInput(InputAction.CallbackContext context) //輸入跳躍事件
     {
         if (context.started == false) return;
-        JumpBuffer =0.15f;
+        JumpBuffer = 0.15f;
 
     }
+   
+   
     private void jumpDetect() //跳躍相關的狀態偵測用(Update())
     {
         if (IsGrounded())
@@ -169,6 +177,8 @@ public class BasicPlayerControll : MonoBehaviour
             jumpAirCurrent = 0;
             pState.jumping = false;
             anim.SetBool("Jump", false);
+            anim.SetBool("Jump", false);
+            
         }
         else
         {
@@ -176,6 +186,7 @@ public class BasicPlayerControll : MonoBehaviour
             {
                 anim.SetBool("Jump", true);
                 anim.SetTrigger("JumpTrigger");
+                
             }
 
             pState.jumping = true;
@@ -215,11 +226,14 @@ public class BasicPlayerControll : MonoBehaviour
     {
         if (pState.dashing)
         {
+            animE.SetBool("RushE", true);
             if (pState.facingRight)
                 rb.velocity = Vector2.right * dashSpeed;
             else
                 rb.velocity = Vector2.left * dashSpeed;
         }
+        else
+        animE.SetBool("RushE", false);
     }
 
     public IEnumerator dashCount(float seconds)
@@ -326,7 +340,7 @@ public class BasicPlayerControll : MonoBehaviour
         StartCoroutine(dizzyCount(dizzyTime));
         StartCoroutine(damagedCount(dizzyTime + recoveryTime));
         anim.SetTrigger("Hit");
-
+        animE.SetTrigger("HitE");
         if (others.GetComponent<Rigidbody2D>().velocity.x < 0)
         {
             rb.velocity = (Vector2.left * knockDown);

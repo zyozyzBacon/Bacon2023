@@ -1367,6 +1367,7 @@ MonoBehaviour:
   BulletPrefabs: {fileID: 5315280106085442592, guid: 76c4a1850b22d2b408ed2d579f0e71cf, type: 3}
   deadBubbleOnHand: {fileID: 5397373949899426421}
   bubblesforItemCurrent: 0
+  animE: {fileID: 2303758105307937121}
 --- !u!114 &2429148319472239088
 MonoBehaviour:
   m_ObjectHideFlags: 0
