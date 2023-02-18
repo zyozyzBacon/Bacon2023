@@ -68,6 +68,9 @@ TagManager:
   - name: Store2
     uniqueID: 1964193367
     locked: 0
+  - name: Player_Effect
+    uniqueID: 3942842467
+    locked: 0
   - name: Player_ShinyB
     uniqueID: 2178473525
     locked: 0

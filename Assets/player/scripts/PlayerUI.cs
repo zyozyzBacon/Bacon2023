@@ -41,6 +41,9 @@ public class PlayerUI : MonoBehaviour
     private foodBattlePlayer pFood;
 
 
+    public GameObject ShinyB;
+    public GameObject ShinyW;
+
     bool active;
     
     public void init()
@@ -131,15 +134,24 @@ public class PlayerUI : MonoBehaviour
                         if (pControll.FoodColor != ItemManager.foodColor.none)
                         {
                             if (pControll.FoodColor == ItemManager.foodColor.white)
+                            {
                                 bubbleColor.sprite = bubble[0];
+                                ShinyW.gameObject.SetActive(true);
+                                ShinyB.gameObject.SetActive(false);
+                            }
                             else if (pControll.FoodColor == ItemManager.foodColor.black)
+                            {
                                 bubbleColor.sprite = bubble[1];
-
+                                ShinyB.gameObject.SetActive(true);
+                                ShinyW.gameObject.SetActive(false);
+                            }
                             bubbleColor.gameObject.SetActive(true);
                         }
                         else
                         {
                             bubbleColor.gameObject.SetActive(false);
+                            ShinyW.gameObject.SetActive(false);
+                            ShinyB.gameObject.SetActive(false);
                         }
 
                         break;
