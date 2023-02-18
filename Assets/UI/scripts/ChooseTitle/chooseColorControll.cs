@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements.Experimental;
+using UnityEngine.InputSystem.Interactions;
 
 public class chooseColorControll : MonoBehaviour
 {
@@ -33,22 +33,21 @@ public class chooseColorControll : MonoBehaviour
     public Image[] pos;
     public bool startcontroll;
     public bool choose;
-    public bool asking;
-
     public void moveToColor(InputAction.CallbackContext context)
     {
-        if (startcontroll && !choose)
+
+        if (startcontroll && !choose && context.performed)
         {
             Input = context.ReadValue<Vector2>().x;
 
             int before = 0;
 
-            if (Input == 1)
+            if (Input >= 0.4)
             {
                 before = colorID;
                 colorID++;
             }
-            else if (Input == -1)
+            else if (Input <= -0.4)
             {
                 before = colorID;
                 colorID--;
@@ -80,14 +79,10 @@ public class chooseColorControll : MonoBehaviour
 
     public void colorChose(InputAction.CallbackContext context)
     {
-        float j = context.ReadValue<float>();
-
-        if (j == 1  && startcontroll && !asking)
+        if (context.performed && startcontroll)
         {
             if (!choose)
             {
-                asking = true;
-                StartCoroutine(askTime(0.5f));
 
                 if (PlayerChooseColorManager.instance.colorCheck(colorID))
                 {
@@ -112,12 +107,10 @@ public class chooseColorControll : MonoBehaviour
     {
         float j = context.ReadValue<float>();
 
-        if (j == 1 && startcontroll && !asking)
+        if (j == 1 && startcontroll)
         {
             if (choose)
             {
-                asking = true;
-                StartCoroutine(askTime(0.5f));
                 PlayerChooseColorManager.instance.playerColorList[playerID] = -1;
                 pos[colorID].transform.parent.GetComponent<colorPanel>().select = false;
                 colorPanelCheck(-1, colorID);
@@ -130,18 +123,11 @@ public class chooseColorControll : MonoBehaviour
 
     public void toGame(InputAction.CallbackContext context) 
     {
-        if (startcontroll && choose && !asking) 
+        if (startcontroll && choose) 
         {
-            asking = true;
-            StartCoroutine(askTime(0.5f));
             PlayerChooseColorManager.instance.readyToGame();
         }
     }
 
-    private IEnumerator askTime(float seconds) 
-    {
-        yield return new WaitForSeconds(seconds);
-        asking = false;
-    }
 
 }

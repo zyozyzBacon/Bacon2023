@@ -136,6 +136,10 @@ MonoBehaviour:
     m_ActionId: 8385d8ee-1d2e-41fa-91c2-6df49baa0b54
     m_ActionName: Player01/Jump[/Keyboard/z]
   - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d234cbdc-42e2-4d72-a602-d075c55983d4
+    m_ActionName: Player01/Attack[/Keyboard/x]
+  - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: -3982516310153015913}
         m_TargetAssemblyTypeName: chooseColorControll, Assembly-CSharp
@@ -149,10 +153,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: d234cbdc-42e2-4d72-a602-d075c55983d4
-    m_ActionName: Player01/Attack[/Keyboard/x]
-  - m_PersistentCalls:
-      m_Calls: []
     m_ActionId: 4f0eed23-bdf5-4518-89d1-c39a3c1a53b6
     m_ActionName: Player01/Dash[/Keyboard/c]
   - m_PersistentCalls:
@@ -175,6 +175,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 957ebc14-b497-448e-b704-0422be7f1192
     m_ActionName: Player01/Start[/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 27a879fd-494b-4adb-b8ca-dd42db01da23
+    m_ActionName: Player01/Cheat
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: Controller
   m_DefaultActionMap: Player01
