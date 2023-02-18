@@ -3172,7 +3172,7 @@ MonoBehaviour:
   - {fileID: 130717205}
   playerColorList: 
   gameplayMode: 0
-  gameMode: 3
+  gameMode: 1
   pDataObject: {fileID: 1931710813}
   pData: {fileID: 1931710815}
   stop: 0

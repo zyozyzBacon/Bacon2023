@@ -1015,9 +1015,9 @@ MonoBehaviour:
   fallSpeed: 20
   doubleJump: 0
   jumpAir: 0
-  recoveryTime: 1
-  dizzyTime: 2
-  knockDown: 10
+  recoveryTime: 0
+  dizzyTime: 1.25
+  knockDown: 1.5
   groundCheckY: 1.35
   groundLayer:
     serializedVersion: 2

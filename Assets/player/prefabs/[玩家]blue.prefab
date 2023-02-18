@@ -1123,6 +1123,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 27a879fd-494b-4adb-b8ca-dd42db01da23
     m_ActionName: Player01/Cheat
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3ba8b5bd-9930-4747-bbae-b505c16f5302
+    m_ActionName: Player01/UIMovement[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: Controller
   m_DefaultActionMap: Player01
@@ -1232,9 +1236,9 @@ MonoBehaviour:
   fallSpeed: 20
   doubleJump: 0
   jumpAir: 0
-  recoveryTime: 1
-  dizzyTime: 2
-  knockDown: 10
+  recoveryTime: 0
+  dizzyTime: 1.25
+  knockDown: 1.5
   groundCheckY: 1.35
   groundLayer:
     serializedVersion: 2

@@ -318,40 +318,31 @@ public class BasicPlayerControll : MonoBehaviour
     //電視玩法相關/////////////////////////////////////////////////////
     //受傷相關/////////////////////////////////////////////////////////
 
-    public void damaged(Vector2 others)
+    public void damaged(GameObject others)
     {
         pState.damaged = true;
         pState.recoverying = true;
 
         StartCoroutine(dizzyCount(dizzyTime));
         StartCoroutine(damagedCount(dizzyTime + recoveryTime));
+        anim.SetTrigger("Hit");
 
-        float p = this.transform.position.x - others.x;
-
-        if (p < 0)
+        if (others.GetComponent<Rigidbody2D>().velocity.x < 0)
         {
-            rb.AddForce(new Vector2(-5, 12) * knockDown);
+            rb.velocity = (Vector2.left * knockDown);
             Debug.Log("往左邊暈眩");
         }
         else
         {
-            rb.AddForce(new Vector2(5, 12) * knockDown);
+            rb.velocity = (Vector2.right * knockDown);
             Debug.Log("往右邊暈眩");
         }
-
-        StartCoroutine(holdCount(dizzyTime / 3));
-        anim.SetTrigger("Hit");
-    }
-
-    IEnumerator holdCount(float seconds)
-    {
-        yield return new WaitForSeconds(seconds);
-        rb.velocity = new Vector2(0, rb.velocity.y);
     }
 
     IEnumerator dizzyCount(float seconds)
     {
         yield return new WaitForSeconds(seconds);
+        rb.velocity = new Vector2(0, rb.velocity.y);
         pState.damaged = false;
     }
 
