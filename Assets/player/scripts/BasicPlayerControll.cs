@@ -468,25 +468,20 @@ public class BasicPlayerControll : MonoBehaviour
     //射擊相關/////////////////////////////////////////////////////////
     //新手教程相關/////////////////////////////////////////////////////
 
-    bool asking;
     public void readyInput(InputAction.CallbackContext context)
     {
-        if (TutoGameManager.instance != null && this.gameObject.GetComponent<tutoPlayer>() != null)
+        if (context.performed)
         {
-            if (!asking && !pState.pause)
+            if (TutoGameManager.instance != null && this.gameObject.GetComponent<tutoPlayer>() != null)
             {
-                GetComponent<tutoPlayer>().readyInput();
-                StartCoroutine(askTime(0.5f));
+                if (!pState.pause)
+                {
+                    GetComponent<tutoPlayer>().readyInput();
+                }
             }
         }
     }
 
-    private IEnumerator askTime(float seconds)
-    {
-        asking = true;
-        yield return new WaitForSeconds(seconds);
-        asking = false;
-    }
 
 
     //新手教程相關/////////////////////////////////////////////////////
