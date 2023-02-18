@@ -429,7 +429,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -782276345
-  m_SortingLayer: 9
+  m_SortingLayer: 10
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: be2e69557dfded44fa738b55c0135368, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -772,7 +772,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -782276345
-  m_SortingLayer: 9
+  m_SortingLayer: 10
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: dedb9b4e57e4008469040f3a73741dc7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1015,7 +1015,7 @@ MonoBehaviour:
   fallSpeed: 20
   doubleJump: 0
   jumpAir: 0
-  recoveryTime: 0
+  recoveryTime: 0.05
   dizzyTime: 1.25
   knockDown: 1.5
   groundCheckY: 1.35
@@ -1078,6 +1078,8 @@ MonoBehaviour:
   bubble:
   - {fileID: 21300000, guid: 836f1fc5e76726f4d92390a9591fc00b, type: 3}
   - {fileID: 21300000, guid: caf4c9bfee8497b45a7307e07bd0d8e6, type: 3}
+  ShinyB: {fileID: 0}
+  ShinyW: {fileID: 0}
 --- !u!70 &1503389624461439249
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1166,7 +1168,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2116493771
-  m_SortingLayer: 7
+  m_SortingLayer: 8
   m_SortingOrder: 0
   m_Sprite: {fileID: 1818221667, guid: 69129dccf0643af4c97aa15815a7e1f0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1282,7 +1284,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -180034351
-  m_SortingLayer: 8
+  m_SortingLayer: 9
   m_SortingOrder: 0
   m_Sprite: {fileID: -773483288, guid: 69129dccf0643af4c97aa15815a7e1f0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
