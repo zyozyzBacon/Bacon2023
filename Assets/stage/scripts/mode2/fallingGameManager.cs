@@ -33,7 +33,7 @@ public class fallingGameManager : MonoBehaviour
         PlatCore.GetComponent<platCore>().Active = false;
 
         for (int b = 0; b < allBubble.transform.childCount; b++)
-            Destroy(allBubble.transform.GetChild(b));
+            Destroy(allBubble.transform.GetChild(b).gameObject);
 
         for (int i = 0; i < allPlatform.transform.childCount; i++)
             allPlatform.transform.GetChild(i).GetComponent<fallingPart>().active = false;

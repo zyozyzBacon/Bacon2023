@@ -20,7 +20,7 @@
                     "id": "8385d8ee-1d2e-41fa-91c2-6df49baa0b54",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Hold(duration=1)",
                     "initialStateCheck": false
                 },
                 {
@@ -67,6 +67,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "UIMovement",
+                    "type": "PassThrough",
+                    "id": "3ba8b5bd-9930-4747-bbae-b505c16f5302",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -74,7 +83,7 @@
                     "name": "",
                     "id": "f440c9d4-926e-466c-be99-2c82229256f3",
                     "path": "<Keyboard>/z",
-                    "interactions": "",
+                    "interactions": "Hold(duration=1)",
                     "processors": "",
                     "groups": "Keyboard",
                     "action": "Jump",
@@ -85,7 +94,7 @@
                     "name": "",
                     "id": "2dbac8dd-3da6-44a4-bf2f-a0152bec1504",
                     "path": "<Gamepad>/buttonSouth",
-                    "interactions": "",
+                    "interactions": "Hold(duration=1)",
                     "processors": "",
                     "groups": "Controller",
                     "action": "Jump",
@@ -265,6 +274,83 @@
                     "processors": "",
                     "groups": "Controller",
                     "action": "Cheat",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "Direction",
+                    "id": "a56cf249-9661-4107-af4a-b523ee8b599e",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UIMovement",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "4045f26a-9282-418a-9a01-0aed9de0ea57",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "UIMovement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "30781d69-8889-4287-a9db-be55db965d5e",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "UIMovement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "cb232a2f-299e-4d18-90c1-61310eede7d0",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "UIMovement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "a4d8fc46-e086-49c1-96ec-5bf83d9f1cb5",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "UIMovement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "46c7f19c-51ab-42ef-90f8-4d002f15ac6b",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "Hold(duration=0.01)",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "UIMovement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "51958be0-8a46-4a76-9452-5d0fa93f8f34",
+                    "path": "<Gamepad>/dpad",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "UIMovement",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

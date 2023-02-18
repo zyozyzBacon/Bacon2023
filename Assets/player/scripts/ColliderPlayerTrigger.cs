@@ -34,28 +34,12 @@ public class ColliderPlayerTrigger : MonoBehaviour
 
         }
 
-        if (collision.tag == "DashAttack" && !playerStateList.dead)
-        {
-            if (collision.transform.parent.GetComponent<PlayerStateList>().dashing)
-            {
-                if (playerControll != null) 
-                {
-                   if (!playerStateList.recoverying)
-                        playerControll.damaged(collision.transform.parent.position);
-
-                }          
-                else
-                    Debug.LogError("出錯 玩家不正常");
-
-            }
-        }
-
         if (collision.tag == "DangerItem" && !playerStateList.dead)
         {
             if (playerControll != null)
             {
                 if (!playerStateList.recoverying)
-                    playerControll.damaged(collision.transform.parent.position);
+                    playerControll.damaged(collision.transform.parent.gameObject);
 
             }
             else
@@ -125,10 +109,33 @@ public class ColliderPlayerTrigger : MonoBehaviour
                 if (playerControll != null)
                 {
                     if (!playerStateList.recoverying)
-                        playerControll.damaged(collision.transform.position);
+                        playerControll.damaged(collision.transform.gameObject);
                 }
                 else
                     Debug.LogError("出錯 玩家不正常");
+            }
+        }
+    }
+
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        PlayerStateList playerStateList = this.gameObject.GetComponent<PlayerStateList>();
+        BasicPlayerControll playerControll = this.gameObject.GetComponent<BasicPlayerControll>();
+
+        if (collision.tag == "DashAttack" && !playerStateList.dead)
+        {
+            if (collision.transform.parent.GetComponent<PlayerStateList>().dashing)
+            {
+                if (playerControll != null)
+                {
+                    if (!playerStateList.recoverying)
+                        playerControll.damaged(collision.transform.parent.gameObject);
+
+                }
+                else
+                    Debug.LogError("出錯 玩家不正常");
+
             }
         }
     }
