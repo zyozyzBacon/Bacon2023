@@ -150,8 +150,7 @@ public class PlayerUI : MonoBehaviour
                         else
                         {
                             bubbleColor.gameObject.SetActive(false);
-                            ShinyW.gameObject.SetActive(false);
-                            ShinyB.gameObject.SetActive(false);
+                            
                         }
 
                         break;

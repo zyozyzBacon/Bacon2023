@@ -118,6 +118,8 @@ public class BasicPlayerControll : MonoBehaviour
                 JumpBuffer = 0;
             }
         }
+
+
     }
 
     //移動相關/////////////////////////////////////////////////////////
@@ -148,6 +150,9 @@ public class BasicPlayerControll : MonoBehaviour
             if (moveInput.x != 0)
             {
                 anim.SetBool("Walk", true);
+            }
+            if (moveInput.x != 0&&IsGrounded())
+            {
                 animE.SetBool("WalkE", true);
             }
             else
@@ -168,8 +173,8 @@ public class BasicPlayerControll : MonoBehaviour
         JumpBuffer = 0.15f;
 
     }
-   
-   
+
+
     private void jumpDetect() //跳躍相關的狀態偵測用(Update())
     {
         if (IsGrounded())
@@ -177,8 +182,8 @@ public class BasicPlayerControll : MonoBehaviour
             jumpAirCurrent = 0;
             pState.jumping = false;
             anim.SetBool("Jump", false);
-            anim.SetBool("Jump", false);
-            
+
+
         }
         else
         {
@@ -186,7 +191,7 @@ public class BasicPlayerControll : MonoBehaviour
             {
                 anim.SetBool("Jump", true);
                 anim.SetTrigger("JumpTrigger");
-                
+
             }
 
             pState.jumping = true;
@@ -233,7 +238,7 @@ public class BasicPlayerControll : MonoBehaviour
                 rb.velocity = Vector2.left * dashSpeed;
         }
         else
-        animE.SetBool("RushE", false);
+            animE.SetBool("RushE", false);
     }
 
     public IEnumerator dashCount(float seconds)
@@ -391,7 +396,8 @@ public class BasicPlayerControll : MonoBehaviour
         tvMoveSpeed = walkSpeed;
         pState.pause = true;
         Destroy(pUI.uiPart.gameObject);
-
+        Destroy(pUI.ShinyB.gameObject);
+        Destroy(pUI.ShinyW.gameObject);
         yield return new WaitForSeconds(seconds);
 
         pState.pause = false;

@@ -20,10 +20,7 @@ public class ButtonMenu : MonoBehaviour
     {
 
     }
-    public void Skip(string sceneName)//跳過
-    {
-        
-    }
+   
     public void GameStart(string sceneName)//遊戲開始
     {
         SceneManager.LoadScene(sceneName);
@@ -41,15 +38,23 @@ public class ButtonMenu : MonoBehaviour
             Application.Quit();
 #endif
     }
+
+    Animator anim;
     void Start()
     {
-
+        anim = GetComponent<Animator>();
     }
 
     void Update()
     {
-
+        Skip();
     }
-
+    void Skip()//跳過
+    {
+        if (Input.GetKey(KeyCode.N))
+        {
+            anim.SetBool("Skip", true);
+        }
+    }
 }
 
