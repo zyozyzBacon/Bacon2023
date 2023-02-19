@@ -79,7 +79,7 @@ public class chooseColorControll : MonoBehaviour
 
     public void colorChose(InputAction.CallbackContext context)
     {
-        if (context.performed && startcontroll)
+        if (startcontroll)
         {
             if (!choose)
             {
