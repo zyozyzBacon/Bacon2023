@@ -378,7 +378,7 @@ public class BasicPlayerControll : MonoBehaviour
     public void retired()
     {
         anim.SetTrigger("Retired");
-
+        animE.SetTrigger("DeadE");
         pState.dead = true;
         if (MainGameManager.instance != null)
             MainGameManager.instance.gameOver();
