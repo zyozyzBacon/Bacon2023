@@ -66,8 +66,10 @@ public class BasicPlayerControll : MonoBehaviour
     PlayerStateList pState;
     SpriteRenderer spriteRenderer;
     Collider2D Collider;
+
     Animator anim;
     public Animator animE;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -78,6 +80,7 @@ public class BasicPlayerControll : MonoBehaviour
         anim = GetComponent<Animator>();
         jumpAirCurrent = 0;
         bubblesforItemCurrent = 0;
+
     }
 
     void Update()
