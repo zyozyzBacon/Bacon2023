@@ -165,6 +165,24 @@ public class MainGameManager : MonoBehaviour
                     break;
             }
         }
+        else 
+        {
+            switch (GameMode)
+            {
+                case gameMode.foodBattle:
+                    foodBattleManager.instance.BubbleWaveNum = Last;
+
+                    for (int i = 0; i < playerNum; i++)
+                    {
+                        if (!playerList[i].GetComponent<PlayerStateList>().dead)
+                        {
+                            playerList[i].GetComponent<foodBattlePlayer>().hurgryAttackTime = 2f;
+                        }
+                    }
+
+                    break;
+            }
+        }
     }
 
     public enum gameMode 

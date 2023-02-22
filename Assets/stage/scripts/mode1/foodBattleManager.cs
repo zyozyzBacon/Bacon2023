@@ -14,7 +14,7 @@ public class foodBattleManager : MonoBehaviour
     private float _time;
 
     [Tooltip("珍珠生成時間")][SerializeField] private float bubbleTime;
-    [Tooltip("場上珍珠生成的量")][SerializeField] private int BubbleWaveNum;
+    [Tooltip("場上珍珠生成的量")][SerializeField] public int BubbleWaveNum;
 
     public GameObject[] bubblePrefab = new GameObject[2];
 
@@ -26,6 +26,7 @@ public class foodBattleManager : MonoBehaviour
     {
         instance = this;
     }
+
 
     public void init()
     {
