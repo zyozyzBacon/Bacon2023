@@ -1128,6 +1128,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 8819739847824341112}
+        m_TargetAssemblyTypeName: BasicPlayerControll, Assembly-CSharp
+        m_MethodName: jumpDownInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 4f0eed23-bdf5-4518-89d1-c39a3c1a53b6
     m_ActionName: Player01/Dash[/Keyboard/c]
   - m_PersistentCalls:
@@ -1231,6 +1243,7 @@ MonoBehaviour:
   eating: 0
   usingItem: 0
   readed: 0
+  platform: {fileID: 0}
 --- !u!114 &8819739847824341112
 MonoBehaviour:
   m_ObjectHideFlags: 0

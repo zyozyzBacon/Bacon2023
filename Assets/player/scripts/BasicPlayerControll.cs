@@ -8,51 +8,51 @@ using UnityEngine.UIElements.Experimental;
 public class BasicPlayerControll : MonoBehaviour
 {
     [Header("辨識相關")]
-    [Tooltip("玩家")] [SerializeField] public int ID;
-    [Tooltip("顏色")] [SerializeField] public int Color;
+    [Tooltip("玩家")][SerializeField] public int ID;
+    [Tooltip("顏色")][SerializeField] public int Color;
 
     [Header("移動相關")]
-    [Tooltip("移動速度")] [SerializeField] float walkSpeed;
-    [Tooltip("電視模式速度")] [SerializeField] public float tvMoveSpeed;
+    [Tooltip("移動速度")][SerializeField] float walkSpeed;
+    [Tooltip("電視模式速度")][SerializeField] public float tvMoveSpeed;
 
     [Header("跳躍相關")]
-    [Tooltip("跳躍力道")] [SerializeField] float jumpForce;
-    [Tooltip("墜落速度極限")] [SerializeField] float fallSpeed;
-    [Tooltip("是否允許多段跳躍")] [SerializeField] bool doubleJump;
-    [Tooltip("多段跳躍次數")] [SerializeField] int jumpAir;
+    [Tooltip("跳躍力道")][SerializeField] float jumpForce;
+    [Tooltip("墜落速度極限")][SerializeField] float fallSpeed;
+    [Tooltip("是否允許多段跳躍")][SerializeField] bool doubleJump;
+    [Tooltip("多段跳躍次數")][SerializeField] int jumpAir;
 
     [Header("受傷相關")]
-    [Tooltip("受傷後無敵時間")] [SerializeField] float recoveryTime;
-    [Tooltip("受傷後暈眩時間")] [SerializeField] float dizzyTime;
-    [Tooltip("受傷後擊退力道")] [SerializeField] float knockDown;
+    [Tooltip("受傷後無敵時間")][SerializeField] float recoveryTime;
+    [Tooltip("受傷後暈眩時間")][SerializeField] float dizzyTime;
+    [Tooltip("受傷後擊退力道")][SerializeField] float knockDown;
 
     [Header("地面物件檢測")]
-    [Tooltip("射線檢測距離(高度)")] [SerializeField] float groundCheckY;
-    [Tooltip("偵測地面物件Layer")] [SerializeField] LayerMask groundLayer;
+    [Tooltip("射線檢測距離(高度)")][SerializeField] float groundCheckY;
+    [Tooltip("偵測地面物件Layer")][SerializeField] LayerMask groundLayer;
 
     [Header("衝刺檢測")]
-    [Tooltip("衝刺速度")] [SerializeField] float dashSpeed;
-    [Tooltip("衝刺時間")] [SerializeField] float dashTime;
-    [Tooltip("衝刺冷卻所需時間")] [SerializeField] float dashCD;
+    [Tooltip("衝刺速度")][SerializeField] float dashSpeed;
+    [Tooltip("衝刺時間")][SerializeField] float dashTime;
+    [Tooltip("衝刺冷卻所需時間")][SerializeField] float dashCD;
 
     [Header("玩法相關")]
-    [Tooltip("珍珠數量")] [SerializeField] public int bubbles;
-    [Tooltip("珍珠換道具數量")] [SerializeField] public int bubblesforItem;
-    [Tooltip("珍珠子彈速度")] [SerializeField] public float bubbleSpeed;
-    [Tooltip("攻擊緩衝時間")] [SerializeField] public float attackTime;
-    [Tooltip("是否允許攻擊")] [SerializeField] public bool allowAttack;
-    [Tooltip("死亡後手上珍珠")] [SerializeField] public GameObject deadBubble;
-    [Tooltip("珍珠顏色")] [SerializeField] public ItemManager.foodColor FoodColor;
+    [Tooltip("珍珠數量")][SerializeField] public int bubbles;
+    [Tooltip("珍珠換道具數量")][SerializeField] public int bubblesforItem;
+    [Tooltip("珍珠子彈速度")][SerializeField] public float bubbleSpeed;
+    [Tooltip("攻擊緩衝時間")][SerializeField] public float attackTime;
+    [Tooltip("是否允許攻擊")][SerializeField] public bool allowAttack;
+    [Tooltip("死亡後手上珍珠")][SerializeField] public GameObject deadBubble;
+    [Tooltip("珍珠顏色")][SerializeField] public ItemManager.foodColor FoodColor;
 
     [Header("道具相關")]
-    [Tooltip("手上道具ID")] [SerializeField] public GameObject CurrentItem;
+    [Tooltip("手上道具ID")][SerializeField] public GameObject CurrentItem;
 
     [Header("[勿動]抓取子物件相關")]
-    [Tooltip("電視模式物件")] [SerializeField] public GameObject tvModePart;
-    [Tooltip("衝刺撞人物件")] [SerializeField] private GameObject DashCollider;
-    [Tooltip("幽靈模式物件")] [SerializeField] private GameObject GhostPlayer;
-    [Tooltip("槍物件")] [SerializeField] private GameObject GunPower;
-    [Tooltip("子彈物件")] [SerializeField] private GameObject BulletPrefabs;
+    [Tooltip("電視模式物件")][SerializeField] public GameObject tvModePart;
+    [Tooltip("衝刺撞人物件")][SerializeField] private GameObject DashCollider;
+    [Tooltip("幽靈模式物件")][SerializeField] private GameObject GhostPlayer;
+    [Tooltip("槍物件")][SerializeField] private GameObject GunPower;
+    [Tooltip("子彈物件")][SerializeField] private GameObject BulletPrefabs;
     [Tooltip("死亡後手上珍珠子物件")] public GameObject deadBubbleOnHand;
 
     Vector2 moveInput;
@@ -105,10 +105,10 @@ public class BasicPlayerControll : MonoBehaviour
         {
             if (!pState.damaged)
             {
-
                 if (IsGrounded())
                 {
-                    rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+
+                        rb.velocity = new Vector2(rb.velocity.x, jumpForce);
                 }
                 else if (doubleJump && jumpAirCurrent < jumpAir)
                 {
@@ -159,9 +159,16 @@ public class BasicPlayerControll : MonoBehaviour
     public void jumpInput(InputAction.CallbackContext context) //輸入跳躍事件
     {
         if (context.started == false) return;
-        JumpBuffer =0.15f;
+        JumpBuffer = 0.15f;
+    }
+
+    public void jumpDownInput(InputAction.CallbackContext context) 
+    {
+        if (context.started == false) return;
+        StartCoroutine(colliderDisable(0.25f));
 
     }
+
     private void jumpDetect() //跳躍相關的狀態偵測用(Update())
     {
         if (IsGrounded())
@@ -193,6 +200,15 @@ public class BasicPlayerControll : MonoBehaviour
             return true;
         else
             return false;
+    }
+
+    private IEnumerator colliderDisable(float seconds) 
+    {
+        BoxCollider2D platformCollider = pState.platform.GetComponent<BoxCollider2D>();
+
+        Physics2D.IgnoreCollision(Collider, platformCollider);
+        yield return new WaitForSeconds(seconds);
+        Physics2D.IgnoreCollision(Collider, platformCollider, false);
     }
 
     //跳躍相關/////////////////////////////////////////////////////////

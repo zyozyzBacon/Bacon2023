@@ -8,17 +8,18 @@ public class ColliderPlayerTrigger : MonoBehaviour
 
     Rigidbody2D rb;
 
+    PlayerStateList playerStateList;
+    BasicPlayerControll playerControll;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        playerStateList = this.gameObject.GetComponent<PlayerStateList>();
+        playerControll = this.gameObject.GetComponent<BasicPlayerControll>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
-        PlayerStateList playerStateList = this.gameObject.GetComponent<PlayerStateList>();
-        BasicPlayerControll playerControll = this.gameObject.GetComponent<BasicPlayerControll>();
-
         foodBattlePlayer foodGameplay = null;
         if (this.gameObject.GetComponent<foodBattlePlayer>() != null)
             foodGameplay = this.gameObject.GetComponent<foodBattlePlayer>();
@@ -71,21 +72,24 @@ public class ColliderPlayerTrigger : MonoBehaviour
                     //死亡玩家吃到時的反應
                     if (collision.transform.parent != this.gameObject.transform && playerControll.deadBubble == null)
                     {
-                        collision.transform.position = playerControll.deadBubbleOnHand.transform.position;
-                        collision.transform.parent = playerControll.deadBubbleOnHand.transform;
-                        playerControll.deadBubble = collision.gameObject;
-
-                        if (collision.GetComponent<Rigidbody2D>() != null)
-                            Destroy(collision.GetComponent<Rigidbody2D>());
-
-                        //第二模式相關
-                        if (collision.GetComponent<fallingPart>() != null) 
+                        if (!collision.transform.parent.CompareTag("GhostPlayer")) 
                         {
-                            Destroy(collision.GetComponent<fallingPart>());
-                        }
+                            collision.transform.position = playerControll.deadBubbleOnHand.transform.position;
+                            collision.transform.parent = playerControll.deadBubbleOnHand.transform;
+                            playerControll.deadBubble = collision.gameObject;
 
-                        if (foodBattleManager.instance != null)
-                            foodBattleManager.instance.bubbleDetect();
+                            if (collision.GetComponent<Rigidbody2D>() != null)
+                                Destroy(collision.GetComponent<Rigidbody2D>());
+
+                            //第二模式相關
+                            if (collision.GetComponent<fallingPart>() != null)
+                            {
+                                Destroy(collision.GetComponent<fallingPart>());
+                            }
+
+                            if (foodBattleManager.instance != null)
+                                foodBattleManager.instance.bubbleDetect();
+                        }
 
                     }
                 }
@@ -120,7 +124,6 @@ public class ColliderPlayerTrigger : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        PlayerStateList playerStateList = this.gameObject.GetComponent<PlayerStateList>();
         BasicPlayerControll playerControll = this.gameObject.GetComponent<BasicPlayerControll>();
 
         if (collision.tag == "DashAttack" && !playerStateList.dead)
@@ -137,6 +140,23 @@ public class ColliderPlayerTrigger : MonoBehaviour
                     Debug.LogError("出錯 玩家不正常");
 
             }
+        }
+    }
+
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {  
+        if (collision.gameObject.CompareTag("Platform")) 
+        {
+            playerStateList.platform = collision.gameObject;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Platform"))
+        {
+            playerStateList.platform = null;
         }
     }
 }

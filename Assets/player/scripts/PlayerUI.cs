@@ -136,14 +136,10 @@ public class PlayerUI : MonoBehaviour
                             if (pControll.FoodColor == ItemManager.foodColor.white)
                             {
                                 bubbleColor.sprite = bubble[0];
-                                ShinyW.gameObject.SetActive(true);
-                                ShinyB.gameObject.SetActive(false);
                             }
                             else if (pControll.FoodColor == ItemManager.foodColor.black)
                             {
                                 bubbleColor.sprite = bubble[1];
-                                ShinyB.gameObject.SetActive(true);
-                                ShinyW.gameObject.SetActive(false);
                             }
                             bubbleColor.gameObject.SetActive(true);
                         }

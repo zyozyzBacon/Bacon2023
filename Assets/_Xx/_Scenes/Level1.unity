@@ -1472,7 +1472,7 @@ GameObject:
   - component: {fileID: 155258551}
   m_Layer: 7
   m_Name: telephonePole_1
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4399,7 +4399,7 @@ GameObject:
   - component: {fileID: 549211422}
   m_Layer: 7
   m_Name: S3_1
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4967,7 +4967,7 @@ GameObject:
   - component: {fileID: 615889623}
   m_Layer: 7
   m_Name: S1_1
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15529,7 +15529,7 @@ GameObject:
   - component: {fileID: 1186715680}
   m_Layer: 7
   m_Name: S4_1
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16669,7 +16669,7 @@ GameObject:
   - component: {fileID: 1275667330}
   m_Layer: 7
   m_Name: S2_1
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23566,7 +23566,7 @@ GameObject:
   - component: {fileID: 1951219180}
   m_Layer: 7
   m_Name: toilet
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

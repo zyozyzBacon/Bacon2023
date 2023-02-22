@@ -46,6 +46,7 @@ public class PlayerChooseColorManager : MonoBehaviour
 
     public void init()
     {
+            
         var devices = InputSystem.devices;
 
         int d = 0;
