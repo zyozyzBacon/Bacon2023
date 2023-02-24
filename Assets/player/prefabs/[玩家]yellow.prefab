@@ -1549,6 +1549,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8db5122cdc4cd5e46a8c7f857e385746, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walk: {fileID: 8300000, guid: 2ab90f8b76f87df4ea549359fca2764a, type: 3}
+  walk: {fileID: 8300000, guid: 5fddfeb063ebf0741ac7df972e374f59, type: 3}
   hit: {fileID: 8300000, guid: 4af506b65ba01c846a6918523423b2f6, type: 3}
-  jump: {fileID: 8300000, guid: 03386f58bb7b3604ea553d0cc87303bf, type: 3}
+  jump: {fileID: 8300000, guid: 2ab90f8b76f87df4ea549359fca2764a, type: 3}

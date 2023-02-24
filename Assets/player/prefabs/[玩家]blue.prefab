@@ -1518,9 +1518,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8db5122cdc4cd5e46a8c7f857e385746, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walk: {fileID: 8300000, guid: 2ab90f8b76f87df4ea549359fca2764a, type: 3}
+  walk1: {fileID: 8300000, guid: e7df082112ce6a44f8230f07de582b48, type: 3}
+  walk2: {fileID: 8300000, guid: 40e0d7dade731254b8177311f407f62b, type: 3}
   hit: {fileID: 8300000, guid: 4af506b65ba01c846a6918523423b2f6, type: 3}
-  jump: {fileID: 8300000, guid: 03386f58bb7b3604ea553d0cc87303bf, type: 3}
+  jump: {fileID: 8300000, guid: 2ab90f8b76f87df4ea549359fca2764a, type: 3}
 --- !u!1 &8558265941019963964
 GameObject:
   m_ObjectHideFlags: 0

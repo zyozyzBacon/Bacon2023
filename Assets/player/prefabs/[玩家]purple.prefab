@@ -688,7 +688,7 @@ MonoBehaviour:
     m_ActionId: 3ba8b5bd-9930-4747-bbae-b505c16f5302
     m_ActionName: Player01/UIMovement[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow,/XInputControllerWindows/leftStick,/XInputControllerWindows/dpad]
   m_NeverAutoSwitchControlSchemes: 1
-  m_DefaultControlScheme: Controller
+  m_DefaultControlScheme: Keyboard
   m_DefaultActionMap: Player01
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
@@ -970,9 +970,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8db5122cdc4cd5e46a8c7f857e385746, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walk: {fileID: 8300000, guid: 2ab90f8b76f87df4ea549359fca2764a, type: 3}
+  walk: {fileID: 8300000, guid: 5fddfeb063ebf0741ac7df972e374f59, type: 3}
   hit: {fileID: 8300000, guid: 4af506b65ba01c846a6918523423b2f6, type: 3}
-  jump: {fileID: 8300000, guid: 03386f58bb7b3604ea553d0cc87303bf, type: 3}
+  jump: {fileID: 8300000, guid: 2ab90f8b76f87df4ea549359fca2764a, type: 3}
 --- !u!1 &5526666599943458014
 GameObject:
   m_ObjectHideFlags: 0

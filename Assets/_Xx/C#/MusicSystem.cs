@@ -5,7 +5,7 @@ using UnityEngine;
 public class MusicSystem : MonoBehaviour
 {
     AudioSource audio;
-    public AudioClip walk,hit,jump;
+    public AudioClip walk1, walk2, hit,jump;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,9 +17,17 @@ public class MusicSystem : MonoBehaviour
     {
        
     }
-    public void walkMusic()
+    public void StopMusic()
     {
-        audio.PlayOneShot(walk, 0.7f);
+        audio.Stop();
+    }
+    public void walk1Music()
+    {
+        audio.PlayOneShot(walk1, 0.7f);
+    }
+    public void walk2Music()
+    {
+        audio.PlayOneShot(walk2, 0.7f);
     }
     public void HitMusic()
     {
@@ -29,4 +37,5 @@ public class MusicSystem : MonoBehaviour
     {
         audio.PlayOneShot(jump, 0.7f);
     }
+    
 }
