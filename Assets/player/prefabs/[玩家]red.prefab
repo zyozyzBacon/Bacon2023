@@ -1034,6 +1034,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 3ba8b5bd-9930-4747-bbae-b505c16f5302
     m_ActionName: Player01/UIMovement[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow,/XInputControllerWindows/leftStick,/XInputControllerWindows/dpad]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6269976194884617686}
+        m_TargetAssemblyTypeName: BasicPlayerControll, Assembly-CSharp
+        m_MethodName: SetInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 3d923041-e80d-42ce-b32f-ddb16338a5e9
+    m_ActionName: Set/Set[/XInputControllerWindows/select]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: Controller
   m_DefaultActionMap: Player01
@@ -1153,6 +1169,11 @@ MonoBehaviour:
   deadBubbleOnHand: {fileID: 7975597691480805279}
   bubblesforItemCurrent: 0
   animE: {fileID: 561837811562040744}
+  Set: {fileID: 6056731264766856335, guid: 11d5a876ac099714cb3620fbb7a96169, type: 3}
+  Button: {fileID: 2523653555913926586, guid: c58fe149c97111244abd6ed04e64b0bb, type: 3}
+  EventSystem: {fileID: 0}
+  One: {fileID: 0}
+  Two: {fileID: 0}
 --- !u!114 &431854477724681242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1321,6 +1342,7 @@ MonoBehaviour:
   walk: {fileID: 8300000, guid: 5fddfeb063ebf0741ac7df972e374f59, type: 3}
   hit: {fileID: 8300000, guid: 4af506b65ba01c846a6918523423b2f6, type: 3}
   jump: {fileID: 8300000, guid: 2ab90f8b76f87df4ea549359fca2764a, type: 3}
+  leaflet: {fileID: 0}
 --- !u!1 &6371094793938156716
 GameObject:
   m_ObjectHideFlags: 0

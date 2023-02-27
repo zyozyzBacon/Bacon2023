@@ -563,4 +563,24 @@ public class BasicPlayerControll : MonoBehaviour
 
 
     //使用道具相關/////////////////////////////////////////////////////
+
+
+
+    public GameObject Set;
+    int a = 0;
+
+    public void SetInput(InputAction.CallbackContext context)
+    {
+        if (a == 0)
+        {
+            AudioManager.ButtonAudio();
+            Instantiate(Set, Vector2.zero, Quaternion.identity);
+        }
+        else if (a == 1)
+        {
+            AudioManager.ButtonAudio();
+            Destroy(Set);
+        }
+
+    }
 }

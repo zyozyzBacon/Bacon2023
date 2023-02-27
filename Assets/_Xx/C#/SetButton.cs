@@ -32,6 +32,15 @@ public class SetButton : MonoBehaviour
         }
 
     }
+    public void PlayGame(string sceneName)//切換場景
+    {
+        AudioManager.Button2Audio();
+        SceneManager.LoadScene(sceneName);
+    }
+    public void PlaySelect()//切換選擇
+    {
+        AudioManager.ButtonAudio();
+    }
     public void Sound()//聲音
     {
 
