@@ -124,6 +124,7 @@ public class BasicPlayerControll : MonoBehaviour
 
 
     }
+    
 
     //移動相關/////////////////////////////////////////////////////////
     public void derictionInput(InputAction.CallbackContext context) //方向輸入
@@ -136,7 +137,7 @@ public class BasicPlayerControll : MonoBehaviour
         if (!pState.dashing && !pState.damaged)
         {
             rb.velocity = new Vector2(moveInput.x == 0 ? 0 : (Mathf.Sign(moveInput.x) * walkSpeed), rb.velocity.y);
-
+            
             if (moveInput.x > 0)
             {
                 transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
@@ -157,6 +158,7 @@ public class BasicPlayerControll : MonoBehaviour
             if (moveInput.x != 0&&IsGrounded())
             {
                 animE.SetBool("WalkE", true);
+                
             }
             else
             {
@@ -165,7 +167,7 @@ public class BasicPlayerControll : MonoBehaviour
             }
         }
     }
-
+    
 
     //移動相關/////////////////////////////////////////////////////////
     //跳躍相關/////////////////////////////////////////////////////////
@@ -174,7 +176,7 @@ public class BasicPlayerControll : MonoBehaviour
     {
         if (context.started == false) return;
         JumpBuffer = 0.15f;
-
+        
     }
 
 
@@ -185,8 +187,6 @@ public class BasicPlayerControll : MonoBehaviour
             jumpAirCurrent = 0;
             pState.jumping = false;
             anim.SetBool("Jump", false);
-
-
         }
         else
         {
@@ -194,11 +194,9 @@ public class BasicPlayerControll : MonoBehaviour
             {
                 anim.SetBool("Jump", true);
                 anim.SetTrigger("JumpTrigger");
-
             }
 
             pState.jumping = true;
-
         }
 
         //讓墜落速度有最大值極限而不是無限加速墜落
@@ -213,6 +211,8 @@ public class BasicPlayerControll : MonoBehaviour
         else
             return false;
     }
+
+    
 
     //跳躍相關/////////////////////////////////////////////////////////
     //衝刺相關/////////////////////////////////////////////////////////
@@ -360,6 +360,7 @@ public class BasicPlayerControll : MonoBehaviour
             Debug.Log("往右邊暈眩");
         }
     }
+   
 
     IEnumerator dizzyCount(float seconds)
     {

@@ -1007,8 +1007,8 @@ GameObject:
   - component: {fileID: 8307803189228372028}
   - component: {fileID: 2429148319472239088}
   - component: {fileID: -5518708224558866277}
-  - component: {fileID: 8379301594876047596}
-  - component: {fileID: 7210354497828103547}
+  - component: {fileID: -3123484313356476678}
+  - component: {fileID: 3093884773273318268}
   m_Layer: 8
   m_Name: "[\u73A9\u5BB6]blue"
   m_TagString: Player
@@ -1410,7 +1410,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: caf4c9bfee8497b45a7307e07bd0d8e6, type: 3}
   ShinyB: {fileID: 8012865463622841224}
   ShinyW: {fileID: 2721002547224444972}
---- !u!82 &8379301594876047596
+--- !u!82 &-3123484313356476678
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1506,7 +1506,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &7210354497828103547
+--- !u!114 &3093884773273318268
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1518,8 +1518,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8db5122cdc4cd5e46a8c7f857e385746, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walk1: {fileID: 8300000, guid: e7df082112ce6a44f8230f07de582b48, type: 3}
-  walk2: {fileID: 8300000, guid: 40e0d7dade731254b8177311f407f62b, type: 3}
+  Idle: {fileID: 0}
+  walk: {fileID: 8300000, guid: 5fddfeb063ebf0741ac7df972e374f59, type: 3}
   hit: {fileID: 8300000, guid: 4af506b65ba01c846a6918523423b2f6, type: 3}
   jump: {fileID: 8300000, guid: 2ab90f8b76f87df4ea549359fca2764a, type: 3}
 --- !u!1 &8558265941019963964

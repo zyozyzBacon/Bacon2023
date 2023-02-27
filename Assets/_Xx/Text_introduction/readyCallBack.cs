@@ -9,4 +9,8 @@ public class readyCallBack : MonoBehaviour
         MainGameManager.instance.startGame();
         instruction.instance.ReadyGoPanel.SetActive(true);
     }
+    public void level1Music()
+    {
+        AudioManager.Level1Audio();
+    }
 }

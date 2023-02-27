@@ -806,8 +806,8 @@ GameObject:
   - component: {fileID: 431854477724681242}
   - component: {fileID: 2329252439950642894}
   - component: {fileID: 1503389624461439249}
-  - component: {fileID: 7279536515160944957}
-  - component: {fileID: 8540735418646244907}
+  - component: {fileID: -3352672053271503503}
+  - component: {fileID: -898125145785318640}
   m_Layer: 8
   m_Name: "[\u73A9\u5BB6]red"
   m_TagString: Player
@@ -1209,7 +1209,7 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: -1.3}
   m_Size: {x: 3, y: 4}
   m_Direction: 0
---- !u!82 &7279536515160944957
+--- !u!82 &-3352672053271503503
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1305,7 +1305,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &8540735418646244907
+--- !u!114 &-898125145785318640
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1317,6 +1317,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8db5122cdc4cd5e46a8c7f857e385746, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Idle: {fileID: 0}
   walk: {fileID: 8300000, guid: 5fddfeb063ebf0741ac7df972e374f59, type: 3}
   hit: {fileID: 8300000, guid: 4af506b65ba01c846a6918523423b2f6, type: 3}
   jump: {fileID: 8300000, guid: 2ab90f8b76f87df4ea549359fca2764a, type: 3}
