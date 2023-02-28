@@ -1239,7 +1239,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8307803189228372028}
         m_TargetAssemblyTypeName: BasicPlayerControll, Assembly-CSharp
-        m_MethodName: SetInput
+        m_MethodName: HomeInput
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1249,7 +1249,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: a9de4cbc-7bdd-43ee-8a59-717c2fdf020b
+    m_ActionId: 93d001d2-38fd-45e1-aa11-6915a98d4785
     m_ActionName: Player01/Set[/XInputControllerWindows/select]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: Controller
@@ -1386,7 +1386,6 @@ MonoBehaviour:
   deadBubbleOnHand: {fileID: 5397373949899426421}
   bubblesforItemCurrent: 0
   animE: {fileID: 2303758105307937121}
-  Set: {fileID: 6548557810772085747, guid: 11d5a876ac099714cb3620fbb7a96169, type: 3}
 --- !u!114 &2429148319472239088
 MonoBehaviour:
   m_ObjectHideFlags: 0
