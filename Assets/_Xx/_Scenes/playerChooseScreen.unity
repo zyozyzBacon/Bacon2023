@@ -3174,7 +3174,6 @@ MonoBehaviour:
   gameplayMode: 0
   gameMode: 1
   pDataObject: {fileID: 1931710813}
-  pData: {fileID: 1931710815}
   stop: 0
   playerSprites:
   - {fileID: 21300000, guid: 320213500f555254fb84608ac8ae6c26, type: 3}

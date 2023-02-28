@@ -178,10 +178,6 @@ public class tvPartGameplay : MonoBehaviour
             }
         }
 
-
-        //�ݸɥR
-
-        this.gameObject.GetComponent<ItemManager>().remoteTaken();
     }
 
     public enum tvState 

@@ -871,10 +871,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemList: []
-  remoteON: 0
-  remoteTime: 5
-  remoteObject: {fileID: 1541518408358196023, guid: 43d3b3c914fffe34abe563638149b71e, type: 3}
-  remotePostion: {fileID: 0}
 --- !u!114 &256702291
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -937,6 +933,7 @@ MonoBehaviour:
   - {x: 254, y: 93, z: 93}
   InstructionBool: 0
   InstructionCanvas: {fileID: 0}
+  totalTime: -1
 --- !u!114 &256702293
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2918,7 +2915,7 @@ GameObject:
   - component: {fileID: 1264707622}
   m_Layer: 7
   m_Name: S1_1
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

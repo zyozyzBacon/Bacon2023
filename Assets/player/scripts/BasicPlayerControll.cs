@@ -54,6 +54,7 @@ public class BasicPlayerControll : MonoBehaviour
     [Tooltip("槍物件")][SerializeField] private GameObject GunPower;
     [Tooltip("子彈物件")][SerializeField] private GameObject BulletPrefabs;
     [Tooltip("死亡後手上珍珠子物件")] public GameObject deadBubbleOnHand;
+    [Tooltip("吐珍珠")][SerializeField] private GameObject thorwOutBubble;
 
     Vector2 moveInput;
     int jumpAirCurrent;
@@ -204,11 +205,13 @@ public class BasicPlayerControll : MonoBehaviour
 
     private IEnumerator colliderDisable(float seconds) 
     {
-        BoxCollider2D platformCollider = pState.platform.GetComponent<BoxCollider2D>();
-
-        Physics2D.IgnoreCollision(Collider, platformCollider);
-        yield return new WaitForSeconds(seconds);
-        Physics2D.IgnoreCollision(Collider, platformCollider, false);
+        if (pState.platform != null)
+        {
+            BoxCollider2D platformCollider = pState.platform.GetComponent<BoxCollider2D>();
+            Physics2D.IgnoreCollision(Collider, platformCollider);
+            yield return new WaitForSeconds(seconds);
+            Physics2D.IgnoreCollision(Collider, platformCollider, false);
+        }
     }
 
     //跳躍相關/////////////////////////////////////////////////////////
@@ -425,26 +428,41 @@ public class BasicPlayerControll : MonoBehaviour
         //如果吃到顏色不對
         if (FoodColor != foodObject.GetComponent<foodpart>().FoodColor)
         {
-            FoodColor = foodObject.GetComponent<foodpart>().FoodColor;
-            bubbles = 0;
-        }
-        bubbles++;
-
-
-        bubblesforItemCurrent++;
-
-        if (bubblesforItemCurrent >= bubblesforItem)
-        {
-            bubblesforItemCurrent = 0;
-            if (CurrentItem == null)
+            if (bubbles > 0) 
             {
-                itemGet();
+                int r = 180 / (bubbles - 1);
+                for (int i = 0; i < bubbles; i++)
+                {
+
+                    GameObject b = Instantiate(thorwOutBubble, transform.position, 
+                        Quaternion.Euler(0,0,90 - r * i));
+
+                    b.transform.parent = null;
+
+                    b.GetComponent<Rigidbody2D>().velocity = b.transform.up * 2;
+
+                    Physics2D.IgnoreCollision(Collider, b.GetComponent<Collider2D>());
+                }
             }
 
+            bubbles = 0;
         }
+        else
+            bubbles++;
 
-        StartCoroutine(eatTimer(0.15f));
-    }
+
+            bubblesforItemCurrent++;
+
+            if (bubblesforItemCurrent >= bubblesforItem)
+            {
+                bubblesforItemCurrent = 0;
+                if (CurrentItem == null)
+                {
+                    itemGet();
+                }
+            }
+            StartCoroutine(eatTimer(0.15f));
+        }
 
     IEnumerator eatTimer(float seconds)
     {

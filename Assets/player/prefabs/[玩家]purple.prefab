@@ -806,7 +806,7 @@ MonoBehaviour:
   attackTime: 0.1
   allowAttack: 0
   deadBubble: {fileID: 0}
-  FoodColor: 0
+  FoodColor: 2
   CurrentItem: {fileID: 0}
   tvModePart: {fileID: 3274154269385763781}
   DashCollider: {fileID: 3484407778837143670}
@@ -814,6 +814,7 @@ MonoBehaviour:
   GunPower: {fileID: 6608362658914572748}
   BulletPrefabs: {fileID: 5315280106085442592, guid: 76c4a1850b22d2b408ed2d579f0e71cf, type: 3}
   deadBubbleOnHand: {fileID: 8982647635596643712}
+  thorwOutBubble: {fileID: 4494534264538960302, guid: e7e62100e6a4afa4c8a8f17d94d6be40, type: 3}
   bubblesforItemCurrent: 0
 --- !u!114 &1727558075808679429
 MonoBehaviour:
@@ -853,8 +854,6 @@ MonoBehaviour:
   bubble:
   - {fileID: 21300000, guid: 836f1fc5e76726f4d92390a9591fc00b, type: 3}
   - {fileID: 21300000, guid: caf4c9bfee8497b45a7307e07bd0d8e6, type: 3}
-  ShinyB: {fileID: 0}
-  ShinyW: {fileID: 0}
 --- !u!70 &9141427178832539265
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
