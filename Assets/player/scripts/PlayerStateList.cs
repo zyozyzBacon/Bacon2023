@@ -19,4 +19,5 @@ public class PlayerStateList : MonoBehaviour
     public bool eating;
     public bool usingItem;
     public bool readed;
+    public GameObject platform;
 }

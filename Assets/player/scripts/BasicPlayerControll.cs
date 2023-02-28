@@ -8,52 +8,53 @@ using UnityEngine.UIElements.Experimental;
 public class BasicPlayerControll : MonoBehaviour
 {
     [Header("辨識相關")]
-    [Tooltip("玩家")] [SerializeField] public int ID;
-    [Tooltip("顏色")] [SerializeField] public int Color;
+    [Tooltip("玩家")][SerializeField] public int ID;
+    [Tooltip("顏色")][SerializeField] public int Color;
 
     [Header("移動相關")]
-    [Tooltip("移動速度")] [SerializeField] float walkSpeed;
-    [Tooltip("電視模式速度")] [SerializeField] public float tvMoveSpeed;
+    [Tooltip("移動速度")][SerializeField] float walkSpeed;
+    [Tooltip("電視模式速度")][SerializeField] public float tvMoveSpeed;
 
     [Header("跳躍相關")]
-    [Tooltip("跳躍力道")] [SerializeField] float jumpForce;
-    [Tooltip("墜落速度極限")] [SerializeField] float fallSpeed;
-    [Tooltip("是否允許多段跳躍")] [SerializeField] bool doubleJump;
-    [Tooltip("多段跳躍次數")] [SerializeField] int jumpAir;
+    [Tooltip("跳躍力道")][SerializeField] float jumpForce;
+    [Tooltip("墜落速度極限")][SerializeField] float fallSpeed;
+    [Tooltip("是否允許多段跳躍")][SerializeField] bool doubleJump;
+    [Tooltip("多段跳躍次數")][SerializeField] int jumpAir;
 
     [Header("受傷相關")]
-    [Tooltip("受傷後無敵時間")] [SerializeField] float recoveryTime;
-    [Tooltip("受傷後暈眩時間")] [SerializeField] float dizzyTime;
-    [Tooltip("受傷後擊退力道")] [SerializeField] float knockDown;
+    [Tooltip("受傷後無敵時間")][SerializeField] float recoveryTime;
+    [Tooltip("受傷後暈眩時間")][SerializeField] float dizzyTime;
+    [Tooltip("受傷後擊退力道")][SerializeField] float knockDown;
 
     [Header("地面物件檢測")]
-    [Tooltip("射線檢測距離(高度)")] [SerializeField] float groundCheckY;
-    [Tooltip("偵測地面物件Layer")] [SerializeField] LayerMask groundLayer;
+    [Tooltip("射線檢測距離(高度)")][SerializeField] float groundCheckY;
+    [Tooltip("偵測地面物件Layer")][SerializeField] LayerMask groundLayer;
 
     [Header("衝刺檢測")]
-    [Tooltip("衝刺速度")] [SerializeField] float dashSpeed;
-    [Tooltip("衝刺時間")] [SerializeField] float dashTime;
-    [Tooltip("衝刺冷卻所需時間")] [SerializeField] float dashCD;
+    [Tooltip("衝刺速度")][SerializeField] float dashSpeed;
+    [Tooltip("衝刺時間")][SerializeField] float dashTime;
+    [Tooltip("衝刺冷卻所需時間")][SerializeField] float dashCD;
 
     [Header("玩法相關")]
-    [Tooltip("珍珠數量")] [SerializeField] public int bubbles;
-    [Tooltip("珍珠換道具數量")] [SerializeField] public int bubblesforItem;
-    [Tooltip("珍珠子彈速度")] [SerializeField] public float bubbleSpeed;
-    [Tooltip("攻擊緩衝時間")] [SerializeField] public float attackTime;
-    [Tooltip("是否允許攻擊")] [SerializeField] public bool allowAttack;
-    [Tooltip("死亡後手上珍珠")] [SerializeField] public GameObject deadBubble;
-    [Tooltip("珍珠顏色")] [SerializeField] public ItemManager.foodColor FoodColor;
+    [Tooltip("珍珠數量")][SerializeField] public int bubbles;
+    [Tooltip("珍珠換道具數量")][SerializeField] public int bubblesforItem;
+    [Tooltip("珍珠子彈速度")][SerializeField] public float bubbleSpeed;
+    [Tooltip("攻擊緩衝時間")][SerializeField] public float attackTime;
+    [Tooltip("是否允許攻擊")][SerializeField] public bool allowAttack;
+    [Tooltip("死亡後手上珍珠")][SerializeField] public GameObject deadBubble;
+    [Tooltip("珍珠顏色")][SerializeField] public ItemManager.foodColor FoodColor;
 
     [Header("道具相關")]
-    [Tooltip("手上道具ID")] [SerializeField] public GameObject CurrentItem;
+    [Tooltip("手上道具ID")][SerializeField] public GameObject CurrentItem;
 
     [Header("[勿動]抓取子物件相關")]
-    [Tooltip("電視模式物件")] [SerializeField] public GameObject tvModePart;
-    [Tooltip("衝刺撞人物件")] [SerializeField] private GameObject DashCollider;
-    [Tooltip("幽靈模式物件")] [SerializeField] private GameObject GhostPlayer;
-    [Tooltip("槍物件")] [SerializeField] private GameObject GunPower;
-    [Tooltip("子彈物件")] [SerializeField] private GameObject BulletPrefabs;
+    [Tooltip("電視模式物件")][SerializeField] public GameObject tvModePart;
+    [Tooltip("衝刺撞人物件")][SerializeField] private GameObject DashCollider;
+    [Tooltip("幽靈模式物件")][SerializeField] private GameObject GhostPlayer;
+    [Tooltip("槍物件")][SerializeField] private GameObject GunPower;
+    [Tooltip("子彈物件")][SerializeField] private GameObject BulletPrefabs;
     [Tooltip("死亡後手上珍珠子物件")] public GameObject deadBubbleOnHand;
+    [Tooltip("吐珍珠")][SerializeField] private GameObject thorwOutBubble;
 
     Vector2 moveInput;
     int jumpAirCurrent;
@@ -66,9 +67,7 @@ public class BasicPlayerControll : MonoBehaviour
     PlayerStateList pState;
     SpriteRenderer spriteRenderer;
     Collider2D Collider;
-
     Animator anim;
-    public Animator animE;
 
     void Awake()
     {
@@ -80,7 +79,6 @@ public class BasicPlayerControll : MonoBehaviour
         anim = GetComponent<Animator>();
         jumpAirCurrent = 0;
         bubblesforItemCurrent = 0;
-
     }
 
     void Update()
@@ -108,10 +106,10 @@ public class BasicPlayerControll : MonoBehaviour
         {
             if (!pState.damaged)
             {
-
                 if (IsGrounded())
                 {
-                    rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+
+                        rb.velocity = new Vector2(rb.velocity.x, jumpForce);
                 }
                 else if (doubleJump && jumpAirCurrent < jumpAir)
                 {
@@ -121,10 +119,7 @@ public class BasicPlayerControll : MonoBehaviour
                 JumpBuffer = 0;
             }
         }
-
-
     }
-    
 
     //移動相關/////////////////////////////////////////////////////////
     public void derictionInput(InputAction.CallbackContext context) //方向輸入
@@ -137,7 +132,7 @@ public class BasicPlayerControll : MonoBehaviour
         if (!pState.dashing && !pState.damaged)
         {
             rb.velocity = new Vector2(moveInput.x == 0 ? 0 : (Mathf.Sign(moveInput.x) * walkSpeed), rb.velocity.y);
-            
+
             if (moveInput.x > 0)
             {
                 transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
@@ -152,22 +147,12 @@ public class BasicPlayerControll : MonoBehaviour
             }
 
             if (moveInput.x != 0)
-            {
                 anim.SetBool("Walk", true);
-            }
-            if (moveInput.x != 0&&IsGrounded())
-            {
-                animE.SetBool("WalkE", true);
-                
-            }
             else
-            {
                 anim.SetBool("Walk", false);
-                animE.SetBool("WalkE", false);
-            }
         }
     }
-    
+
 
     //移動相關/////////////////////////////////////////////////////////
     //跳躍相關/////////////////////////////////////////////////////////
@@ -176,9 +161,14 @@ public class BasicPlayerControll : MonoBehaviour
     {
         if (context.started == false) return;
         JumpBuffer = 0.15f;
-        
     }
 
+    public void jumpDownInput(InputAction.CallbackContext context) 
+    {
+        if (context.started == false) return;
+        StartCoroutine(colliderDisable(0.25f));
+
+    }
 
     private void jumpDetect() //跳躍相關的狀態偵測用(Update())
     {
@@ -197,6 +187,7 @@ public class BasicPlayerControll : MonoBehaviour
             }
 
             pState.jumping = true;
+
         }
 
         //讓墜落速度有最大值極限而不是無限加速墜落
@@ -212,7 +203,16 @@ public class BasicPlayerControll : MonoBehaviour
             return false;
     }
 
-    
+    private IEnumerator colliderDisable(float seconds) 
+    {
+        if (pState.platform != null)
+        {
+            BoxCollider2D platformCollider = pState.platform.GetComponent<BoxCollider2D>();
+            Physics2D.IgnoreCollision(Collider, platformCollider);
+            yield return new WaitForSeconds(seconds);
+            Physics2D.IgnoreCollision(Collider, platformCollider, false);
+        }
+    }
 
     //跳躍相關/////////////////////////////////////////////////////////
     //衝刺相關/////////////////////////////////////////////////////////
@@ -234,14 +234,11 @@ public class BasicPlayerControll : MonoBehaviour
     {
         if (pState.dashing)
         {
-            animE.SetBool("RushE", true);
             if (pState.facingRight)
                 rb.velocity = Vector2.right * dashSpeed;
             else
                 rb.velocity = Vector2.left * dashSpeed;
         }
-        else
-            animE.SetBool("RushE", false);
     }
 
     public IEnumerator dashCount(float seconds)
@@ -348,7 +345,7 @@ public class BasicPlayerControll : MonoBehaviour
         StartCoroutine(dizzyCount(dizzyTime));
         StartCoroutine(damagedCount(dizzyTime + recoveryTime));
         anim.SetTrigger("Hit");
-        animE.SetTrigger("HitE");
+
         if (others.GetComponent<Rigidbody2D>().velocity.x < 0)
         {
             rb.velocity = (Vector2.left * knockDown);
@@ -360,7 +357,6 @@ public class BasicPlayerControll : MonoBehaviour
             Debug.Log("往右邊暈眩");
         }
     }
-   
 
     IEnumerator dizzyCount(float seconds)
     {
@@ -382,7 +378,7 @@ public class BasicPlayerControll : MonoBehaviour
     public void retired()
     {
         anim.SetTrigger("Retired");
-        animE.SetTrigger("DeadE");
+
         pState.dead = true;
         if (MainGameManager.instance != null)
             MainGameManager.instance.gameOver();
@@ -400,8 +396,7 @@ public class BasicPlayerControll : MonoBehaviour
         tvMoveSpeed = walkSpeed;
         pState.pause = true;
         Destroy(pUI.uiPart.gameObject);
-        Destroy(pUI.ShinyB.gameObject);
-        Destroy(pUI.ShinyW.gameObject);
+
         yield return new WaitForSeconds(seconds);
 
         pState.pause = false;
@@ -433,26 +428,41 @@ public class BasicPlayerControll : MonoBehaviour
         //如果吃到顏色不對
         if (FoodColor != foodObject.GetComponent<foodpart>().FoodColor)
         {
-            FoodColor = foodObject.GetComponent<foodpart>().FoodColor;
-            bubbles = 0;
-        }
-        bubbles++;
-
-
-        bubblesforItemCurrent++;
-
-        if (bubblesforItemCurrent >= bubblesforItem)
-        {
-            bubblesforItemCurrent = 0;
-            if (CurrentItem == null)
+            if (bubbles > 0) 
             {
-                itemGet();
+                int r = 180 / (bubbles - 1);
+                for (int i = 0; i < bubbles; i++)
+                {
+
+                    GameObject b = Instantiate(thorwOutBubble, transform.position, 
+                        Quaternion.Euler(0,0,90 - r * i));
+
+                    b.transform.parent = null;
+
+                    b.GetComponent<Rigidbody2D>().velocity = b.transform.up * 2;
+
+                    Physics2D.IgnoreCollision(Collider, b.GetComponent<Collider2D>());
+                }
             }
 
+            bubbles = 0;
         }
+        else
+            bubbles++;
 
-        StartCoroutine(eatTimer(0.15f));
-    }
+
+            bubblesforItemCurrent++;
+
+            if (bubblesforItemCurrent >= bubblesforItem)
+            {
+                bubblesforItemCurrent = 0;
+                if (CurrentItem == null)
+                {
+                    itemGet();
+                }
+            }
+            StartCoroutine(eatTimer(0.15f));
+        }
 
     IEnumerator eatTimer(float seconds)
     {
@@ -563,6 +573,4 @@ public class BasicPlayerControll : MonoBehaviour
 
 
     //使用道具相關/////////////////////////////////////////////////////
-
-
 }

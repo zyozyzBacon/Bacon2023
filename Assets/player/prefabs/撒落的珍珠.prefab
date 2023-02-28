@@ -71,10 +71,10 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1882508965
-  m_SortingLayer: 10
+  m_SortingLayer: 11
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 73f0a945b7d50b941938efa7a4ca0c90, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.61960787}
+  m_Color: {r: 1, g: 0.7490566, b: 0.7490566, a: 0.61960787}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -266,14 +266,14 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2024457485
-  m_SortingLayer: 11
+  m_SortingLayer: 12
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 836f1fc5e76726f4d92390a9591fc00b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: caf4c9bfee8497b45a7307e07bd0d8e6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 4.11, y: 4.11}
+  m_Size: {x: 4, y: 3.99}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -293,7 +293,7 @@ GameObject:
   - component: {fileID: 4494534264538960274}
   - component: {fileID: 8758933016450657898}
   m_Layer: 12
-  m_Name: "\u73CD\u73E0(\u6A21\u5F0F1) 2"
+  m_Name: "\u6492\u843D\u7684\u73CD\u73E0"
   m_TagString: Bubble
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -354,7 +354,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2024457485
-  m_SortingLayer: 11
+  m_SortingLayer: 12
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -380,7 +380,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   food: 5
-  FoodColor: 1
+  FoodColor: 2
 --- !u!58 &4494534264538960274
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -522,11 +522,11 @@ MonoBehaviour:
   m_LightType: 3
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
-  m_Color: {r: 0.745283, g: 0.6103202, b: 0.2137415, a: 1}
+  m_Color: {r: 0.4528302, g: 0.0059807524, b: 0.0059807524, a: 1}
   m_Intensity: 0.85
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 0000000027fd0ffdb1c971f5632903005fa23b72573613755b31cb8f
+  m_ApplyToSortingLayers: 0000000027fd0ffdb1c971f5632903005fa23b72573613755b31cb8ff33a5587
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0

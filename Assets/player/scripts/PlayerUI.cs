@@ -22,8 +22,6 @@ public class PlayerUI : MonoBehaviour
     public Transform iconTransform;
     public Transform ItemTransform;
 
-    [SerializeField] private Sprite[] bubble;
-    private Image bubbleColor;
     private TextMeshProUGUI text;
     private Camera mCamera;
 
@@ -39,10 +37,6 @@ public class PlayerUI : MonoBehaviour
     private PlayerStateList pState;
     private BasicPlayerControll pControll;
     private foodBattlePlayer pFood;
-
-
-    public GameObject ShinyB;
-    public GameObject ShinyW;
 
     bool active;
     
@@ -86,9 +80,7 @@ public class PlayerUI : MonoBehaviour
                 uiPart = Instantiate(FoodPanel);
                 panelrt = uiPart.GetComponent<RectTransform>();
                 uiPart.transform.parent = GameObject.Find("Canvas").transform;
-
-                bubbleColor = uiPart.transform.GetChild(0).GetComponent<Image>();
-                text = uiPart.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+                text = uiPart.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
 
                 break;
         }
@@ -129,29 +121,7 @@ public class PlayerUI : MonoBehaviour
                     case MainGameManager.gameMode.foodBattle:
 
                         if (pFood != null)
-                            text.SetText(pFood.food.ToString());
-
-                        if (pControll.FoodColor != ItemManager.foodColor.none)
-                        {
-                            if (pControll.FoodColor == ItemManager.foodColor.white)
-                            {
-                                bubbleColor.sprite = bubble[0];
-                                ShinyW.gameObject.SetActive(true);
-                                ShinyB.gameObject.SetActive(false);
-                            }
-                            else if (pControll.FoodColor == ItemManager.foodColor.black)
-                            {
-                                bubbleColor.sprite = bubble[1];
-                                ShinyB.gameObject.SetActive(true);
-                                ShinyW.gameObject.SetActive(false);
-                            }
-                            bubbleColor.gameObject.SetActive(true);
-                        }
-                        else
-                        {
-                            bubbleColor.gameObject.SetActive(false);
-                            
-                        }
+                            text.SetText(pControll.bubbles.ToString());
 
                         break;
                 }

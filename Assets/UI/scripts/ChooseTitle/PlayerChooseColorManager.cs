@@ -20,7 +20,7 @@ public class PlayerChooseColorManager : MonoBehaviour
     public MainGameManager.gameMode gameMode;
 
     [SerializeField] private GameObject pDataObject;
-    public playerData pData;
+    private playerData pData;
 
     [SerializeField]private bool stop;
 
@@ -41,11 +41,13 @@ public class PlayerChooseColorManager : MonoBehaviour
         }
 
         init();
+        pData = pDataObject.GetComponent<playerData>();
         DontDestroyOnLoad(pDataObject);
     }
 
     public void init()
     {
+            
         var devices = InputSystem.devices;
 
         int d = 0;

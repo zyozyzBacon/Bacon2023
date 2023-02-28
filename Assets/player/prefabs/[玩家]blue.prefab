@@ -1007,8 +1007,6 @@ GameObject:
   - component: {fileID: 8307803189228372028}
   - component: {fileID: 2429148319472239088}
   - component: {fileID: -5518708224558866277}
-  - component: {fileID: -3123484313356476678}
-  - component: {fileID: 3093884773273318268}
   m_Layer: 8
   m_Name: "[\u73A9\u5BB6]blue"
   m_TagString: Player
@@ -1205,6 +1203,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 8307803189228372028}
+        m_TargetAssemblyTypeName: BasicPlayerControll, Assembly-CSharp
+        m_MethodName: jumpDownInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 4f0eed23-bdf5-4518-89d1-c39a3c1a53b6
     m_ActionName: Player01/Dash[/Keyboard/c]
   - m_PersistentCalls:
@@ -1235,22 +1245,6 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 3ba8b5bd-9930-4747-bbae-b505c16f5302
     m_ActionName: Player01/UIMovement[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8307803189228372028}
-        m_TargetAssemblyTypeName: BasicPlayerControll, Assembly-CSharp
-        m_MethodName: HomeInput
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 93d001d2-38fd-45e1-aa11-6915a98d4785
-    m_ActionName: Player01/Set[/XInputControllerWindows/select]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: Controller
   m_DefaultActionMap: Player01
@@ -1340,6 +1334,7 @@ MonoBehaviour:
   eating: 0
   usingItem: 0
   readed: 0
+  platform: {fileID: 0}
 --- !u!114 &8307803189228372028
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1376,7 +1371,7 @@ MonoBehaviour:
   attackTime: 0.1
   allowAttack: 0
   deadBubble: {fileID: 0}
-  FoodColor: 0
+  FoodColor: 2
   CurrentItem: {fileID: 0}
   tvModePart: {fileID: 1963486534113913904}
   DashCollider: {fileID: 438132318012204931}
@@ -1384,8 +1379,8 @@ MonoBehaviour:
   GunPower: {fileID: 7924659409848983097}
   BulletPrefabs: {fileID: 5315280106085442592, guid: 76c4a1850b22d2b408ed2d579f0e71cf, type: 3}
   deadBubbleOnHand: {fileID: 5397373949899426421}
+  thorwOutBubble: {fileID: 4494534264538960302, guid: e7e62100e6a4afa4c8a8f17d94d6be40, type: 3}
   bubblesforItemCurrent: 0
-  animE: {fileID: 2303758105307937121}
 --- !u!114 &2429148319472239088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1424,121 +1419,6 @@ MonoBehaviour:
   bubble:
   - {fileID: 21300000, guid: 836f1fc5e76726f4d92390a9591fc00b, type: 3}
   - {fileID: 21300000, guid: caf4c9bfee8497b45a7307e07bd0d8e6, type: 3}
-  ShinyB: {fileID: 8012865463622841224}
-  ShinyW: {fileID: 2721002547224444972}
---- !u!82 &-3123484313356476678
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8307803189228372022}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
---- !u!114 &3093884773273318268
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8307803189228372022}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8db5122cdc4cd5e46a8c7f857e385746, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Idle: {fileID: 0}
-  walk: {fileID: 8300000, guid: 5fddfeb063ebf0741ac7df972e374f59, type: 3}
-  hit: {fileID: 8300000, guid: 4af506b65ba01c846a6918523423b2f6, type: 3}
-  jump: {fileID: 8300000, guid: 2ab90f8b76f87df4ea549359fca2764a, type: 3}
-  leaflet: {fileID: 0}
 --- !u!1 &8558265941019963964
 GameObject:
   m_ObjectHideFlags: 0

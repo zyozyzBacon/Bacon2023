@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MainGameManager : MonoBehaviour
@@ -20,10 +22,13 @@ public class MainGameManager : MonoBehaviour
     [SerializeField] public GameObject TimerText;
     [SerializeField] private bool cameraLocked;
     [SerializeField] private GameObject[] bubbblePlayer = new GameObject[4];
-    [SerializeField] private Sprite[] playerIcon =  new Sprite[4];
+    [SerializeField] private Sprite[] playerIcon = new Sprite[4];
     [SerializeField] public Vector3[] playerIconColor = new Vector3[4];
     [SerializeField] public bool InstructionBool;
     [SerializeField] private GameObject InstructionCanvas;
+    [SerializeField] public float totalTime;
+    private float timeLeft;
+    [SerializeField] public TextMeshProUGUI textTime;
 
     private playerData pData;
 
@@ -40,12 +45,19 @@ public class MainGameManager : MonoBehaviour
         {
             instruction.instance.init();
         }
-        else 
+        else
         {
             startGame();
         }
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Numlock)) 
+        {
+            SceneManager.LoadScene("playerChooseScreen");
+        }
+    }
 
     private void init()
     {
@@ -61,11 +73,6 @@ public class MainGameManager : MonoBehaviour
             GameObject p = bubbblePlayer[pData.colorList[i]];
             this.gameObject.GetComponent<PlayerInputManager>().playerPrefab = p;
             p = this.gameObject.GetComponent<PlayerInputManager>().JoinPlayer().gameObject;
-
-            if (pData.keyboardTest)
-                p.GetComponent<PlayerInput>().defaultControlScheme = "Keyboard";
-            else
-                p.GetComponent<PlayerInput>().defaultControlScheme = "Controller";
 
             playerList.Add(i, p);
             p.transform.position = playerSpawn[i].position;
@@ -105,7 +112,7 @@ public class MainGameManager : MonoBehaviour
 
     public void startGame() 
     {
-        for(int i = 0;i< playerNum; i++)
+        for(int i = 0;i < playerNum; i++)
             playerList[i].GetComponent<PlayerStateList>().pause = false;
 
 
@@ -127,6 +134,12 @@ public class MainGameManager : MonoBehaviour
             default:
                 Console.WriteLine("未鎖定");
                 break;
+        }
+
+        if (totalTime != -1) 
+        {
+            timeLeft = totalTime;
+            StartCoroutine(Countdown());
         }
 
     }
@@ -164,6 +177,52 @@ public class MainGameManager : MonoBehaviour
                     Console.WriteLine("未鎖定");
                     break;
             }
+        }
+        else 
+        {
+            switch (GameMode)
+            {
+                case gameMode.foodBattle:
+
+                    for (int i = 0; i < playerNum; i++)
+                    {
+                        if (!playerList[i].GetComponent<PlayerStateList>().dead)
+                        {
+                            playerList[i].GetComponent<foodBattlePlayer>().hurgryAttackTime = 2f;
+                        }
+                    }
+
+                    break;
+            }
+        }
+    }
+
+    IEnumerator Countdown()
+    {
+        while (timeLeft > 0)
+        {
+            yield return new WaitForSeconds(1);
+            timeLeft--;
+            textTime.SetText(timeLeft.ToString());
+            Debug.Log(timeLeft);
+        }
+
+        for (int i = 0; i < playerNum; i++)
+            playerList[i].GetComponent<PlayerStateList>().pause = true;
+
+        switch (GameMode)
+        {
+            case gameMode.foodBattle:
+                foodBattleManager.instance.endGame(playerList);
+                break;
+            case gameMode.fallingBattle:
+                fallingGameManager.instance.endGame();
+                break;
+            case gameMode.deathBattle:
+                break;
+            default:
+                Console.WriteLine("未鎖定");
+                break;
         }
     }
 
