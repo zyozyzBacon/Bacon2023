@@ -12,11 +12,6 @@ public class foodBattleManager : MonoBehaviour
 
     [Tooltip("平台啟動點")][SerializeField] private GameObject PlatCore;
 
-    public GameObject[] bubblePrefab = new GameObject[2];
-    private Transform[] bubblePositon = new Transform[0];
-
-
-
     public void Awake()
     {
         instance = this;
@@ -28,19 +23,8 @@ public class foodBattleManager : MonoBehaviour
         PlatCore.GetComponent<platCore>().Active = true;
     }
 
-    public void endGame(Dictionary<int, GameObject> playerList) 
+    public void endGame() 
     {
-        for (int i = 0; i < bubblePositon.Length; i++)
-        {
-            if(bubblePositon[i].childCount > 0)
-                Destroy(bubblePositon[i].GetChild(0).gameObject);
-        }
-
-        for (int p = 0;p < playerList.Count; p++) 
-        {
-            playerList[p].GetComponent<foodBattlePlayer>().StopAllCoroutines();
-        }
-
         PlatCore.GetComponent<platCore>().Active = false;
     }
 

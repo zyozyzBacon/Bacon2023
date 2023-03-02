@@ -393,8 +393,6 @@ public class BasicPlayerControll : MonoBehaviour
         anim.SetTrigger("Retired");
         animE.SetTrigger("DeadE");
         pState.dead = true;
-        if (MainGameManager.instance != null)
-            MainGameManager.instance.gameOver();
 
         StartCoroutine(dead(2f));
     }
@@ -441,18 +439,17 @@ public class BasicPlayerControll : MonoBehaviour
         //如果吃到顏色不對
         if (FoodColor != foodObject.GetComponent<foodpart>().FoodColor)
         {
-            if (bubbles > 0) 
+            if (bubbles > 1)
             {
-                int r = 180 / (bubbles - 1);
+                int r = 160 / (bubbles - 1);
                 for (int i = 0; i < bubbles; i++)
                 {
-
-                    GameObject b = Instantiate(thorwOutBubble, transform.position, 
-                        Quaternion.Euler(0,0,90 - r * i));
+                    GameObject b = Instantiate(thorwOutBubble, transform.position,
+                        Quaternion.Euler(0, 0, 80 - r * i));
 
                     b.transform.parent = null;
 
-                    b.GetComponent<Rigidbody2D>().velocity = b.transform.up * 2;
+                    b.GetComponent<Rigidbody2D>().velocity = (b.transform.up * 5);
 
                     Physics2D.IgnoreCollision(Collider, b.GetComponent<Collider2D>());
                 }
@@ -460,13 +457,13 @@ public class BasicPlayerControll : MonoBehaviour
 
             bubbles = 0;
         }
-        else
+        else 
+        {
             bubbles++;
-
-
             bubblesforItemCurrent++;
+        }
 
-            if (bubblesforItemCurrent >= bubblesforItem)
+        if (bubblesforItemCurrent >= bubblesforItem)
             {
                 bubblesforItemCurrent = 0;
                 if (CurrentItem == null)

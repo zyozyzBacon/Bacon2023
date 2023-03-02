@@ -110,22 +110,10 @@ public class PlayerUI : MonoBehaviour
             itemPos = RectTransformUtility.WorldToScreenPoint(mCamera, ItemTransform.position);
             itemrt.position = itemPos;
 
-            if (!pState.dead && uiPart != null)
-            {
+            panelPos = RectTransformUtility.WorldToScreenPoint(mCamera, uiPanelTransform.position);
+            panelrt.position = panelPos;
 
-                panelPos = RectTransformUtility.WorldToScreenPoint(mCamera, uiPanelTransform.position);
-                panelrt.position = panelPos;
-
-                switch (MainGameManager.instance.GameMode)
-                {
-                    case MainGameManager.gameMode.foodBattle:
-
-                        if (pFood != null)
-                            text.SetText(pControll.bubbles.ToString());
-
-                        break;
-                }
-            }
+            text.SetText(pControll.bubbles.ToString());
         }
     }
 }

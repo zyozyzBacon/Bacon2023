@@ -1226,18 +1226,6 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8819739847824341112}
         m_TargetAssemblyTypeName: BasicPlayerControll, Assembly-CSharp
-        m_MethodName: shootInput
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 8819739847824341112}
-        m_TargetAssemblyTypeName: BasicPlayerControll, Assembly-CSharp
         m_MethodName: jumpDownInput
         m_Mode: 0
         m_Arguments:
@@ -1278,6 +1266,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 3ba8b5bd-9930-4747-bbae-b505c16f5302
     m_ActionName: Player01/UIMovement[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow,/XInputControllerWindows/leftStick,/XInputControllerWindows/dpad]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8819739847824341112}
+        m_TargetAssemblyTypeName: BasicPlayerControll, Assembly-CSharp
+        m_MethodName: jumpDownInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 7cd9f295-907a-44d0-abe9-6c40b5e64a05
+    m_ActionName: Player01/JumpDown[/XInputControllerWindows/rightShoulder,/XInputControllerWindows1/rightShoulder]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: Controller
   m_DefaultActionMap: Player01

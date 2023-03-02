@@ -32,7 +32,7 @@ public class AudioManager : MonoBehaviour
     {
         music.LevelSource.clip = music.Level1Clip;
         music.LevelSource.loop = true;
-        music.LevelSource.volume = 0.2f;
+        music.LevelSource.volume = 0.5f;
         music.LevelSource.Play();
     }
     public static void ButtonAudio()
@@ -45,7 +45,11 @@ public class AudioManager : MonoBehaviour
         music.ButtonSource.clip = music.Button2Clip;
         music.ButtonSource.Play();
     }
+    public static void StopAudio()
+    {
+        music.LevelSource.Stop();
 
+    }
 
 
 
