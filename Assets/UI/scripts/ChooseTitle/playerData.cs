@@ -8,6 +8,7 @@ public class playerData : MonoBehaviour
 {
     public int playerNum;
     public int[] colorList = new int[4];
+    public int[] bubbleNum = new int[4];
 
     public bool keyboardTest;
 

@@ -68,7 +68,7 @@ public class BasicPlayerControll : MonoBehaviour
     SpriteRenderer spriteRenderer;
     Collider2D Collider;
     Animator anim;
-
+    public Animator animE;
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -147,9 +147,19 @@ public class BasicPlayerControll : MonoBehaviour
             }
 
             if (moveInput.x != 0)
+            {
                 anim.SetBool("Walk", true);
+            }
+            if (moveInput.x != 0 && IsGrounded())
+            {
+                animE.SetBool("WalkE", true);
+
+            }
             else
+            {
                 anim.SetBool("Walk", false);
+                animE.SetBool("WalkE", false);
+            }
         }
     }
 
@@ -234,11 +244,14 @@ public class BasicPlayerControll : MonoBehaviour
     {
         if (pState.dashing)
         {
+            animE.SetBool("RushE", true);
             if (pState.facingRight)
                 rb.velocity = Vector2.right * dashSpeed;
             else
                 rb.velocity = Vector2.left * dashSpeed;
         }
+        else
+            animE.SetBool("RushE", false);
     }
 
     public IEnumerator dashCount(float seconds)
@@ -345,7 +358,7 @@ public class BasicPlayerControll : MonoBehaviour
         StartCoroutine(dizzyCount(dizzyTime));
         StartCoroutine(damagedCount(dizzyTime + recoveryTime));
         anim.SetTrigger("Hit");
-
+        animE.SetTrigger("HitE");
         if (others.GetComponent<Rigidbody2D>().velocity.x < 0)
         {
             rb.velocity = (Vector2.left * knockDown);
@@ -378,10 +391,8 @@ public class BasicPlayerControll : MonoBehaviour
     public void retired()
     {
         anim.SetTrigger("Retired");
-
+        animE.SetTrigger("DeadE");
         pState.dead = true;
-        if (MainGameManager.instance != null)
-            MainGameManager.instance.gameOver();
 
         StartCoroutine(dead(2f));
     }
@@ -428,18 +439,17 @@ public class BasicPlayerControll : MonoBehaviour
         //如果吃到顏色不對
         if (FoodColor != foodObject.GetComponent<foodpart>().FoodColor)
         {
-            if (bubbles > 0) 
+            if (bubbles > 1)
             {
-                int r = 180 / (bubbles - 1);
+                int r = 160 / (bubbles - 1);
                 for (int i = 0; i < bubbles; i++)
                 {
-
-                    GameObject b = Instantiate(thorwOutBubble, transform.position, 
-                        Quaternion.Euler(0,0,90 - r * i));
+                    GameObject b = Instantiate(thorwOutBubble, transform.position,
+                        Quaternion.Euler(0, 0, 80 - r * i));
 
                     b.transform.parent = null;
 
-                    b.GetComponent<Rigidbody2D>().velocity = b.transform.up * 2;
+                    b.GetComponent<Rigidbody2D>().velocity = (b.transform.up * 5);
 
                     Physics2D.IgnoreCollision(Collider, b.GetComponent<Collider2D>());
                 }
@@ -447,13 +457,13 @@ public class BasicPlayerControll : MonoBehaviour
 
             bubbles = 0;
         }
-        else
+        else 
+        {
             bubbles++;
-
-
             bubblesforItemCurrent++;
+        }
 
-            if (bubblesforItemCurrent >= bubblesforItem)
+        if (bubblesforItemCurrent >= bubblesforItem)
             {
                 bubblesforItemCurrent = 0;
                 if (CurrentItem == null)

@@ -55,7 +55,8 @@ public class MainGameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Numlock)) 
         {
-            SceneManager.LoadScene("playerChooseScreen");
+            AudioManager.StopAudio();
+            SceneManager.LoadScene("Home");
         }
     }
 
@@ -93,7 +94,6 @@ public class MainGameManager : MonoBehaviour
                     p.AddComponent<tutoPlayer>();
                     break;
                 case gameMode.foodBattle:
-                    p.AddComponent<foodBattlePlayer>().init();
                     break;
                 case gameMode.fallingBattle:
                     break;
@@ -123,8 +123,6 @@ public class MainGameManager : MonoBehaviour
                 break;
             case gameMode.foodBattle:
                 foodBattleManager.instance.init();
-                for (int i = 0; i < playerNum; i++)
-                    playerList[i].GetComponent<foodBattlePlayer>().startgame();
                 break;
             case gameMode.fallingBattle:
                 fallingGameManager.instance.init();
@@ -144,58 +142,6 @@ public class MainGameManager : MonoBehaviour
 
     }
 
-    public void gameOver() 
-    {
-        int Last = 0;
-
-        for (int i = 0; i < playerNum; i++)
-        {
-            if (playerList[i].GetComponent<PlayerStateList>().dead)
-            {
-                Last++;
-            }
-        }
-
-        if (Last == playerNum - 1)
-        {
-            Debug.Log("遊戲結束");
-
-            for (int i = 0; i < playerNum; i++)
-                playerList[i].GetComponent<PlayerStateList>().pause = true;
-
-            switch (GameMode)
-            {
-                case gameMode.foodBattle:
-                    foodBattleManager.instance.endGame(playerList);
-                    break;
-                case gameMode.fallingBattle:
-                    fallingGameManager.instance.endGame();
-                    break;
-                case gameMode.deathBattle:
-                    break;
-                default:
-                    Console.WriteLine("未鎖定");
-                    break;
-            }
-        }
-        else 
-        {
-            switch (GameMode)
-            {
-                case gameMode.foodBattle:
-
-                    for (int i = 0; i < playerNum; i++)
-                    {
-                        if (!playerList[i].GetComponent<PlayerStateList>().dead)
-                        {
-                            playerList[i].GetComponent<foodBattlePlayer>().hurgryAttackTime = 2f;
-                        }
-                    }
-
-                    break;
-            }
-        }
-    }
 
     IEnumerator Countdown()
     {
@@ -213,7 +159,7 @@ public class MainGameManager : MonoBehaviour
         switch (GameMode)
         {
             case gameMode.foodBattle:
-                foodBattleManager.instance.endGame(playerList);
+                foodBattleManager.instance.endGame();
                 break;
             case gameMode.fallingBattle:
                 fallingGameManager.instance.endGame();
@@ -224,6 +170,15 @@ public class MainGameManager : MonoBehaviour
                 Console.WriteLine("未鎖定");
                 break;
         }
+
+        writeInit();
+        EndGameCount.intence.init(pData);
+    }
+
+    public void writeInit() 
+    {
+        for (int i = 0; i < playerNum; i++)
+            pData.bubbleNum[i] = playerList[i].GetComponent<BasicPlayerControll>().bubbles;
     }
 
     public enum gameMode 

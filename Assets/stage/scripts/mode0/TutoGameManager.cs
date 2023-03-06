@@ -52,7 +52,7 @@ public class TutoGameManager : MonoBehaviour
 
     void loadscene() 
     {
-        SceneManager.LoadScene("Level1");
+        SceneManager.LoadScene("comicsP2");
     }
 
 

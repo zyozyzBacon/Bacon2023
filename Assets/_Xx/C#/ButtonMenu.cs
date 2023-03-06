@@ -2,36 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 public class ButtonMenu : MonoBehaviour
 {
-    public GameObject SetButton, SoundButton;
-    public void SetSelect()//設定選擇
+    
+    public void PlayGame(string sceneName)//切換場景
     {
-        SetButton.transform.rotation = Quaternion.Euler(0, 0, 0);
-        SoundButton.SetActive(true);
-    }
-    public void SetClose()//設定離開
-    {
-        SetButton.transform.rotation = Quaternion.Euler(0, 0, 45);
-        SoundButton.SetActive(false);
-    }
-    public void Sound()//聲音
-    {
-
-    }
-    public void Skip(string sceneName)//跳過
-    {
-        
-    }
-    public void GameStart(string sceneName)//遊戲開始
-    {
+        AudioManager.Button2Audio();
         SceneManager.LoadScene(sceneName);
     }
-    public void GameSelect(string sceneName)//選擇關卡
+    public void PlaySelect()//切換選擇
     {
-        SceneManager.LoadScene(sceneName);
+        AudioManager.ButtonAudio();
     }
+    
     public void Quiit()
     {
 
@@ -41,15 +26,27 @@ public class ButtonMenu : MonoBehaviour
             Application.Quit();
 #endif
     }
+
+    Animator anim;
     void Start()
     {
-
+        anim = GetComponent<Animator>();
     }
 
     void Update()
     {
-
+        
+    }
+    public void Comics(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
     }
 
+    public void SKipInput(InputAction.CallbackContext context)
+    {
+        anim.SetBool("Skip", true);
+
+    }
+       
 }
 
