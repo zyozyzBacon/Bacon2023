@@ -12,7 +12,7 @@ public class BasicPlayerControll : MonoBehaviour
     [Tooltip("顏色")][SerializeField] public int Color;
 
     [Header("移動相關")]
-    [Tooltip("移動速度")][SerializeField] float walkSpeed;
+    [Tooltip("移動速度")][SerializeField] public float walkSpeed;
     [Tooltip("電視模式速度")][SerializeField] public float tvMoveSpeed;
 
     [Header("跳躍相關")]
