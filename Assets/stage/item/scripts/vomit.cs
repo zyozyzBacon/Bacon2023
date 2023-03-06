@@ -9,6 +9,7 @@ public class vomit : MonoBehaviour, IitemInterface
     public float seconds;
 
     private GameObject Player;
+    private GameObject Target;
     private Collider2D Collider;
 
     void Awake() 
@@ -29,6 +30,11 @@ public class vomit : MonoBehaviour, IitemInterface
     IEnumerator timer(float seconds)
     {
         yield return new WaitForSeconds(seconds);
+
+        if (Target != null) 
+        {
+            Target.GetComponent<BasicPlayerControll>().walkSpeed = 9;
+        }
         Destroy(this.gameObject);
     }
 
@@ -38,7 +44,8 @@ public class vomit : MonoBehaviour, IitemInterface
         {
             if (!collision.GetComponent<PlayerStateList>().dead) 
             {
-                collision.GetComponent<BasicPlayerControll>().walkSpeed = 2;
+                Target = collision.gameObject;
+                Target.GetComponent<BasicPlayerControll>().walkSpeed = 2;
             }
         }
     }
@@ -49,7 +56,8 @@ public class vomit : MonoBehaviour, IitemInterface
         {
             if (!collision.GetComponent<PlayerStateList>().dead)
             {
-                collision.GetComponent<BasicPlayerControll>().walkSpeed = 9;
+                Target = collision.gameObject;
+                Target.GetComponent<BasicPlayerControll>().walkSpeed = 9;
             }
         }
     }
