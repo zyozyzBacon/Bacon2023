@@ -155,6 +155,40 @@ public class PlayerChooseColorManager : MonoBehaviour
     
     }
 
+
+    public void readyToGame4Player()
+    {
+        if (playerNum > 3)
+        {
+            if (playerReadyCheck())
+            {
+                if (!stop)
+                {
+                    stop = true;
+                    Debug.Log("開始遊戲");
+                    loadgame();
+
+                    pData.playerNum = playerNum;
+                    pData.keyboardTest = keyboardTest;
+                    for (int i = 0; i < playerNum; i++)
+                    {
+                        pData.colorList[i] = playerColorList[i];
+                    }
+                }
+
+            }
+            else
+            {
+                Debug.Log("有人還沒選顏色");
+            }
+        }
+        else
+        {
+            Debug.Log("需要四個人才能遊玩");
+        }
+
+    }
+
     public bool colorCheck(int color) 
     {
         int p = 0;

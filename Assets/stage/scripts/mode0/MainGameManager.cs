@@ -28,6 +28,7 @@ public class MainGameManager : MonoBehaviour
     [SerializeField] private GameObject InstructionCanvas;
     [SerializeField] public float totalTime;
     private float timeLeft;
+    private bool GameOver;
     [SerializeField] public TextMeshProUGUI textTime;
 
     private playerData pData;
@@ -56,8 +57,41 @@ public class MainGameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Numlock)) 
         {
             AudioManager.StopAudio();
+            loadScene();
+        }
+    }
+
+
+    void loadScene() 
+    {
+        if (!GameOver) 
+        {
             SceneManager.LoadScene("Home");
         }
+        else 
+        {
+            if (pData.gameplayMode == gameplayMode.longBattle)
+            {
+                switch (GameMode)
+                {
+                    case gameMode.tuto:
+                        break;
+                    case gameMode.foodBattle:
+                        SceneManager.LoadScene("Level2");
+                        break;
+                    case gameMode.fallingBattle:
+                        //SceneManager.LoadScene("Level3");
+                        break;
+                    case gameMode.deathBattle:
+                        break;
+                }
+            }
+            else 
+            {
+                SceneManager.LoadScene("Home");
+            }
+        }
+
     }
 
     private void init()
@@ -156,6 +190,27 @@ public class MainGameManager : MonoBehaviour
         for (int i = 0; i < playerNum; i++)
             playerList[i].GetComponent<PlayerStateList>().pause = true;
 
+        endGame();
+    }
+
+    public void playerDieToEndGame() 
+    {
+        int l = 0;
+        for (int i = 0; i < playerNum; i++) 
+        {
+            if (playerList[i].GetComponent<PlayerStateList>().dead)
+                l++;
+        }
+
+        if (l >= playerNum - 1) 
+        {
+            endGame();
+        }
+    }
+
+    void endGame() 
+    {
+        GameOver = true;
         switch (GameMode)
         {
             case gameMode.foodBattle:

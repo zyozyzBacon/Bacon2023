@@ -13,8 +13,11 @@ public class platformGene : MonoBehaviour
     private bool active;
 
     public GameObject fallingObject;
+    public GameObject brokenFallingObject;
+    int brokenRamdon;
 
     public GameObject[] platformsArray;
+    public GameObject[] brokenPlatformsArray;
     int p;
 
     public GameObject[] sidePoint = new GameObject[2];
@@ -35,6 +38,14 @@ public class platformGene : MonoBehaviour
             platformsArray[i].transform.position = this.transform.position;
             platformsArray[i].GetComponent<fallingPart>().parent = this.gameObject;
             platformsArray[i].SetActive(false);
+        }
+
+
+        brokenPlatformsArray = new GameObject[brokenFallingObject.transform.childCount];
+        brokenRamdon = 0;
+        for (int i = 0; i < brokenFallingObject.transform.childCount; i++)
+        {
+            brokenPlatformsArray[i] = brokenFallingObject.transform.GetChild(i).gameObject;
         }
 
         p = 0;
@@ -75,29 +86,43 @@ public class platformGene : MonoBehaviour
             transform.position.z);
     }
 
+    
     IEnumerator platform(float sceonds) 
     {
         yield return new WaitForSeconds(sceonds);
 
+        int br = Random.Range(brokenRamdon,100);
+
         if (active) 
         {
-            int r = Random.Range(0, fallingObject.transform.childCount);
-
-            while (platformsArray[r].activeSelf == true)
+            if (br <= 60)
             {
-                r = Random.Range(0, fallingObject.transform.childCount);
+                int r = Random.Range(0, fallingObject.transform.childCount);
+
+                while (platformsArray[r].activeSelf == true)
+                {
+                    r = Random.Range(0, fallingObject.transform.childCount);
+                }
+
+                platformsArray[r].SetActive(true);
+                platformsArray[r].transform.parent = GameObject.Find("###平台生成位置###").transform;
+                platformsArray[r].GetComponent<fallingPart>().active = true;
+
+                brokenRamdon = brokenRamdon + 5;
+            }
+            else 
+            {
+                int r = Random.Range(0, brokenFallingObject.transform.childCount);
+
+                GameObject brokenObject = Instantiate(brokenPlatformsArray[r].gameObject);
+
+                brokenObject.transform.parent = null;
+                brokenObject.transform.position = this.transform.position;
+                brokenObject.GetComponent<fallingPart>().active = true;
+
+                brokenRamdon = 0;
             }
 
-            platformsArray[r].SetActive(true);
-            platformsArray[r].transform.parent =  GameObject.Find("###平台生成位置###").transform;
-            platformsArray[r].GetComponent<fallingPart>().active = true;
-
-            p++;
-            if (p >= 10) 
-            {
-                p = 0;
-                //platformsArray[r].AddComponent<dangerPlatform>();
-            }            
         }
         StartCoroutine(platform(ptTimer));
     }
