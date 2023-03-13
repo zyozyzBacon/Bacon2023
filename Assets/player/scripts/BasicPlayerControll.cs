@@ -54,6 +54,7 @@ public class BasicPlayerControll : MonoBehaviour
     [Tooltip("槍物件")][SerializeField] private GameObject GunPower;
     [Tooltip("子彈物件")][SerializeField] private GameObject BulletPrefabs;
     [Tooltip("死亡後手上珍珠子物件")] public GameObject deadBubbleOnHand;
+    [Tooltip("嘔吐物")] public GameObject vomit;
     [Tooltip("吐珍珠")][SerializeField] private GameObject thorwOutBubble;
 
     Vector2 moveInput;
@@ -355,6 +356,8 @@ public class BasicPlayerControll : MonoBehaviour
         pState.damaged = true;
         pState.recoverying = true;
 
+        Instantiate(vomit, this.gameObject.transform);  
+
         StartCoroutine(dizzyCount(dizzyTime));
         StartCoroutine(damagedCount(dizzyTime + recoveryTime));
         anim.SetTrigger("Hit");
@@ -393,6 +396,8 @@ public class BasicPlayerControll : MonoBehaviour
         anim.SetTrigger("Retired");
         animE.SetTrigger("DeadE");
         pState.dead = true;
+
+        MainGameManager.instance.playerDieToEndGame();
 
         StartCoroutine(dead(2f));
     }

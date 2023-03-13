@@ -38,37 +38,17 @@ public class bababa : MonoBehaviour, IitemInterface
     IEnumerator timer(float seconds)
     {
         yield return new WaitForSeconds(seconds);
-
-        if (Target != null) 
-        {
-            Target.GetComponent<PlayerStateList>().pause = false;
-            Target.transform.parent = null;
-        }
-
         Destroy(this.gameObject);
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
         {
             if (!collision.GetComponent<PlayerStateList>().dead)
             {
-                Target = collision.gameObject;
-                Target.GetComponent<PlayerStateList>().pause= true;
-                Target.transform.parent = transform;
-            }
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.tag == "Player")
-        {
-            if (!collision.GetComponent<PlayerStateList>().dead)
-            {
-                Target.GetComponent<PlayerStateList>().pause = false;
-                Target.transform.parent = null;
+                if (!collision.GetComponent<PlayerStateList>().recoverying)
+                    collision.GetComponent<BasicPlayerControll>().damaged(collision.transform.parent.gameObject);
             }
         }
     }

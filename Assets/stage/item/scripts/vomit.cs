@@ -2,29 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class vomit : MonoBehaviour, IitemInterface
+public class vomit : MonoBehaviour
 {
 
     public Sprite Icon;
     public float seconds;
 
-    private GameObject Player;
     private GameObject Target;
-    private Collider2D Collider;
 
     void Awake() 
     {
-        Collider = this.GetComponent<Collider2D>();
-    }
-
-    void IitemInterface.ItemTrigger(GameObject player)
-    {
-        this.transform.position = player.transform.position;
-        Player = player;
-        Collider2D playerCollider = player.GetComponent<Collider2D>();
-        Physics2D.IgnoreCollision(Collider, playerCollider);
         StartCoroutine(timer(seconds));
     }
+
 
 
     IEnumerator timer(float seconds)

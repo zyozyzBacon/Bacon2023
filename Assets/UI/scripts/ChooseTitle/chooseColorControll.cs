@@ -96,6 +96,8 @@ public class chooseColorControll : MonoBehaviour
                         );
                     colorPanelCheck(-1, colorID);
                     choose = true;
+
+                    PlayerChooseColorManager.instance.readyToGame4Player();
                 }
                 else
                     Debug.Log("顏色已經被選走了");
